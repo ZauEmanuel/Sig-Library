@@ -20,7 +20,7 @@ char entrName(char* c) {
 			return '0';
 		}
 		if (valName(c) == 0) {
-			printf("\n::: Entrada invÃ¡lida :::");
+			printf("\n::: Entrada inválida :::");
 			strcpy(c,"");
 		} else {
 			i = '0';
@@ -41,7 +41,7 @@ char entrUser(char* c) {
 			return '0';
 		}
 		if ((strlen(c) < 3 && valAlphaNum(c))) {
-			printf("\n::: Entrada invÃ¡lida :::\n Digite ao menos 3 caracteres.");
+			printf("\n::: Entrada inválida :::\n Digite ao menos 3 caracteres.");
 			strcpy(c,"");
 		} else {
 			i = 1;
@@ -60,7 +60,7 @@ char entrCPF(char* c) {
 			return '0';
 		}
 		if (!valCPF(c)) {
-			printf("\n::: Entrada invÃ¡lida :::\n");
+			printf("\n::: Entrada inválida :::\n");
 			strcpy(c,"");
 		} else {
 			i = '0';
@@ -72,7 +72,7 @@ char entrCPF(char* c) {
 
 char entrRua(char* c) {
 	int i = 1;
-	printf("\n\t::EndereÃ§o::");
+	printf("\n\t::Endereço::");
 	do {
 	  printf("\n\n--Rua: ");
 		scanf(" %[^\n]",c);
@@ -81,7 +81,7 @@ char entrRua(char* c) {
 			return '0';
 		}
 		if(!valRua(c)) {
-			printf("\n::: Entrada invÃ¡lida :::\n");
+			printf("\n::: Entrada inválida :::\n");
 			strcpy(c,"");
 		}	else {
 			i = 0;
@@ -94,14 +94,14 @@ char entrRua(char* c) {
 char entrNum(char* c) {
 	int i = 1;
 	do {
-		printf("\n--NÃºmero: ");
+		printf("\n--Número: ");
 		scanf(" %s",c);
 		clBuf;
 		if (strlen(c) == 1 && c[0] == '0') {
 			return '0';
 		}
 		if (valAlphaNum(c) == 0) {
-			printf("\n::: Entrada invÃ¡lida :::\n");
+			printf("\n::: Entrada inválida :::\n");
 			strcpy(c,"");
 		} else {
 			i = 0;
@@ -120,7 +120,7 @@ char entrCEP(char* c) {
 			return '0';
 		}
 		if (valCEP(c)) {
-			printf("\n::: Entrada invÃ¡lida :::\n");
+			printf("\n::: Entrada inválida :::\n");
 			strcpy(c,"");
 		} else {
 			i = 0;
@@ -140,7 +140,7 @@ char entrEmail(char* c) {
 			return '0';
 		}
 		if (valEmail(c) == 0) {
-			printf("\n::: Entrada invÃ¡lida :::");
+			printf("\n::: Entrada inválida :::");
 			strcpy(c, "" );
 		} else {
 			i = 0;
@@ -185,9 +185,12 @@ char entrKey(char* c) {
 		if (strlen(c) == 1 && c[0] == '0') {
 			return '0';
 		}
-		if (!valKeyA(c)) {
+		if (valKeyA(c) == 0) {
 			strcpy(c,"");
-			printf("::: Entrada invÃ¡lida :::\n-- A senha deve ter pelo menos 8 digitos, dentre eles ao menos UM nÃºmero, UMA letra maiuscula, UMA letra minuscula e UM simbolo. --\n");
+			printf("\t           ::: Entrada inválida :::");
+			printf("\n\t      A senha deve ter no mimnimo 8 digitos,");
+			printf("\n\t ao menos uma letra maiuscula, uma minuscula,");
+			printf("\n\t um número e um simbolo.\n");
 		} else {
 			i = 0;
 		}
@@ -208,7 +211,7 @@ char entrTestKey(char * key) {
 		if (strcmp(key,c) != 0) {
 			strcpy(c,"");
 			printf("::: As Senhas Nao Combinam :::\n");
-			printf("Alterar senha anterior:\n[1] SIM\t[0] NÃƒO\n");
+			printf("Alterar senha anterior:\n[1] SIM\t[0] NÃO\n");
 			clBuf
 			scanf(" %d",&op);
 			if (op == 1) {

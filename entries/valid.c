@@ -292,11 +292,11 @@ int valKeyA(char* c) {
 			++countAlphaD;
 		} else if (c[len] >= 'A' && c[len] <='Z') {
 				++countAlphaU;
-		} else {
+		} else if ( (c[len] >= 33 && c[len] <= 63) || (c[len] >= 123 && c[len] <= 153) ){
 			++countSymbol;
 		}
 	}
-	if (countAlphaU <= 0 || countAlphaD <= 0 || countNum <= 0|| countSymbol <= 0) {
+	if (countAlphaU == 0 || countAlphaD == 0 || countNum == 0|| countSymbol == 0) {
 		return 0;
 	}
 	return 1;
@@ -314,7 +314,7 @@ int validaData(char* c) {
 	}
 
 	char year[4] ="";
-	//Tamanho de 'c' e posição dos caracteres: |d⁰|d¹|/²|m³|m⁴|/⁵|y⁶|y⁷|y⁸|y⁹|
+	//Tamanho de 'c' e posi��o dos caracteres: |d?|d�|/�|m�|m?|/?|y?|y?|y?|y?|
 											//  0  1  2  3  4  5  6  7  8  9
 	//Dia: c[0],c[1];
 	//mes = c[3],c[4];

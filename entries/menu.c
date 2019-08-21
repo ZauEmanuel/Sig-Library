@@ -25,7 +25,7 @@ void acervo(void){
     printf("Digite: ");
     scanf(" %c",&op);
 	} while(!((op >= '0') && (op <= '5')));
-	// Funï¿½ï¿½es Futuras //
+	// Fun??es Futuras //
 }
 
 void user(void) {
@@ -74,7 +74,7 @@ void livro(void){
     printf("\n///////////////////////////////////\n");
     printf("               Acervo\n");
     printf("///////////////////////////////////\n");
-    printf(" [1] Acervo\n [2] Solicitar Aquisiï¿½ï¿½o\n [3] Biblioteca\n [4] Config.\n [0] Voltar\n\n");
+    printf(" [1] Acervo\n [2] Solicitar Aquisi??o\n [3] Biblioteca\n [4] Config.\n [0] Voltar\n\n");
     scanf("%d",&op);
     system("clear||cls");
     cls
@@ -85,32 +85,32 @@ void bibli(void){
   printf("\n////////////////////////////////////\n");
   printf("             Biblioteca\n");
   printf("///////////////////////////////////\n");
-  printf(" [1] Relatï¿½rio\n [2] Gerenciamento de Funcionï¿½rios\n [3] Entrada e Saï¿½da de Livros\n [4] Usuï¿½rio\n [0] Voltar\n\n");
+  printf(" [1] Relat?rio\n [2] Gerenciamento de Funcion?rios\n [3] Entrada e Sa?da de Livros\n [4] Usu?rio\n [0] Voltar\n\n");
   do { 
 		printf("Digite: ");
     scanf("%d",&op);
     switch (op){
       case 1:
-      //Funï¿½ï¿½o Relatï¿½rio
-      printf("Funï¿½ï¿½o nï¿½o implementada!\n");
+      //Fun??o Relat?rio
+      printf("Fun??o n?o implementada!\n");
 			getchar();
       break;
 
       case 2:
-      //Funï¿½ï¿½o Gerenciamento de Funcionï¿½rios
-      printf("Funï¿½ï¿½o nï¿½o implementada!\n");
+      //Fun??o Gerenciamento de Funcion?rios
+      printf("Fun??o n?o implementada!\n");
 			getchar();
       break;
 
       case 3:
-      //Funï¿½ï¿½o Entrada e Saï¿½da de Livros
-      printf("Funï¿½ï¿½o nï¿½o implementada!\n");
+      //Fun??o Entrada e Sa?da de Livros
+      printf("Fun??o n?o implementada!\n");
 			getchar();
       break;
 
       case 4:
-      //Funï¿½ï¿½o Usuï¿½rio
-      printf("Funï¿½ï¿½o nï¿½o implementada!\n");
+      //Fun??o Usu?rio
+      printf("Fun??o n?o implementada!\n");
 			getchar();
       break;
 
@@ -127,7 +127,7 @@ void config(void){
   while(op != 0)
   {
   printf("\n////////////////////////////////////\n");
-  printf("              Opï¿½ï¿½es.\n");
+  printf("              Op??es.\n");
   printf("///////////////////////////////////\n");
   scanf("%d",&op);
   cls;
@@ -140,7 +140,7 @@ void configUser(void){
   while(op != 0)
   {
   printf("\n---------------------------------\n");
-  printf("              Opï¿½ï¿½es de Usuario\n");  
+  printf("              Op??es de Usuario\n");  
   printf("---------------------------------\n");
   printf(" [1] Cadrastrar\n [2] Atualizar\n [3] Excluir\n [0] Volta\n\n");
   scanf("%d",&op);
@@ -157,8 +157,8 @@ void about (void) {
   printf("\nSIG-Library: Um Sistema de Controle de Biblioteca.\n");
   printf("\nCriadores:\n");
 	printf("\n  Emanuel Oliveira - emanueldasilva011@gmail.com");
-	printf("\n  Zaï¿½ Galvï¿½o - zauhf@gmail.com\n\n\n");
-  printf("            2019 - Caicï¿½/RN\n\n");
+	printf("\n  Za? Galv?o - zauhf@gmail.com\n\n\n");
+  printf("            2019 - Caic?/RN\n\n");
   printf("==================================================\n");
 	clBuf;
 	getchar();
@@ -173,7 +173,7 @@ void menu (void) {
     printf("////////////////////////////////////\n");
     printf("           SIG - Library\n");
     printf("///////////////////////////////////\n");
-    printf(" [1] Usuario\n [2] Acervo\n [3] Biblioteca\n [4] Sobre \n [5] Opï¿½ï¿½es\n [0] Sair\n\n");
+    printf(" [1] Usuario\n [2] Acervo\n [3] Biblioteca\n [4] Sobre \n [5] Opções\n [0] Sair\n\n");
 		printf("Digite: ");
     scanf(" %c",&op);
     if (op >= '0' && op <= '5') {
