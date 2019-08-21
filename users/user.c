@@ -6,7 +6,7 @@
 
 #define cls system("clear||cls");
 #define clBuf setbuf(stdin,NULL);
-
+ //Test commit
 void newUser(void) {
 	char op = '1';
 	do {
@@ -79,18 +79,18 @@ void pesqUser(void) {
 	char cpf[11] = "";
 	printf("::: DIGITE 0 PARA VOLTAR :::\n");
   do {
-		if(entrCPF(cpf)) {
+		if(entrCPF(cpf) == '1') {
+			printf("\n::CPF valido::\n");
+			clBuf;
+			getchar();
 			op = '0';
-		}	
+		}	else {
+			return;
+		}
   } while(op != '0');
-	if(op == '0'){
-		return;
-	} else {
-		printf("\n::CPF valido::\n");
-		getchar();
 			// Futuras funções de Pesquisa em arquivo.
-	}
 }
+
 
 void updateUser(void) {
 	char op = '1';

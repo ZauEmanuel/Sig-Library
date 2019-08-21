@@ -4,7 +4,7 @@
 
 
 #include "valid.h"
-
+ 
 #define cls system("clear||cls");
 #define clBuf setbuf(stdin,NULL);
 
@@ -15,6 +15,7 @@ char entrName(char* c) {
 		clBuf;
 		scanf(" %[^\n]",c);
 		clBuf;
+		printf("User = %s",c);
 		if (strlen(c) == 1 && c[0] == '0') {
 			return '0';
 		}
@@ -34,7 +35,7 @@ char entrUser(char* c) {
 	do {
 		printf("\n--Usuario: ");
 		clBuf;
-		scanf(" %[^\n]",c);
+		scanf(" %[ ]",c);
 		clBuf;
 		if (strlen(c) == 1 && c[0] == '0') {
 			return '0';

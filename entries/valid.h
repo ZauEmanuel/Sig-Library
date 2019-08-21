@@ -12,4 +12,4 @@ int valAlphaNum(char*);
 int valEmail(char*);
 int auxEmail(char);
 int valKeyA(char*);
-int validaData(char*);
+int validaData(char*); 

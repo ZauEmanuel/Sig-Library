@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+ 
 int auxEmail(char);
 #pragma clang diagnostic ignored "-Wtautological-constant-out-of-range-compare"
 int valDec(char* c){
@@ -124,9 +124,13 @@ int valCPF(char *c) {
 	int len = strlen(c);
 	if(len < 11) {
 		return 0;
-	}	
+	}
+	
 	int j, i = 0,d1 = 0,d2 = 0;
 	for(j = len-1;j >= 2;--j) {
+		if((c[i] >= '0' && c[i] <= '9') == 0){
+			return 0;
+		}
 		d1 += (c[i]-48)*j;
 		d2 += ((c[i]-48)*(j+1));
 		++i;

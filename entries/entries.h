@@ -7,4 +7,4 @@ char entrCPF(char*);
 char entrEmail(char*);
 char entrTestEmail(char*);
 char entrKey(char*);
-char entrTestKey(char*);
+char entrTestKey(char*); 
