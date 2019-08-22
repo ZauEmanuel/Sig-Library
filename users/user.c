@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <locale.h>
 #include "../entries/entries.h"
 #include "../entries/valid.h"
 
@@ -19,6 +20,7 @@ struct entries{
 };
 struct entries user;
 void newUser(void) {
+	setlocale( LC_ALL, "Portuguese" );
 	printf(" Name :     %s \n Usuario :  %s\n",user.name,user.user);
 	printf(" CPF :      %s \n Rua :      %s\n",user.cpf,user.rua);
 	printf(" Numero :   %s \n CEP :      %s\n",user.num,user.cep);
@@ -61,7 +63,7 @@ void newUser(void) {
 		if(op == '0'){
 			return;
 		}
-		printf("\n ::: InformaÃ§Ãµes Do UsuÃ¡rio :::\n");
+		printf("\n ::: Informações Do Usuário :::\n");
 		printf(" Name :     %s \n Usuario :  %s\n",user.name,user.user);
 		printf(" CPF :      %s \n Rua :      %s\n",user.cpf,user.rua);
 		printf(" Numero :   %s \n CEP :      %s\n",user.num,user.cep);
@@ -85,16 +87,18 @@ void pesqUser(void) {
 			return;
 		}
   } while(op != '0');
-			// Futuras funÃ§Ãµes de Pesquisa em arquivo.
+			// Futuras funções de Pesquisa em arquivo.
 }
 
 
 void updateUser(void) {
 	char op = '1';
+	cls;
 	do {
 		char control = 'a';
 		//file_entrie
-		printf("\n   ::: InformaÃ§Ãµes Atuais Do UsuÃ¡rio :::\n");
+		setlocale( LC_ALL, "Portuguese" );
+		printf("\n   ::: Informações Atuais Do Usuário :::\n");
 		printf(" [1] Name :     %s \n [5] Usuario :  %s\n",user.name,user.user);
 		printf(" [2] CPF :      %s \n [6] Rua :      %s\n",user.cpf,user.rua);
 		printf(" [3] Numero :   %s \n [7] CEP :      %s\n",user.num,user.cep);
@@ -105,7 +109,7 @@ void updateUser(void) {
 			scanf(" %c",&control);
 		}
 		printf("\n||||||||||||||||||||||||||||||||||||||||||||||");
-		printf("\n|||          Atualizar informaÃ§Ãµes         |||");
+		printf("\n|||          Atualizar informações         |||");
 		printf("\n||||||||||||||||||||||||||||||||||||||||||||||\n");
 		switch (control) {
 			case '0':

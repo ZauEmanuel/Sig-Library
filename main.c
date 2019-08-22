@@ -15,6 +15,7 @@ int main(void){
   char senha[128] = "";
   int c = 0;
   //cls;
+  setlocale( LC_ALL, "Portuguese" );
   printf("#######################################\n");
   printf("##              LOGIN                ##\n");
   printf("#######################################\n");
