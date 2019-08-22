@@ -51,17 +51,6 @@ int valDecPf(char* c) {
 	return 1;
 }
 
-int valPf(char* c) {
-	int count = 0;
-	for (int len = strlen(c) - 1; len >= 0; --len) {
-		if (c[len] == ',' || c[len] == '.') {
-			c[len] = '.';
- 			return 1;
-		}
-	}
-	return 0;
-}
-
 
 int valISN(char *c) {
 	int len = strlen(c) -1;

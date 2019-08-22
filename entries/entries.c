@@ -8,6 +8,8 @@
 #define cls system("clear||cls");
 #define clBuf setbuf(stdin,NULL);
 
+// entradas para usu√°rio //
+
 char entrName(char* c) {
 	char i = '0';
 	do {
@@ -20,7 +22,7 @@ char entrName(char* c) {
 			return '0';
 		}
 		if (valName(c) == 0) {
-			printf("\n::: Entrada inv·lida :::");
+			printf("\n::: Entrada inv√°lida :::");
 			strcpy(c,"");
 		} else {
 			i = '0';
@@ -41,7 +43,7 @@ char entrUser(char* c) {
 			return '0';
 		}
 		if ((strlen(c) < 3 && valAlphaNum(c))) {
-			printf("\n::: Entrada inv·lida :::\n Digite ao menos 3 caracteres.");
+			printf("\n::: Entrada inv√°lida :::\n Digite ao menos 3 caracteres.");
 			strcpy(c,"");
 		} else {
 			i = 1;
@@ -60,7 +62,7 @@ char entrCPF(char* c) {
 			return '0';
 		}
 		if (!valCPF(c)) {
-			printf("\n::: Entrada inv·lida :::\n");
+			printf("\n::: Entrada inv√°lida :::\n");
 			strcpy(c,"");
 		} else {
 			i = '0';
@@ -72,7 +74,7 @@ char entrCPF(char* c) {
 
 char entrRua(char* c) {
 	int i = 1;
-	printf("\n\t::EndereÁo::");
+	printf("\n\t::Endere√ßo::");
 	do {
 	  printf("\n\n--Rua: ");
 		scanf(" %[^\n]",c);
@@ -81,7 +83,7 @@ char entrRua(char* c) {
 			return '0';
 		}
 		if(!valRua(c)) {
-			printf("\n::: Entrada inv·lida :::\n");
+			printf("\n::: Entrada inv√°lida :::\n");
 			strcpy(c,"");
 		}	else {
 			i = 0;
@@ -94,14 +96,14 @@ char entrRua(char* c) {
 char entrNum(char* c) {
 	int i = 1;
 	do {
-		printf("\n--N˙mero: ");
+		printf("\n--N√∫mero: ");
 		scanf(" %s",c);
 		clBuf;
 		if (strlen(c) == 1 && c[0] == '0') {
 			return '0';
 		}
 		if (valAlphaNum(c) == 0) {
-			printf("\n::: Entrada inv·lida :::\n");
+			printf("\n::: Entrada inv√°lida :::\n");
 			strcpy(c,"");
 		} else {
 			i = 0;
@@ -120,7 +122,7 @@ char entrCEP(char* c) {
 			return '0';
 		}
 		if (valCEP(c)) {
-			printf("\n::: Entrada inv·lida :::\n");
+			printf("\n::: Entrada inv√°lida :::\n");
 			strcpy(c,"");
 		} else {
 			i = 0;
@@ -140,7 +142,7 @@ char entrEmail(char* c) {
 			return '0';
 		}
 		if (valEmail(c) == 0) {
-			printf("\n::: Entrada inv·lida :::");
+			printf("\n::: Entrada inv√°lida :::");
 			strcpy(c, "" );
 		} else {
 			i = 0;
@@ -150,7 +152,7 @@ char entrEmail(char* c) {
 }
 
 
-char entrTestEmail(char * c) {
+char entrTestEmail(char* c) {
 	int op = 0, i = 1;
 	char test[128] = "";
 	do {
@@ -161,7 +163,7 @@ char entrTestEmail(char * c) {
 		}
 		if (strcmp(c,test) != 0) {
 			strcpy(c,"");
-			printf("::: Os Email's Nao Combinam :::\n");
+			printf("::: Os Email's N√£o Combinam :::\n");
 			printf("    Alterar e-mail anterior:\n[1] Alterar\t[0] Tentar novamente\n");
 			scanf(" %d",&op);
 			if (op == 1) {
@@ -187,10 +189,10 @@ char entrKey(char* c) {
 		}
 		if (valKeyA(c) == 0) {
 			strcpy(c,"");
-			printf("\t           ::: Entrada inv·lida :::");
+			printf("\t           ::: Entrada inv√°lida :::");
 			printf("\n\t      A senha deve ter no mimnimo 8 digitos,");
 			printf("\n\t ao menos uma letra maiuscula, uma minuscula,");
-			printf("\n\t um n˙mero e um simbolo.\n");
+			printf("\n\t um n√∫mero e um simbolo.\n");
 		} else {
 			i = 0;
 		}
@@ -211,7 +213,7 @@ char entrTestKey(char * key) {
 		if (strcmp(key,c) != 0) {
 			strcpy(c,"");
 			printf("::: As Senhas Nao Combinam :::\n");
-			printf("Alterar senha anterior:\n[1] SIM\t[0] N√O\n");
+			printf("Alterar senha anterior:\n[1] SIM\t[0] N√ÉO\n");
 			clBuf
 			scanf(" %d",&op);
 			if (op == 1) {
@@ -226,3 +228,6 @@ char entrTestKey(char * key) {
 	} while(i != 0);
 	return '1';
 }
+
+
+// entradas para acervo //

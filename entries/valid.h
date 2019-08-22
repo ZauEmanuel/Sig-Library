@@ -2,7 +2,6 @@ int valDec(char*);
 int valDecInt(char*);
 int valDecPf(char*);
 int valISN(char*);
-int valPf(char*);
 int valCPF(char*);
 int valCEP(char*);
 int valRua(char*);
