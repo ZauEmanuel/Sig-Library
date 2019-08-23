@@ -12,7 +12,7 @@ void acervoClient(void){
   printf("\n///////////////////////////////////\n");
   printf("               Acervo\n");
   printf("///////////////////////////////////\n");
-  printf(" [1] Acervo\n [2] Solicitar Aquisição\n [0] Voltar\n\n");
+  printf(" [1] Acervo\n [2] Solicitar AquisiÃ£o\n [0] Voltar\n\n");
   do {
     printf("Digite: ");
     scanf(" %c",&op);
@@ -32,8 +32,9 @@ void acervoClient(void){
 
 void configUserClient(void){
   char op = '1';
+  setlocale( LC_ALL, "Portuguese" );
   printf("\n---------------------------------");
-  printf("\n       Opções de Usuario");  
+  printf("\n       OpÃ§Ãµes de Usuario");  
   printf("\n---------------------------------");
   printf("\n [1] Atualizar dados\n [2] Excluir Conta\n [0] Voltar\n\n");
   do {
@@ -64,6 +65,7 @@ void menuClient(void) {
     printf(" [1] Usuario\n [2] Acervo\n [3] Sobre \n [0] Sair\n\n");
 		printf("Digite: ");
     scanf(" %c",&op);
+    cls;
     if (op >= '0' && op <= '5') {
 			switch (op) {
 				case '1':

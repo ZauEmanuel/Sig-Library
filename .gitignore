@@ -1,4 +1,2 @@
-.vscode/settings.json
-makegit.bat
-makefile.bat
-makecommit.bat
+.vscode
+make.bat

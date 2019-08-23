@@ -3,7 +3,7 @@
 #include <string.h>
  
 int auxEmail(char);
-#pragma clang diagnostic ignored "-Wtautological-constant-out-of-range-compare"
+
 int valDec(char* c){
 	int len = strlen(c) - 1, count = 0;
 	for (len = strlen(c) - 1; len >= 0; --len) {
@@ -303,7 +303,7 @@ int validaData(char* c) {
 	}
 
 	char year[4] ="";
-	//Tamanho de 'c' e posição dos caracteres: |d?|d¹|/²|m³|m?|/?|y?|y?|y?|y?|
+	//Tamanho de 'c' e posiï¿½ï¿½o dos caracteres: |d?|dï¿½|/ï¿½|mï¿½|m?|/?|y?|y?|y?|y?|
 											//  0  1  2  3  4  5  6  7  8  9
 	//Dia: c[0],c[1];
 	//mes = c[3],c[4];

@@ -45,7 +45,7 @@ void acervo(void){
   }
 }
 
-void user(void) {
+void users(void) {
 	char op = '1';
 	cls;
 	do {
@@ -197,7 +197,7 @@ void menuAdmin(void) {
     if (op >= '0' && op <= '5') {
 			switch (op) {
 				case '1':
-				user();
+				users();
 				break;
 				
 				case '2':
