@@ -1,0 +1,10 @@
+char inputBookTitle(char* c);
+char inputBookSubtitle(char* c);
+char inputBookPublisher(char* c);
+char inputBookUnity(char* c);
+char inputBookStatus(char* c);
+char inputBookAuthor(char* c);
+char inputBookidentifier(char* c);
+char inputBookCoauthor(char* c);
+char inputBookYear(char* c);
+char inputBookVersion(char* c);

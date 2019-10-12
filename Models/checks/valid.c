@@ -68,14 +68,12 @@ int valISN(char *c) {
 
 	if(len == 7) {
 		for(i = 0,j = 8;i < len;++i,--j) {
-			printf("\nvalid = %d * %d",(c[i]-48),j);
 			valid += ( (c[i]-48) * j);
 		}
 		valid = valid%11;
 		if(valid != 0){
 			valid = 11 - valid;
 		}
-		printf("valid = %d",valid);
 	} else if(len == 9) {
 		for(i = 0;i < len;++i,++j) {
 			valid += ( (c[i]-48) *j);

@@ -1,9 +1,11 @@
 void newUser(void);
-void pesqUser(void);
+int searchUser(User*);
 void updateUser(void);
-void updateOP(char); 
+void updateOP(char);
+void showInfoUser(User*);
 
-typedef struct Entrie{
+
+typedef struct{
 	char name[256];
 	char user[32];
 	char cpf[10];
@@ -13,5 +15,4 @@ typedef struct Entrie{
 	char city[32];
 	char email[128];
 	char key[32];
-}Entrie;
-struct Entrie pEntrie, *user;
+}User;
