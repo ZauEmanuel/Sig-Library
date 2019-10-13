@@ -1,0 +1,11 @@
+#include "../../../Views/books/book.h"
+char inputBookTitle(Book*);
+char inputBookSubtitle(Book*);
+char inputBookPublisher(Book*);
+char inputBookUnity(Book*);
+char inputBookStatus(Book*);
+char inputBookAuthor(Book*);
+char inputBookIdentifier(Book*);
+char inputBookCoauthor(Book*);
+char inputBookYear(Book*);
+char inputBookVersion(Book*);

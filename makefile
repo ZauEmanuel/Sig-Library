@@ -1,5 +1,10 @@
 #!/bin/bash
 clear
-gcc -Wall -c main.c users/user.c users/user.h entries/valid.c entries/valid.h entries/files.c entries/files.h entries/entries.c entries/entries.h entries/clients/menuClient.c entries/clients/menuClient.h entries/admin/menuAdmin.h entries/admin/menuAdmin.c config/library.c config/library.h config/control.c config/control.h
-gcc -o Sig_Library main.c user.o valid.o files.o entries.o menuClient.o menuAdmin.o library.o control.o
+
+gcc -Wall -o Sig_Library Views/menu/menu.h Views/menu/menu.c Controllers/entries/book/entriesBook.c Controllers/entries/book/entriesBook.h Controllers/entries/user/entriesUser.c Controllers/entries/user/entriesUser.h Views/books/book.c Views/books/book.h Views/users/user.c Views/users/user.h Views/loans/loan.c Views/loans/loan.h Models/checks/valid.c Models/checks/valid.h
+ 
+#gcc -o Sig_Library menu.o entriesBook.o entriesUser.o book.o user.o loan.o valid.o
+
+sleep 10
+
 ./Sig_Library

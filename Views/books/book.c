@@ -2,8 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <locale.h>
-#include "../../Controllers/entries/books/entriesBooks.h"
-#include "book.h"
+#include "../../Controllers/entries/book/entriesBook.h"
 
 
 #define cls system("clear||cls");
@@ -12,111 +11,116 @@
 
 void showInfoBook(Book *book){
 	setlocale( LC_ALL, "Portuguese" );
-	printf(" [1] Título :    %s \n [5] Editora :       %s \n",book->title,book->publisher);
-	printf(" [2] Subtítulo : %s \n [6] Ano :           %s \n",book->subTitle,book->year);
-	printf(" [3] Autor :     %s \n [7] Versão :        %s \n",book->author,book->version);
-	printf(" [4] Coautor :   %s \n [8] Identificador : %s \n",book->coAuthor,book->ISN);
-	printf(" [9] Status :    %s \n [10] Unidade :      %d \n",book->status,book->unity);
+	printf(" [1] Título :    %s \n [5] Ano :           %d \n",book->title,book->year);
+	printf(" [2] Subtítulo : %s \n [6] Versão :        %s \n",book->subTitle,book->version);
+	printf(" [3] Autor :     %s \n [7] Identificador : %s \n",book->author,book->ISN);
+	printf(" [4] Editora :   %s \n [8] Status :        %c \n",book->publisher,book->status);
+	printf(" [9] Unidade :      %d \n",book->unity);
 }
 
 
 void newBook(void) {
 	Book *book = calloc(sizeof *book, 0);
 	char op = '1';
+
 	do {
 		printf("\n||||||||||||||||||||||||||||||||||||||||||||||\n");
 		printf("                 Adicionar Livro\n");
 		printf("||||||||||||||||||||||||||||||||||||||||||||||\n\n");
 		printf("        ::: DIGITE 0 PARA VOLTAR :::\n");
-		op = inputBookTitle(book->title);
-		if(op == '0'){
+		
+		op = inputBookTitle(book);
+		if(op == '0')
 			return;
-		}
-		op = inputBookSubtitle(book->subTitle);
-		if(op == '0'){
+		
+		op = inputBookSubtitle(book);
+		if(op == '0')
 			return;
-		}
-		op = inputBookAuthor(book->author);
-		if(op == '0'){
+		
+		op = inputBookAuthor(book);
+		if(op == '0')
 			return;
-		}
-		op = inputBookCoauthor(book->coAuthor);
-		if(op == '0'){
+		
+		op = inputBookPublisher(book);
+		if(op == '0')
 			return;
-		}
-		op = inputBookPublisher(book->publisher);
-		if(op == '0'){
+		
+		op = inputBookYear(book);
+		if(op == '0')
 			return;
-		}
-		op = inputBookYear(book->publisher);
-		if(op == '0'){
+		
+		op = inputBookVersion(book);
+		if(op == '0')
 			return;
-		}
-		op = inputBookVersion(book->version);
-		if(op == '0'){
+		
+		op = inputBookIdentifier(book);
+		if(op == '0')
 			return;
-		}
-		op = inputBookIdentifier(book->ISN);
-		if(op == '0'){
+		
+		op = inputBookUnity(book);
+		if(op == '0')
 			return;
-		}
-		op = inputBookUnity(book->unity);
-		if(op == '0'){
-			return;
-		}
+		
 		showInfoBook(book);
-		getchar();
-		break;
+		printf("::: ENTER :::");
+		clBuf; getchar();
 		printf("Continuar:\n [1] SIM \n [0] NÃO \n Digite: ");
-		scanf("%c",&op);	
+		clBuf; scanf("%c",&op);	
 	} while(op != '0');
-	op = writeData(book,'uR');
-	if(op==0){
-		cls;
-		printf("Erro! Conflito de dados. Dados idênticos encontrados.");
-		getchar();
-		return;
-	} else if(op==1) {
-		printf("Livro atualizado com sucesso!");
-	}
+	//op = writeDataBook(book,'n');
+	//if(op==0){
+	//	return;
+	//} else if(op==1) {
+	//	printf("Livro atualizado com sucesso!");
+	//}
 }
 
 
 
 
-int searchBook(Book *book) {
+int searchBook(Book *book,char typ) {
 	char any[256] = "";
 	char op = ' ';
 	op = '1';
-	printf("   ::: PESQUISAR LIVRO :::");
+	printf("   ::: PESQUISAR:::");
 	printf("::: DIGITE 0 PARA VOLTAR :::\n");
+	if(typ == 'l')
+		//op = search(book,any,typ);
+		return 1;
 	do {
-		any[256] = "";
+		memset(any, 0, sizeof any);
 		printf("Pesquisar: ");
-		scanf("%s",&any);
+		scanf("%s",any);
 		if(strlen(any) == 1 && any[0] == 0){
-			return;
+			return 2;
 		} else {
 			op = '0';
 		}
 	} while(op != '0');
 	cls;
-	op = search(book,any,'b');
+	//op = search(book,any,typ);
 	if(op == 1){
-		return 1;
-	} else {
-		return 0;
+		return op;
+	} else if(op == 0) {
+		printf("\nLivro não encontrado!");
+		clBuf; printf("::: ENTER :::"); getchar();
+		return op;
+	} else if(op == 2){
+		printf("\nLivro não disponível!");	
+		clBuf; printf("::: ENTER :::"); getchar();
+		return op;
 	}
+	return 0;
 }
 
 
 void updateBook(void) {
-	char op = '1';
+	char op = ' ';
 	char controlP= '0';
 	Book *bookUp = calloc(sizeof *bookUp, 0);
 	do {
 		do{
-			controlP = searchBook(bookUp);
+			controlP = searchBook(bookUp,'b');
 		 	if(controlP == 0){
 				printf("Livro não encontrado.\n");
 				printf("Pesquisar novamente [1]\n");
@@ -136,68 +140,63 @@ void updateBook(void) {
 		showInfoBook(bookUp);
 		printf("Alterar: ");
 		scanf(" %c",&op);
-		if(op>='0' && op<='10'){
+		if(op>='0' && op<='9'){
 			switch (op) {
 
 				case '0':
 					return;
 
 				case '1':
-					op = inputBookTitle(bookUp->title);
+					op = inputBookTitle(bookUp);
 					if(op == '0')
 						return;
 					break;
 				
 				case '2':
-					op = inputBookSubtitle(bookUp->subTitle);
+					op = inputBookSubtitle(bookUp);
 					if(op == '0')
 						return;
 					break;
 				
 				case '3':
-					op = inputBookAuthor(bookUp->author);
+					op = inputBookAuthor(bookUp);
 					if(op == '0')
 						return;
 					break;
 
+
 				case '4':
-					op = inputBookCoauthor(bookUp->coAuthor);
+					op = inputBookPublisher(bookUp);
 					if(op == '0')
 						return;
 					break;
 
 				case '5':
-					op = inputBookPublisher(bookUp->publisher);
+					op = inputBookYear(bookUp);
 					if(op == '0')
 						return;
 					break;
 
 				case '6':
-					op = inputBookYear(bookUp->publisher);
+					op = inputBookVersion(bookUp);
 					if(op == '0')
 						return;
 					break;
 
 				case '7':
-					op = inputBookVersion(bookUp->version);
+					op = inputBookIdentifier(bookUp);
 					if(op == '0')
 						return;
 					break;
 
 				case '8':
-					op = inputBookidentifier(bookUp->version);
+					op = inputBookStatus(bookUp);
 					if(op == '0')
 						return;
 					break;
 
 				case '9':
-					op = inputBookStatus(bookUp->status);
-					if(op == '0')
-						return;
-					break;
-
-				case '10':
-					op = inputBookUnity(bookUp->unity);
+					op = inputBookUnity(bookUp);
 					if(op == '0')
 						return;
 					break;
@@ -206,15 +205,36 @@ void updateBook(void) {
 		printf("Continuar:\n [1] SIM \n [0] NÃO \n Digite: ");
 		scanf("%c",&op);	
 	} while(op != '0');
-	op = writeData(bookUp,'bR');
-	if(op==0){
-		cls;
-		printf("Erro! Conflito de dados. Dados idênticos encontrados.");
-		getchar();
-		return;
-	} else if(op==1) {
+	//op = writeDataBook(bookUp,'bR');
+	if(op==1){
 		printf("Livro atualizado com sucesso!");
+		clBuf; printf("::: ENTER :::"); getchar();
 	}
 }
 
 
+void removeBook(void){
+	Book *book = calloc(sizeof *book, 0);
+	int op = 0;
+	printf("\n||||||||||||||||||||||||||||||||||||||||||||||\n");
+	printf("                Remover Livro\n");
+	printf("||||||||||||||||||||||||||||||||||||||||||||||\n\n");
+
+	do{
+		op = searchBook(book,'b');
+		if(op == 2)
+			return;
+	}while(op == 0);
+
+	showInfoBook(book);
+	clBuf; printf("::: ENTER :::"); getchar();
+	printf("Continuar:\n [1] SIM \n [0] NÃO \n Digite: ");
+	scanf("%d",&op);
+	//if(op == 1){
+	//	op = writeDataBook(book,'R');
+	//	if(op == 1){
+	//		printf("Livro removido com sucesso!");
+	//		clBuf; printf("::: ENTER :::"); getchar();
+	//	}
+	//}
+}

@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include "../../Models/checks/valid.h"
+#include "../../../Models/checks/valid.h"
+#include "../../../Views/books/book.h"
 
  
 #define cls system("clear||cls");
@@ -12,14 +13,15 @@
 // entradas para livros //
 
 
-char inputBookTitle(char* c) {
-	char i = '1';
+char inputBookTitle(Book *book) {
+	char i = '1', c[256] = "";
 	do {
 		printf("\n\n--Título: ");
 		clBuf; scanf(" %[ ^\n]",c); clBuf;
 		if (strlen(c) == 1 && c[0] == '0') {
 			return '0';
 		} else {
+			strcpy(book->title,c);
 			i = '0';
 		}
 	} while(i != '0'); 
@@ -27,14 +29,15 @@ char inputBookTitle(char* c) {
 }
 
 
-char inputBookSubtitle(char* c) {
-	char i = '1';
+char inputBookSubtitle(Book *book) {
+	char i = '1', c[32] = "";
 	do {
 		printf("\n\n--Título: ");
 		clBuf; scanf(" %[ ^\n]",c); clBuf;
 		if (strlen(c) == 1 && c[0] == '0') {
 			return '0';
 		} else {
+			strcpy(book->subTitle,c);
 			i = '0';
 		}
 	} while(i != '0'); 
@@ -42,14 +45,15 @@ char inputBookSubtitle(char* c) {
 }
 
 
-char inputBookPublisher(char* c) {
-	char i = '1';
+char inputBookPublisher(Book *book) {
+	char i = '1', c[32] = "";
 	do {
 		printf("\n\n--Editora: ");
 		clBuf; scanf(" %[ ^\n]",c); clBuf;
 		if (strlen(c) == 1 && c[0] == '0') {
 			return '0';
 		} else {
+			strcpy(book->publisher,c);
 			i = '0';
 		}
 	} while(i != '0'); 
@@ -57,17 +61,19 @@ char inputBookPublisher(char* c) {
 }
 
 
-char inputBookUnity(char* c) {
+char inputBookUnity(Book *book) {
 	char i = '1';
+	char c[5] = "";
 	do {
 		printf("\n\n--Unidade do acervo: ");
-		clBuf; scanf(" %[^\n]",c); clBuf;
+		clBuf; scanf(" %s",c); clBuf;
 		if (strlen(c) == 1 && c[0] == '0') {
 			return '0';
-		} if (valNum(c) == 0) {
+		} if (valDec(c) == 0) {
 			printf("\n::: Entrada inválida :::");
 			strcpy(c,"");
 		} else {
+			book->unity = atoi(c);
 			i = '0';
 		}
 	} while(i != '0'); 
@@ -75,20 +81,21 @@ char inputBookUnity(char* c) {
 }
 
 
-char inputBookStatus(char* c) {
-	char i = '1';
+char inputBookStatus(Book *book) {
+	char i = ' '; char c = ' ';
 	do {
 		printf("\n\n--Status: ");
 		printf("[r] Reservado\n");
 		printf("[e] Emprestado\n");
 		printf("[d] Disponível\n\n");
-		clBuf; scanf(" %[ ^\n]",c); clBuf;
-		if (strlen(c) == 1 && c[0] == '0') {
+		clBuf; scanf(" %c",&c); clBuf;
+		if (c == '0') {
 			return '0';
-		} if ((c[0] == 'r' || c[0] == 'e' || c[0] == 'd') && (strlen(c) == 1)) {
+		} if ((c == 'r' || c == 'e' || c == 'd') && (c == 1)) {
 			printf("\n::: Entrada inválida :::");
-			strcpy(c,"");
+			c = ' ';
 		} else {
+			book->status = c;
 			i = '0';
 		}
 	} while(i != '0'); 
@@ -96,8 +103,8 @@ char inputBookStatus(char* c) {
 }
 
 
-char inputBookAuthor(char* c) {
-	char i = '1';
+char inputBookAuthor(Book *book) {
+	char i = '1', c[256] = "";
 	do {
 		printf("\n\n--Autor: ");
 		clBuf; scanf(" %[ ^\n]",c); clBuf;
@@ -107,6 +114,7 @@ char inputBookAuthor(char* c) {
 			printf("\n::: Entrada inválida :::");
 			strcpy(c,"");
 		} else {
+			strcpy(book->author,c);
 			i = '0';
 		}
 	} while(i != '0'); 
@@ -114,8 +122,8 @@ char inputBookAuthor(char* c) {
 }
 
 
-char inputBookidentifier(char* c) {
-	char i = '1';
+char inputBookIdentifier(Book *book) {
+	char i = '1', c[13] = "";
 	do {
 		printf("\n\n--Identificador: ");
 		clBuf; scanf(" %[ ^\n]",c); clBuf;
@@ -125,6 +133,7 @@ char inputBookidentifier(char* c) {
 			printf("\n::: Entrada inválida :::");
 			strcpy(c,"");
 		} else {
+			strcpy(book->ISN,c);
 			i = '0';
 		}
 	} while(i != '0'); 
@@ -132,30 +141,8 @@ char inputBookidentifier(char* c) {
 }
 
 
-char inputBookCoauthor(char* c) {
-	char i = '1';
-	do {
-		printf("\n\n--Coautor: ");
-		printf("Caso não exista, digite - e enter.");
-		clBuf; scanf(" %[ ^\n]",c); clBuf;
-		if(strlen(c) == 1 && c[0] == '0') {
-			return '0';
-		if(strlen(c) == 1 && c[0] == '-'){
-			return 1;
-		}
-		} if (valName(c) == 0) {
-			printf("\n::: Entrada inválida :::");
-			strcpy(c,"");
-		} else {
-			i = '0';
-		}
-	} while(i != '0'); 
-	return '1';
-}
-
-
-char inputBookYear(char* c) {
-	char i = '1';
+char inputBookYear(Book *book) {
+	char i = '1', c[4] = "";
 	time_t timer;
 	struct tm* tm_info;
 	char year[5];
@@ -169,10 +156,11 @@ char inputBookYear(char* c) {
 		if (strlen(c) == 1 && c[0] == '0') {
 			return '0';
 		}
-		if (atoi(c) > y) {
+		if (atoi(c) >= y) {
 			printf("\n::: Entrada inválida :::\n");
 			strcpy(c,"");
 		} else {
+			book->year = atoi(c);
 			i = '0';
 		}
 	} while(i != '0'); 
@@ -180,8 +168,8 @@ char inputBookYear(char* c) {
 }
 
 
-char inputBookVersion(char* c) {
-	char i = '1';
+char inputBookVersion(Book *book) {
+	char i = '1', c[10] = " ";
 	do {
 		printf("\n--Versão: ");
 		clBuf; scanf(" %s",c); clBuf;
@@ -192,6 +180,7 @@ char inputBookVersion(char* c) {
 			printf("\n::: Entrada inválida :::\n");
 			strcpy(c,"");
 		} else {
+			strcpy(book->version,c);
 			i = '0';
 		}
 	} while(i != '0'); 

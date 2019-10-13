@@ -15,7 +15,7 @@ void showInfoUser(User *user){
 	setlocale( LC_ALL, "Portuguese" );
 	printf(" [1] Name :     %s \n [4] CEP :      %s \n",user->name,user->cep);
 	printf(" [2] CPF :      %s \n [5] Rua :      %s \n",user->cpf,user->rua);
-	printf(" [3] Numero :   %s \n [6] email :    %s \n",user->num,user->email);
+	printf(" [3] Número :   %s \n [6] email :    %s \n",user->num,user->email);
 }
 
 
@@ -28,48 +28,42 @@ void newUser(void) {
 		printf("||||||||||||||||||||||||||||||||||||||||||||||\n\n");
 		printf("        ::: DIGITE 0 PARA VOLTAR :::\n");
 		op = inputUserName(user->name);
-		if(op == '0'){
+		if(op == '0')
 			return;
-		}
+		
 		op = inputUserCPF(user->cpf);
-		if(op == '0'){
+		if(op == '0')
 			return;
-		}
+		
 		printf("\n\t::Endereço::");
 		op = inputUserRua(user->rua);
-		if(op == '0'){
+		if(op == '0')
 			return;
-		}
+		
 		op = inputUserNum(user->num);
-		if(op == '0'){
+		if(op == '0')
 			return;
-		}
+		
 		op = inputUserCEP(user->cep);
-		if(op == '0'){
+		if(op == '0')
 			return;
-		}
+		
 		op = inputUserEmail(user->email);
-		if(op == '0'){
+		if(op == '0')
 			return;
-		}
+		
 		showInfoUser(user);
+		printf("::: ENTER :::");
 		getchar();
-		break;
 		printf("Continuar:\n [1] SIM \n [0] NÃO \n Digite: ");
 		scanf("%c",&op);	
 	} while(op != '0');
-	op = writeData(user,'uR');
-	if(op==0){
-		cls;
-		printf("Erro! Conflito de dados. Dados idênticos encontrados.");
-		getchar();
-		return;
-	} else if(op==1) {
-		printf("Usuário atualizado com sucesso!");
-	}
+	//op = writeDataUser(user,'n');
+	//if(op==1) {
+	//	printf("Usuário atualizado com sucesso!");
+	//	clBuf; printf("::: ENTER :::"); getchar();
+	//}
 }
-
-
 
 
 int searchUser(User *user) {
@@ -79,20 +73,23 @@ int searchUser(User *user) {
 	printf("  ::: PESQUISAR USUÁRIO :::");
 	printf("::: DIGITE 0 PARA VOLTAR :::\n");
 	do {
-		any[256] = "";
+		memset(any, 0, sizeof any);
 		printf("Pesquisar: ");
-		scanf("%s",&any);
+		scanf("%s",any);
 		if(strlen(any) == 1 && any[0] == 0){
-			return;
+			cls;
+			return 2;
 		} else {
 			op = '0';
 		}
 	} while(op != '0');
 	cls;
-	op = search(user,any,'u');
+	//op = search(user,any,'u');
 	if(op == 1){
 		return 1;
 	} else {
+		printf("\nUsuário não encontrado.");
+		clBuf; getchar();
 		return 0;
 	}
 }
@@ -149,7 +146,7 @@ void updateUser(void) {
 					break;
 
 				case '4':
-					op = inputUserCep(userUp->cep);
+					op = inputUserCEP(userUp->cep);
 					if(op == '0')
 						return;
 					break;
@@ -167,16 +164,41 @@ void updateUser(void) {
 					break;
 			}
 		}
+		showInfoUser(userUp);
+		printf("::: ENTER :::");
 		printf("Continuar:\n [1] SIM \n [0] NÃO \n Digite: ");
 		scanf("%c",&op);	
 	} while(op != '0');
-	op = writeData(userUp,'uR');
-	if(op==0){
-		cls;
-		printf("Erro! Conflito de dados. Dados idênticos encontrados.");
-		getchar();
-		return;
-	} else if(op==1) {
-		printf("Usuário atualizado com sucesso!");
-	}
+	//op = writeDataUser(userUp,'uR');
+	//if(op==1){
+	//	printf("Usuário atualizado com sucesso!");
+	//	clBuf; printf("::: ENTER :::"); getchar();
+	//}
+}
+
+
+void removeUser(void){
+	User *user = calloc(sizeof *user, 0);
+	int op = 0;
+	printf("\n||||||||||||||||||||||||||||||||||||||||||||||\n");
+	printf("                Remover Usuário\n");
+	printf("||||||||||||||||||||||||||||||||||||||||||||||\n\n");
+
+	do{
+		op = searchUser(user);
+		if(op == 2)
+			return;
+	}while(op == 0);
+
+	showInfoUser(user);
+	clBuf; printf("::: ENTER :::"); getchar();
+	printf("Continuar:\n [1] SIM \n [0] NÃO \n Digite: ");
+	scanf("%d",&op);
+	//if(op == 1){
+	//	op = writeDataUser(user,'R');
+	//	if(op == 1){
+	//		printf("Usuário removido com sucesso!");
+	//		clBuf; printf("::: ENTER :::"); getchar();
+	//	}
+	//}
 }

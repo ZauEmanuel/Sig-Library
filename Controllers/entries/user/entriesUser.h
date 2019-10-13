@@ -1,10 +1,8 @@
-char entrName(char*);
-char entrUser(char*);
-char entrRua(char*);
-char entrNum(char*);
-char entrCEP(char*);
-char entrCPF(char*);
-char entrEmail(char*);
-char entrTestEmail(char*);
-char entrKey(char*);
-char entrTestKey(char*); 
+#include "../../../Views/users/user.h"
+
+char inputUserName(User*);
+char inputUserRua(User*);
+char inputUserNum(User*);
+char inputUserCEP(User*);
+char inputUserCPF(User*);
+char inputUserEmail(User*);
