@@ -15,4 +15,6 @@ int searchBook(Book*,char);
 void updateBook(void);
 void showInfoBook(Book*);
 void removeBook(void);
+void listBook(void);
+void recBook(Book*);
 

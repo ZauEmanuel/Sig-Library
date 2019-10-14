@@ -3,19 +3,40 @@
 #include <string.h>
 #include <locale.h>
 #include "../../Controllers/entries/book/entriesBook.h"
-#include "../../Models/manageFile.h"
 #include "book.h"
 
-#ifndef "book.h"
-#include "book.h"
-#endif
-#ifndef "../../Models/manageFile.h"
-#include "../../Models/manageFiles.h"
-#endif
 
 
 #define cls system("clear||cls");
 #define clBuf setbuf(stdin,NULL);
+
+// Lista todos os livros //
+void listBook(void){
+	Book book;
+	FILE *f = fopen("books.bin","rb");
+	if(!f){
+		printf("Erro ao tantar abrir o arquivo.\n");
+		return;
+	}
+	while(fread(book,sizeof(Book),1,f)){
+		showInfoBook(book);
+		printf("\n\n");
+	}
+	fclose(f);
+}
+
+
+// Grava livro em arquivo binário //
+void recBook(Book *book){
+	FILE *f = fopen("user.bin","ab");
+	if(f==NULL){
+		printf("ERRO ao criar arquivo.\n");
+		return;
+	}else{
+		fwrite(book, sizeof(Book),1,f);
+		fclose(f);
+	}
+}
 
 
 void showInfoBook(Book *book){
@@ -79,12 +100,6 @@ void newBook(void) {
 		recBook();
 	} while(op != '0');
 	free(book);
-	//op = writeDataBook(book,'n');
-	//if(op==0){
-	//	return;
-	//} else if(op==1) {
-	//	printf("Livro atualizado com sucesso!");
-	//}
 }
 
 

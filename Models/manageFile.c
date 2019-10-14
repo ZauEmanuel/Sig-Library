@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+/*
 #include "../Views/users/user.h"
 #include "../Views/books/book.h"
 #include "../Views/loans/loan.h"
-
+*/
 
 // Lista todos os usuários //
 void listUser(void){

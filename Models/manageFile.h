@@ -1,7 +1,7 @@
 void listUser(void);
 void recUser(User*);
 void listBook(void);
-void recBook(User*);
+void recBook(Book*);
 void listLoan(void);
-void recLoan(User*);
+void recLoan(Loan*);
 

@@ -5,21 +5,41 @@
 #include "../books/book.h"
 #include "../users/user.h"
 #include "../loans/loan.h"
-#include "../../Models/manageFile.h"
 
-#ifndef "user.h"
-#include "user.h"
-#endif
-#ifndef "loan.h"
-#include "loan.h"
-#endif
-#ifndef "../../Models/manageFile.h"
-#include "../../Models/manageFiles.h"
-#endif
 
 #define cls system("clear||cls");
 #define clBuf setbuf(stdin,NULL);
 
+
+
+// Lista todos os empréstimo//
+void listLoan(void){
+	Loan loan;
+	FILE *f = fopen("loans.bin","rb");
+	if(!f){
+		printf("Erro ao tantar abrir o arquivo.\n");
+		return;
+	}
+	while(fread(loan,sizeof(Loan),1,f)){
+		showInfoUser(user);
+		showInfoBook(book);
+		printf("\n\n");
+	}
+	fclose(f);
+}
+
+
+// Grava em arquivo binário //
+void recLoan(User *user){
+	FILE *f = fopen("user.bin","ab");
+	if(f==NULL){
+		printf("ERRO ao criar arquivo.\n");
+		return;
+	}else{
+		fwrite(user, sizeof(User),1,f);
+		fclose(f);
+	}
+}
 
 void loan(void) {
 	Book *book = calloc(1,sizeof(Book));

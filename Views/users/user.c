@@ -4,19 +4,38 @@
 #include <locale.h>
 #include "../../Controllers/entries/user/entriesUser.h"
 #include "../../Models/valid.h"
-#include "../../Models/manageFile.h"
 #include "user.h"
-
-#ifndef "user.h"
-#include "user.h"
-#endif
-#ifndef "../../Models/manageFile.h"
-#include "../../Models/manageFiles.h"
-#endif
 
 #define cls system("clear||cls");
 #define clBuf setbuf(stdin,NULL);
 
+// Lista todos os usuários //
+void listUser(void){
+	User user;
+	FILE *f = fopen("users.bin","rb");
+	if(!f){
+		printf("Erro ao tantar abrir o arquivo.\n");
+		return;
+	}
+	while(fread(user,sizeof(User),1,f)){
+		showInfoUser(user);
+		printf("\n\n");
+	}
+	fclose(f);
+}
+
+
+// Grava usuário em arquivo binário //
+void recUser(User *user){
+	FILE *f = fopen("user.bin","ab");
+	if(f==NULL){
+		printf("ERRO ao criar arquivo.\n");
+		return;
+	}else{
+		fwrite(user, sizeof(User),1,f);
+		fclose(f);
+	}
+}
 
 void showInfoUser(User *user){
 	setlocale( LC_ALL, "Portuguese" );

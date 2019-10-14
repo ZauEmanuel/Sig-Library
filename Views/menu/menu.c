@@ -52,6 +52,7 @@ void acervo(void){
         break;
     }
   } while(op != '0');
+  free(book);
   cls;
 }
 
@@ -96,6 +97,7 @@ void users(void) {
         break;
     }
 	} while(op != '0');
+  free(user);	
   cls;
 }
 
