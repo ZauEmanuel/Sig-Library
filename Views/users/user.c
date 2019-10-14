@@ -20,6 +20,7 @@ void listUser(void){
 	while(fread(&user,sizeof(User),1,f)){
 		showInfoUser(&user);
 	}
+	fclose(f);
 }
 
 
@@ -29,7 +30,7 @@ void recUser(User *user){
 		printf("ERRO ao criar arquivo.\n");
 		return;
 	}else{
-		fwrite(&user, sizeof(User),1,f);
+		fwrite(user, sizeof(User),1,f);
 		fclose(f);
 	}
 }
@@ -82,8 +83,9 @@ void newUser(void) {
 		getchar();
 		printf("Continuar:\n [1] SIM \n [0] NÃO \n Digite: ");
 		scanf("%c",&op);
-		recUser(&user);	
+		recUser(user);	
 	} while(op != '0');
+	free(user);
 	//op = writeDataUser(user,'n');
 	//if(op==1) {
 	//	printf("Usuário atualizado com sucesso!");
@@ -195,6 +197,7 @@ void updateUser(void) {
 		printf("Continuar:\n [1] SIM \n [0] NÃO \n Digite: ");
 		scanf("%c",&op);	
 	} while(op != '0');
+	free(userUp);
 	//op = writeDataUser(userUp,'uR');
 	//if(op==1){
 	//	printf("Usuário atualizado com sucesso!");
@@ -220,6 +223,7 @@ void removeUser(void){
 	clBuf; printf("::: ENTER :::"); getchar();
 	printf("Continuar:\n [1] SIM \n [0] NÃO \n Digite: ");
 	scanf("%d",&op);
+	free(user);
 	//if(op == 1){
 	//	op = writeDataUser(user,'R');
 	//	if(op == 1){

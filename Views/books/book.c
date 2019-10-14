@@ -67,6 +67,7 @@ void newBook(void) {
 		printf("Continuar:\n [1] SIM \n [0] NÃO \n Digite: ");
 		clBuf; scanf("%c",&op);	
 	} while(op != '0');
+	free(book);
 	//op = writeDataBook(book,'n');
 	//if(op==0){
 	//	return;
@@ -205,6 +206,7 @@ void updateBook(void) {
 		printf("Continuar:\n [1] SIM \n [0] NÃO \n Digite: ");
 		scanf("%c",&op);	
 	} while(op != '0');
+	free(bookUp);
 	//op = writeDataBook(bookUp,'bR');
 	if(op==1){
 		printf("Livro atualizado com sucesso!");
@@ -230,6 +232,7 @@ void removeBook(void){
 	clBuf; printf("::: ENTER :::"); getchar();
 	printf("Continuar:\n [1] SIM \n [0] NÃO \n Digite: ");
 	scanf("%d",&op);
+	free(book);
 	//if(op == 1){
 	//	op = writeDataBook(book,'R');
 	//	if(op == 1){
