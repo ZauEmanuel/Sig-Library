@@ -10,6 +10,31 @@
 #define cls system("clear||cls");
 #define clBuf setbuf(stdin,NULL);
 
+void listUser(void){
+	User user;
+	FILE *f = fopen("users.bin","rb");
+	if(!f){
+		printf("Erro ao tantar abrir o arquivo.\n");
+		return;
+	}
+	while(fread(&user,sizeof(User),1,f)){
+		showInfoUser(&user);
+	}
+}
+
+
+void recUser(User *user){
+	FILE *f = fopen("user.bin","ab");
+	if(f==NULL){
+		printf("ERRO ao criar arquivo.\n");
+		return;
+	}else{
+		fwrite(&user, sizeof(User),1,f);
+		fclose(f);
+	}
+}
+
+
 
 void showInfoUser(User *user){
 	setlocale( LC_ALL, "Portuguese" );
@@ -56,7 +81,8 @@ void newUser(void) {
 		printf("::: ENTER :::");
 		getchar();
 		printf("Continuar:\n [1] SIM \n [0] NÃO \n Digite: ");
-		scanf("%c",&op);	
+		scanf("%c",&op);
+		recUser(&user);	
 	} while(op != '0');
 	//op = writeDataUser(user,'n');
 	//if(op==1) {

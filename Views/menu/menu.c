@@ -63,7 +63,7 @@ void users(void) {
 		printf("\n|||||||||||||||||||||||||||||||||\n");
 		printf("              Usuario\n");
 		printf("|||||||||||||||||||||||||||||||||\n");
-		printf(" [1] Pesquisar\n [2] Cadastrar\n [3] Atualizar\n [4] Remover\n [0] Voltar\n\n");
+		printf(" [1] Pesquisar\n [2] Cadastrar\n [3] Atualizar\n [4] Remover\n [5] Listar Usuários\n [0] Voltar\n\n");
     do {
       printf("Digite: ");
       scanf(" %c",&op);
@@ -88,6 +88,10 @@ void users(void) {
       
       case '4':
         removeUser();
+        break;
+        
+      case '5':
+        listUser();
         break;
     }
 	} while(op != '0');
