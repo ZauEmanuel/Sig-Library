@@ -3,38 +3,19 @@
 #include <string.h>
 #include <locale.h>
 #include "../../Controllers/entries/user/entriesUser.h"
-#include "../../Models/checks/valid.h"
+#include "../../Models/valid.h"
+#include "../../Models/manageFile.h"
 #include "user.h"
 
+#ifndef "user.h"
+#include "user.h"
+#endif
+#ifndef "../../Models/manageFile.h"
+#include "../../Models/manageFiles.h"
+#endif
 
 #define cls system("clear||cls");
 #define clBuf setbuf(stdin,NULL);
-
-void listUser(void){
-	User user;
-	FILE *f = fopen("users.bin","rb");
-	if(!f){
-		printf("Erro ao tantar abrir o arquivo.\n");
-		return;
-	}
-	while(fread(&user,sizeof(User),1,f)){
-		showInfoUser(&user);
-	}
-	fclose(f);
-}
-
-
-void recUser(User *user){
-	FILE *f = fopen("user.bin","ab");
-	if(f==NULL){
-		printf("ERRO ao criar arquivo.\n");
-		return;
-	}else{
-		fwrite(user, sizeof(User),1,f);
-		fclose(f);
-	}
-}
-
 
 
 void showInfoUser(User *user){
@@ -46,7 +27,8 @@ void showInfoUser(User *user){
 
 
 void newUser(void) {
-	User *user = calloc(sizeof *user, 0);
+	//User *user = calloc(sizeof *user, 0);
+	User *user = calloc(1,sizeof(User));
 	char op = '1';
 	do {
 		printf("\n||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -126,7 +108,8 @@ int searchUser(User *user) {
 void updateUser(void) {
 	char op = '1';
 	char controlP= '0';
-	User *userUp = calloc(sizeof *userUp, 0);
+	//User *userUp = calloc(sizeof *userUp, 0);
+	User *userUp = calloc(1,sizeof(User));
 	do {
 		do{
 			controlP = searchUser(userUp);
@@ -207,7 +190,7 @@ void updateUser(void) {
 
 
 void removeUser(void){
-	User *user = calloc(sizeof *user, 0);
+	User *user = calloc(1,sizeof(User));
 	int op = 0;
 	printf("\n||||||||||||||||||||||||||||||||||||||||||||||\n");
 	printf("                Remover Usuário\n");

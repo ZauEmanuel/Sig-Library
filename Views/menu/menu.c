@@ -9,7 +9,8 @@
 #define clBuf setbuf(stdin,NULL);
 
 void acervo(void){
-  Book *book = calloc(sizeof *book, 0);
+  //Book *book = calloc(sizeof *book, 0);
+	Book *book = calloc(1,sizeof(Book));
 	char op = '1';
   do {
     do{
@@ -56,7 +57,7 @@ void acervo(void){
 
 void users(void) {
 	char op = '1';
-  User *user = calloc(sizeof *user, 0);
+  User *user = calloc(1,sizeof(User));
 	cls;
 	do {
 		cls;

@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../../../Models/checks/valid.h"
+#include "../../../Models/valid.h"
 #include "../../../Views/users/user.h"
  
 #define cls system("clear||cls");

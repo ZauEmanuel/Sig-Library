@@ -3,6 +3,15 @@
 #include <string.h>
 #include <locale.h>
 #include "../../Controllers/entries/book/entriesBook.h"
+#include "../../Models/manageFile.h"
+#include "book.h"
+
+#ifndef "book.h"
+#include "book.h"
+#endif
+#ifndef "../../Models/manageFile.h"
+#include "../../Models/manageFiles.h"
+#endif
 
 
 #define cls system("clear||cls");
@@ -20,7 +29,8 @@ void showInfoBook(Book *book){
 
 
 void newBook(void) {
-	Book *book = calloc(sizeof *book, 0);
+	//Book *book = calloc(sizeof *book, 0);
+	Book *book = calloc(1,sizeof(Book));
 	char op = '1';
 
 	do {
@@ -66,6 +76,7 @@ void newBook(void) {
 		clBuf; getchar();
 		printf("Continuar:\n [1] SIM \n [0] NÃO \n Digite: ");
 		clBuf; scanf("%c",&op);	
+		recBook();
 	} while(op != '0');
 	free(book);
 	//op = writeDataBook(book,'n');
@@ -118,7 +129,8 @@ int searchBook(Book *book,char typ) {
 void updateBook(void) {
 	char op = ' ';
 	char controlP= '0';
-	Book *bookUp = calloc(sizeof *bookUp, 0);
+	//Book *bookUp = calloc(sizeof *bookUp, 0);
+	Book *bookUp = calloc(1,sizeof(Book));
 	do {
 		do{
 			controlP = searchBook(bookUp,'b');
@@ -216,7 +228,8 @@ void updateBook(void) {
 
 
 void removeBook(void){
-	Book *book = calloc(sizeof *book, 0);
+	//Book *book = calloc(sizeof *book, 0);
+	Book *book = calloc(1,sizeof(Book));
 	int op = 0;
 	printf("\n||||||||||||||||||||||||||||||||||||||||||||||\n");
 	printf("                Remover Livro\n");

@@ -5,16 +5,26 @@
 #include "../books/book.h"
 #include "../users/user.h"
 #include "../loans/loan.h"
+#include "../../Models/manageFile.h"
 
+#ifndef "user.h"
+#include "user.h"
+#endif
+#ifndef "loan.h"
+#include "loan.h"
+#endif
+#ifndef "../../Models/manageFile.h"
+#include "../../Models/manageFiles.h"
+#endif
 
 #define cls system("clear||cls");
 #define clBuf setbuf(stdin,NULL);
 
 
 void loan(void) {
-	Book *book = calloc(sizeof *book, 0);
-	User *user = calloc(sizeof *user, 0);
-	Loan *loan = calloc(sizeof *loan, 0);
+	Book *book = calloc(1,sizeof(Book));
+	User *user = calloc(1,sizeof(user));
+	Loan *loan = calloc(1,sizeof(Loan));
 	int op = 1;
 
 	do {
@@ -50,7 +60,11 @@ void loan(void) {
 		strcpy(loan->cpf,user->cpf);
 		strcpy(loan->ISN,book->ISN);
 		strcpy(loan->unity,book->unity);
+		recLoan();
 	} while(op != 0);
+	free(book);
+	free(user);
+	free(loan);
 	//op = writeDataLoan(loan,'E');
 	//if(op==1){
 	//	printf("\nEmpréstimo realizado com sucesso!");
@@ -60,9 +74,9 @@ void loan(void) {
 
 
 void devolution(void) {
-	Book *book = calloc(sizeof *book, 0);
-	User *user = calloc(sizeof *user, 0);
-	Loan *loan = calloc(sizeof *loan, 0);
+	Book *book = calloc(1,sizeof(Book));
+	User *user = calloc(1,sizeof(User));
+	Loan *loan = calloc(1,sizeof(Loan));
 	int op = 1;
 
 	do {
@@ -91,6 +105,9 @@ void devolution(void) {
 			return;
 		user->loans = user->loans-1;
 	} while(op != 0);
+	free(book);
+	free(user);
+	free(loan);
 	//op = writeDataLoan(loan,'D');
 	//if(op == 1)
 	//	printf("Livro devolvido com sucesso!");

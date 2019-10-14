@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include "../../../Models/checks/valid.h"
+#include "../../../Models/valid.h"
 #include "../../../Views/books/book.h"
 
  
