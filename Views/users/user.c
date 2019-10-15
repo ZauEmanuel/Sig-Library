@@ -4,11 +4,22 @@
 #include <locale.h>
 #include "../../Controllers/entries/user/entriesUser.h"
 #include "../../Models/valid.h"
-//#include "user.h"
+#include "user.h"
 
 #define cls system("clear||cls");
 #define clBuf setbuf(stdin,NULL);
-
+/* 
+typedef struct user{
+	char name[256];
+	char cpf[10];
+	char rua[64];
+	char num[10];
+	char cep[9];
+	char city[32];
+	char email[128];
+	int loans;
+}User;
+*/
 // Lista todos os usuários //
 void listUser(void){
 	User user;

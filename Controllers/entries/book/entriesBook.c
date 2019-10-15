@@ -3,7 +3,8 @@
 #include <string.h>
 #include <time.h>
 #include "../../../Models/valid.h"
-//#include "../../../Views/books/book.h"
+#include "../../../Views/books/book.h"
+//#include "../../../Views/books/structsBook.h"
 #include "entriesBook.h"
 
  

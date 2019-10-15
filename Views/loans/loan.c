@@ -2,15 +2,20 @@
 #include <stdlib.h>
 #include <string.h>
 #include <locale.h>
-//#include "../books/book.h"
-//#include "../users/user.h"
-#include "../loans/loan.h"
+#include "../books/book.h"
+#include "../users/user.h"
+#include "loan.h"
 
 
 #define cls system("clear||cls");
 #define clBuf setbuf(stdin,NULL);
-
-
+/*
+typedef struct loan{
+    char cpf[10];
+	char ISN[13];
+    int unity;
+}Loan;
+*/
 
 // Lista todos os empréstimo//
 void listLoan(void){

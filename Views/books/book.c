@@ -2,17 +2,32 @@
 #include <stdlib.h>
 #include <string.h>
 #include <locale.h>
+//#include "../../Controllers/entries/book/entriesBook.h"
+#ifndef include "../../Controllers/entries/book/entriesBook.h"
 #include "../../Controllers/entries/book/entriesBook.h"
+#endif
 //#include "book.h"
 
 
 
 #define cls system("clear||cls");
 #define clBuf setbuf(stdin,NULL);
-
+/*
+typedef struct book{
+	char title[256];
+	char subTitle[32];
+	char ISN[13];
+	char author[256];
+	char version[10];
+	char publisher[32];
+    char status;
+	int year;
+    int unity;
+}Book;
+*/
 // Lista todos os livros //
 void listBook(void){
-	Book book;
+	Book* book;
 	FILE *f = fopen("books.bin","rb");
 	if(!f){
 		printf("Erro ao tantar abrir o arquivo.\n");

@@ -4,6 +4,9 @@
 #include "../books/book.h"
 #include "../users/user.h"
 #include "../loans/loan.h"
+#include "../books/structsBook.h"
+#include "../users/structsUser.h"
+#include "../loans/structsLoan.h"
 
 #define cls system("clear||cls");
 #define clBuf setbuf(stdin,NULL);

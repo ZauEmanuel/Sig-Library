@@ -1,13 +1,7 @@
-#include "../books/book.h"
-#include "../users/user.h"
-typedef struct Loan{
-	//User user;
-	//Book book;
-    char cpf[10];
-	char ISN[13];
-    int unity;
-}Loan;
-
+//#include "../books/book.h"
+//#include "../users/user.h"
+//typedef struct loan Loan;
+//#include "structsLoan.h"
 void loan(void);
 void devolution(void);
 void listLoan(void);
