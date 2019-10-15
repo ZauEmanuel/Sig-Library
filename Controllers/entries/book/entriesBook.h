@@ -1,4 +1,4 @@
-//#include "../../../Views/books/book.h"
+#include "../../../Views/books/book.h"
 char inputBookTitle(Book*);
 char inputBookSubtitle(Book*);
 char inputBookPublisher(Book*);

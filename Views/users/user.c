@@ -4,7 +4,7 @@
 #include <locale.h>
 #include "../../Controllers/entries/user/entriesUser.h"
 #include "../../Models/valid.h"
-#include "user.h"
+//#include "user.h"
 
 #define cls system("clear||cls");
 #define clBuf setbuf(stdin,NULL);
@@ -17,8 +17,8 @@ void listUser(void){
 		printf("Erro ao tantar abrir o arquivo.\n");
 		return;
 	}
-	while(fread(user,sizeof(User),1,f)){
-		showInfoUser(user);
+	while(fread(&user,sizeof(User),1,f)){
+		showInfoUser(&user);
 		printf("\n\n");
 	}
 	fclose(f);

@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <locale.h>
-#include "../books/book.h"
-#include "../users/user.h"
+//#include "../books/book.h"
+//#include "../users/user.h"
 #include "../loans/loan.h"
 
 
@@ -20,9 +20,10 @@ void listLoan(void){
 		printf("Erro ao tantar abrir o arquivo.\n");
 		return;
 	}
-	while(fread(loan,sizeof(Loan),1,f)){
-		showInfoUser(user);
-		showInfoBook(book);
+	while(fread(&loan,sizeof(Loan),1,f)){
+		printf(" [1] CPF :      %s \n",loan.cpf);
+		printf(" [2] ISN :      %s \n",loan.ISN);
+		printf(" [3] UNIDADE :  %d \n",loan.unity);
 		printf("\n\n");
 	}
 	fclose(f);
@@ -30,13 +31,13 @@ void listLoan(void){
 
 
 // Grava em arquivo binário //
-void recLoan(User *user){
-	FILE *f = fopen("user.bin","ab");
+void recLoan(Loan *loan){
+	FILE *f = fopen("loans.bin","ab");
 	if(f==NULL){
 		printf("ERRO ao criar arquivo.\n");
 		return;
 	}else{
-		fwrite(user, sizeof(User),1,f);
+		fwrite(loan, sizeof(User),1,f);
 		fclose(f);
 	}
 }
@@ -80,7 +81,7 @@ void loan(void) {
 		strcpy(loan->cpf,user->cpf);
 		strcpy(loan->ISN,book->ISN);
 		strcpy(loan->unity,book->unity);
-		recLoan();
+		recLoan(loan);
 	} while(op != 0);
 	free(book);
 	free(user);

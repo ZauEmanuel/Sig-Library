@@ -1,4 +1,4 @@
-typedef struct Book{
+typedef struct{
 	char title[256];
 	char subTitle[32];
 	char ISN[13];

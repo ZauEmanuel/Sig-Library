@@ -1,4 +1,4 @@
-//#include "../../../Views/users/user.h"
+#include "../../../Views/users/user.h"
 
 char inputUserName(User*);
 char inputUserRua(User*);

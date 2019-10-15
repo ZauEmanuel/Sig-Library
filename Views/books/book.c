@@ -3,7 +3,7 @@
 #include <string.h>
 #include <locale.h>
 #include "../../Controllers/entries/book/entriesBook.h"
-#include "book.h"
+//#include "book.h"
 
 
 
@@ -18,8 +18,8 @@ void listBook(void){
 		printf("Erro ao tantar abrir o arquivo.\n");
 		return;
 	}
-	while(fread(book,sizeof(Book),1,f)){
-		showInfoBook(book);
+	while(fread(&book,sizeof(Book),1,f)){
+		showInfoBook(&book);
 		printf("\n\n");
 	}
 	fclose(f);
@@ -97,7 +97,7 @@ void newBook(void) {
 		clBuf; getchar();
 		printf("Continuar:\n [1] SIM \n [0] NÃO \n Digite: ");
 		clBuf; scanf("%c",&op);	
-		recBook();
+		recBook(book);
 	} while(op != '0');
 	free(book);
 }

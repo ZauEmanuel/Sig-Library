@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../../../Models/valid.h"
-#include "../../../Views/users/user.h"
+//#include "../../../Views/users/user.h"
+#include "entriesUser.h"
  
 #define cls system("clear||cls");
 #define clBuf setbuf(stdin,NULL);
