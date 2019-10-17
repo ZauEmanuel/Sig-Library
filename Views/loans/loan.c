@@ -2,10 +2,18 @@
 #include <stdlib.h>
 #include <string.h>
 #include <locale.h>
-#include "../books/book.h"
-#include "../users/user.h"
-#include "../loans/loan.h"
-
+#ifndef BOOK_H
+	#include "../books/book.h"
+#endif
+  
+#ifndef USER_H
+	#include "../users/user.h"
+#endif
+  
+#ifndef LOAN_H
+	#include "../loans/loan.h"
+#endif
+ 
 
 #define cls system("clear||cls");
 #define clBuf setbuf(stdin,NULL);
@@ -14,7 +22,9 @@
 
 // Lista todos os empréstimo//
 void listLoan(void){
-	Loan loan;
+	Loan *loan;
+	User *user;
+	Book *book;
 	FILE *f = fopen("loans.bin","rb");
 	if(!f){
 		printf("Erro ao tantar abrir o arquivo.\n");
@@ -30,13 +40,13 @@ void listLoan(void){
 
 
 // Grava em arquivo binário //
-void recLoan(User *user){
-	FILE *f = fopen("user.bin","ab");
+void recLoan(Loan *loan){
+	FILE *f = fopen("loans.bin","ab");
 	if(f==NULL){
 		printf("ERRO ao criar arquivo.\n");
 		return;
 	}else{
-		fwrite(user, sizeof(User),1,f);
+		fwrite(loan, sizeof(Loan),1,f);
 		fclose(f);
 	}
 }
@@ -80,7 +90,7 @@ void loan(void) {
 		strcpy(loan->cpf,user->cpf);
 		strcpy(loan->ISN,book->ISN);
 		strcpy(loan->unity,book->unity);
-		recLoan();
+		recLoan(loan);
 	} while(op != 0);
 	free(book);
 	free(user);

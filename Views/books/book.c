@@ -2,8 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <locale.h>
-#include "../../Controllers/entries/book/entriesBook.h"
-#include "book.h"
+#ifndef ENTRIESBOOK_H
+	#include "../../Controllers/entries/book/entriesBook.h"
+#endif
 
 
 
@@ -12,7 +13,7 @@
 
 // Lista todos os livros //
 void listBook(void){
-	Book book;
+	Book *book;
 	FILE *f = fopen("books.bin","rb");
 	if(!f){
 		printf("Erro ao tantar abrir o arquivo.\n");
@@ -60,35 +61,35 @@ void newBook(void) {
 		printf("||||||||||||||||||||||||||||||||||||||||||||||\n\n");
 		printf("        ::: DIGITE 0 PARA VOLTAR :::\n");
 		
-		op = inputBookTitle(book);
+		op = inputBookTitle(&book);
 		if(op == '0')
 			return;
 		
-		op = inputBookSubtitle(book);
+		op = inputBookSubtitle(&book);
 		if(op == '0')
 			return;
 		
-		op = inputBookAuthor(book);
+		op = inputBookAuthor(&book);
 		if(op == '0')
 			return;
 		
-		op = inputBookPublisher(book);
+		op = inputBookPublisher(&book);
 		if(op == '0')
 			return;
 		
-		op = inputBookYear(book);
+		op = inputBookYear(&book);
 		if(op == '0')
 			return;
 		
-		op = inputBookVersion(book);
+		op = inputBookVersion(&book);
 		if(op == '0')
 			return;
 		
-		op = inputBookIdentifier(book);
+		op = inputBookIdentifier(&book);
 		if(op == '0')
 			return;
 		
-		op = inputBookUnity(book);
+		op = inputBookUnity(&book);
 		if(op == '0')
 			return;
 		
@@ -97,7 +98,7 @@ void newBook(void) {
 		clBuf; getchar();
 		printf("Continuar:\n [1] SIM \n [0] NÃO \n Digite: ");
 		clBuf; scanf("%c",&op);	
-		recBook();
+		recBook(book);
 	} while(op != '0');
 	free(book);
 }

@@ -1,4 +1,8 @@
 //#include "../../../Views/books/book.h"
+#ifndef BOOK_H
+	#include "../../../Views/books/book.h"
+#endif
+
 char inputBookTitle(Book*);
 char inputBookSubtitle(Book*);
 char inputBookPublisher(Book*);

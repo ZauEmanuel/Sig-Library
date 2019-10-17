@@ -1,17 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <locale.h>
-#include "../../Controllers/entries/user/entriesUser.h"
-#include "../../Models/valid.h"
-#include "user.h"
+#include <string.h>
+
+#ifndef ENTRIESUSER_H
+	#include "../../Controllers/entries/user/entriesUser.h"
+#endif
+
+#ifndef VALID_H
+	#include "../../Models/valid.h"
+#endif
 
 #define cls system("clear||cls");
 #define clBuf setbuf(stdin,NULL);
 
 // Lista todos os usuários //
 void listUser(void){
-	User user;
+	User *user;
 	FILE *f = fopen("users.bin","rb");
 	if(!f){
 		printf("Erro ao tantar abrir o arquivo.\n");

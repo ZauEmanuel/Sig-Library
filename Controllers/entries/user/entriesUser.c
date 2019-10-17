@@ -1,9 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../../../Models/valid.h"
-#include "../../../Views/users/user.h"
+#ifndef VALID_H
+	#include "../../../Models/valid.h"
+#endif
  
+#ifndef USER_H
+	#include "../../../Views/users/user.h"
+#endif
+
 #define cls system("clear||cls");
 #define clBuf setbuf(stdin,NULL);
 

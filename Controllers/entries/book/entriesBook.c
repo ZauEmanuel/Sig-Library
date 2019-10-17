@@ -1,9 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <locale.h>
 #include <time.h>
-#include "../../../Models/valid.h"
-#include "../../../Views/books/book.h"
+#ifndef VALID_H
+	#include "../../../Models/valid.h"
+#endif
+ 
+#ifndef BOOK_H
+	#include "../../../Views/books/book.h"
+#endif
+
 
  
 #define cls system("clear||cls");

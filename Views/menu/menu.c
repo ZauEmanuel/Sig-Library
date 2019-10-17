@@ -1,9 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
-#include "../books/book.h"
-#include "../users/user.h"
-#include "../loans/loan.h"
+#ifndef BOOK_H
+	#include "../books/book.h"
+#endif
+  
+#ifndef USER_H
+	#include "../users/user.h"
+#endif
+  
+#ifndef LOAN_H
+	#include "../loans/loan.h"
+#endif
 
 #define cls system("clear||cls");
 #define clBuf setbuf(stdin,NULL);
