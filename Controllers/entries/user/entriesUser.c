@@ -114,6 +114,7 @@ char inputUserCEP(User* user) {
 
 
 char inputUserEmail(User* user) {
+	printf("test010102");
 	char i = '1', c[128] = " ";
 	do {
 		printf("\n--E-mail: ");
@@ -128,5 +129,6 @@ char inputUserEmail(User* user) {
 			i = '0';
 		}
 	} while(i != '0');
+	printf("test01218");
 	return '1';
 }

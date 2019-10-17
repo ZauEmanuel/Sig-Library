@@ -51,7 +51,6 @@ void showInfoUser(User *user){
 
 
 void newUser(void) {
-	//User *user = calloc(sizeof *user, 0);
 	User *user = calloc(1,sizeof(User));
 	char op = '1';
 	do {
@@ -83,13 +82,13 @@ void newUser(void) {
 		op = inputUserEmail(user->email);
 		if(op == '0')
 			return;
-		
-		showInfoUser(user);
+		printf("test");
+		showInfoUser(&user);
 		printf("::: ENTER :::");
 		getchar();
 		printf("Continuar:\n [1] SIM \n [0] NÃO \n Digite: ");
 		scanf("%c",&op);
-		recUser(user);	
+		recUser(&user);	
 	} while(op != '0');
 	free(user);
 	//op = writeDataUser(user,'n');
