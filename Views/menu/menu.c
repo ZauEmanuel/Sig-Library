@@ -77,7 +77,7 @@ void users(void) {
     do {
       printf("Digite: ");
       scanf(" %c",&op);
-    } while(!(op >= '0' && op <= '2'));
+    } while(!(op >= '0' && op <= '5'));
     cls;
     switch (op) {
       case '0':
@@ -85,7 +85,7 @@ void users(void) {
 
       case '1':
         searchUser(user);
-        showInfoUser(user);
+        //showInfoUser(user);
         break;
       
       case '2':

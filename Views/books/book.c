@@ -27,7 +27,7 @@ void listBook(void){
 }
 
 
-// Grava livro em arquivo binário //
+// Grava livro em arquivo binário 
 void recBook(Book *book){
 	FILE *f = fopen("user.bin","ab");
 	if(f==NULL){
@@ -61,35 +61,35 @@ void newBook(void) {
 		printf("||||||||||||||||||||||||||||||||||||||||||||||\n\n");
 		printf("        ::: DIGITE 0 PARA VOLTAR :::\n");
 		
-		op = inputBookTitle(&book);
+		op = inputBookTitle(book);
 		if(op == '0')
 			return;
 		
-		op = inputBookSubtitle(&book);
+		op = inputBookSubtitle(book);
 		if(op == '0')
 			return;
 		
-		op = inputBookAuthor(&book);
+		op = inputBookAuthor(book);
 		if(op == '0')
 			return;
 		
-		op = inputBookPublisher(&book);
+		op = inputBookPublisher(book);
 		if(op == '0')
 			return;
 		
-		op = inputBookYear(&book);
+		op = inputBookYear(book);
 		if(op == '0')
 			return;
 		
-		op = inputBookVersion(&book);
+		op = inputBookVersion(book);
 		if(op == '0')
 			return;
 		
-		op = inputBookIdentifier(&book);
+		op = inputBookIdentifier(book);
 		if(op == '0')
 			return;
 		
-		op = inputBookUnity(&book);
+		op = inputBookUnity(book);
 		if(op == '0')
 			return;
 		

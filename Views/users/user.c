@@ -14,7 +14,7 @@
 #define cls system("clear||cls");
 #define clBuf setbuf(stdin,NULL);
 
-// Lista todos os usuários //
+// Lista todos os usuários 
 void listUser(void){
 	User *user;
 	FILE *f = fopen("users.bin","rb");
@@ -30,7 +30,7 @@ void listUser(void){
 }
 
 
-// Grava usuário em arquivo binário //
+// Grava usuário em arquivo binário 
 void recUser(User *user){
 	FILE *f = fopen("user.bin","ab");
 	if(f==NULL){
@@ -58,44 +58,42 @@ void newUser(void) {
 		printf("                 Novo Usuario\n");
 		printf("||||||||||||||||||||||||||||||||||||||||||||||\n\n");
 		printf("        ::: DIGITE 0 PARA VOLTAR :::\n");
-		op = inputUserName(user->name);
+		op = inputUserName(user);
 		if(op == '0')
 			return;
 		
-		op = inputUserCPF(user->cpf);
+		op = inputUserCPF(user);
 		if(op == '0')
 			return;
 		
 		printf("\n\t::Endereço::");
-		op = inputUserRua(user->rua);
+		op = inputUserRua(user);
 		if(op == '0')
 			return;
 		
-		op = inputUserNum(user->num);
+		op = inputUserNum(user);
 		if(op == '0')
 			return;
 		
-		op = inputUserCEP(user->cep);
+		op = inputUserCEP(user);
 		if(op == '0')
 			return;
 		
-		op = inputUserEmail(user->email);
+		op = inputUserEmail(user);
 		if(op == '0')
 			return;
-		printf("test");
-		showInfoUser(&user);
+		printf("\ntest\n");
+		showInfoUser(user);
 		printf("::: ENTER :::");
 		getchar();
 		printf("Continuar:\n [1] SIM \n [0] NÃO \n Digite: ");
 		scanf("%c",&op);
-		recUser(&user);	
+		clBuf;
+		printf("\nPASS\n");
+		recUser(user);
+		printf("\nPASS\n");	
 	} while(op != '0');
 	free(user);
-	//op = writeDataUser(user,'n');
-	//if(op==1) {
-	//	printf("Usuário atualizado com sucesso!");
-	//	clBuf; printf("::: ENTER :::"); getchar();
-	//}
 }
 
 
@@ -162,37 +160,37 @@ void updateUser(void) {
 					return;
 
 				case '1':
-					op = inputUserName(userUp->name);
+					op = inputUserName(userUp);
 					if(op == '0')
 						return;
 					break;
 				
 				case '2':
-					op = inputUserCPF(userUp->cpf);
+					op = inputUserCPF(userUp);
 							if(op == '0')
 								return;
 					break;
 				
 				case '3':
-					op = inputUserNum(userUp->num);
+					op = inputUserNum(userUp);
 					if(op == '0')
 						return;
 					break;
 
 				case '4':
-					op = inputUserCEP(userUp->cep);
+					op = inputUserCEP(userUp);
 					if(op == '0')
 						return;
 					break;
 
 				case '5':
-					op = inputUserRua(userUp->rua);
+					op = inputUserRua(userUp);
 					if(op == '0')
 						return;
 					break;
 
 				case '6':
-					op = inputUserEmail(userUp->email);
+					op = inputUserEmail(userUp);
 					if(op == '0')
 						return;
 					break;
