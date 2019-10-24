@@ -7,7 +7,7 @@ typedef struct{
 	char publisher[32];
 	char status;
 	int year;
-    	int unity;
+    int unity;
 }Book;
 
 void newBook(void);

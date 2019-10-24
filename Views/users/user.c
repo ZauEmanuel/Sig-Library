@@ -18,23 +18,32 @@
 void listUser(void){
 	User *user;
 	FILE *f = fopen("users.bin","rb");
-	if(!f){
+	if(f==NULL){
 		printf("Erro ao tantar abrir o arquivo.\n");
+		clBuf; 
+		printf("::: ENTER :::"); 
+		getchar();
 		return;
 	}
 	while(fread(user,sizeof(User),1,f)){
 		showInfoUser(user);
 		printf("\n\n");
 	}
+	clBuf;
+	printf("::: ENTER :::"); 
+	getchar();
 	fclose(f);
 }
 
 
 // Grava usuário em arquivo binário 
 void recUser(User *user){
-	FILE *f = fopen("user.bin","ab");
+	FILE *f = fopen("users.bin","ab");
 	if(f==NULL){
 		printf("ERRO ao criar arquivo.\n");
+		clBuf; 
+		printf("::: ENTER :::"); 
+		getchar();
 		return;
 	}else{
 		fwrite(user, sizeof(User),1,f);

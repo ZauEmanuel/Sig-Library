@@ -17,6 +17,9 @@ void listBook(void){
 	FILE *f = fopen("books.bin","rb");
 	if(!f){
 		printf("Erro ao tantar abrir o arquivo.\n");
+		clBuf; 
+		printf("::: ENTER :::"); 
+		getchar();
 		return;
 	}
 	while(fread(book,sizeof(Book),1,f)){
@@ -29,9 +32,12 @@ void listBook(void){
 
 // Grava livro em arquivo binário 
 void recBook(Book *book){
-	FILE *f = fopen("user.bin","ab");
+	FILE *f = fopen("books.bin","ab");
 	if(f==NULL){
 		printf("ERRO ao criar arquivo.\n");
+		clBuf; 
+		printf("::: ENTER :::"); 
+		getchar();
 		return;
 	}else{
 		fwrite(book, sizeof(Book),1,f);

@@ -44,6 +44,9 @@ void recLoan(Loan *loan){
 	FILE *f = fopen("loans.bin","ab");
 	if(f==NULL){
 		printf("ERRO ao criar arquivo.\n");
+		clBuf; 
+		printf("::: ENTER :::"); 
+		getchar();
 		return;
 	}else{
 		fwrite(loan, sizeof(Loan),1,f);
@@ -89,7 +92,7 @@ void loan(void) {
 			return;
 		strcpy(loan->cpf,user->cpf);
 		strcpy(loan->ISN,book->ISN);
-		strcpy(loan->unity,book->unity);
+		strcpy(loan->unity,book->unity); //Está errado pois char strcpy(char *, constant char *) só aceita tipo ponteiro char e retorna tipo char.
 		recLoan(loan);
 	} while(op != 0);
 	free(book);
