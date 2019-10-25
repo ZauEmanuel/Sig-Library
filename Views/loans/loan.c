@@ -22,9 +22,9 @@
 
 // Lista todos os empréstimo//
 void listLoan(void){
-	Loan *loan;
-	User *user;
-	Book *book;
+	Book *book = calloc(1,sizeof(Book));
+	User *user = calloc(1,sizeof(user));
+	Loan *loan = calloc(1,sizeof(Loan));
 	FILE *f = fopen("loans.bin","rb");
 	if(!f){
 		printf("Erro ao tantar abrir o arquivo.\n");
@@ -35,7 +35,13 @@ void listLoan(void){
 		showInfoBook(book);
 		printf("\n\n");
 	}
+	clBuf;
+	printf("::: ENTER :::"); 
+	getchar();
 	fclose(f);
+	free(book);
+	free(user);
+	free(loan);
 }
 
 

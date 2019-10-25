@@ -18,7 +18,7 @@
 void listUser(void){
 	User *user = calloc(1,sizeof(user));
 	FILE *f = fopen("users.bin","rb");
-	if(f==NULL){
+	if(!f){
 		printf("Erro ao tantar abrir o arquivo.\n");
 		clBuf; 
 		printf("::: ENTER :::"); 

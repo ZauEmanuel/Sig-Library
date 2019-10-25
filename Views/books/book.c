@@ -11,9 +11,9 @@
 #define cls system("clear||cls");
 #define clBuf setbuf(stdin,NULL);
 
-// Lista todos os livros //
+// Lista todos os livros 
 void listBook(void){
-	Book *book;
+	Book *book = calloc(1,sizeof(Book));
 	FILE *f = fopen("books.bin","rb");
 	if(!f){
 		printf("Erro ao tantar abrir o arquivo.\n");
@@ -26,7 +26,11 @@ void listBook(void){
 		showInfoBook(book);
 		printf("\n\n");
 	}
+	clBuf;
+	printf("::: ENTER :::"); 
+	getchar();
 	fclose(f);
+	free(book);
 }
 
 
