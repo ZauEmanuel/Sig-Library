@@ -16,7 +16,7 @@
 
 // Lista todos os usuários 
 void listUser(void){
-	User *user;
+	User *user = calloc(1,sizeof(user));
 	FILE *f = fopen("users.bin","rb");
 	if(f==NULL){
 		printf("Erro ao tantar abrir o arquivo.\n");
@@ -33,6 +33,17 @@ void listUser(void){
 	printf("::: ENTER :::"); 
 	getchar();
 	fclose(f);
+	free(user);
+	/*
+	  user = (User*) malloc(sizeof(User));
+	  while(fread(user, sizeof(User), 1, f)) {
+	    if (user->status == '1') {
+	      showInfoUser(user);
+	    }
+	  }
+	  fclose(f);
+	  free(user);
+	*/
 }
 
 
@@ -53,9 +64,9 @@ void recUser(User *user){
 
 void showInfoUser(User *user){
 	setlocale( LC_ALL, "Portuguese" );
-	printf(" [1] Name :     %s \n [4] CEP :      %s \n",user->name,user->cep);
-	printf(" [2] CPF :      %s \n [5] Rua :      %s \n",user->cpf,user->rua);
-	printf(" [3] Número :   %s \n [6] email :    %s \n",user->num,user->email);
+	printf(" [1] Name :    %s \n [4] CEP :     %s \n",user->name,user->cep);
+	printf(" [2] CPF :     %s \n [5] Rua :     %s \n",user->cpf,user->rua);
+	printf(" [3] Número :  %s \n [6] email :   %s \n",user->num,user->email);
 }
 
 
