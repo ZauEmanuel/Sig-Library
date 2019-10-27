@@ -20,7 +20,7 @@ char inputUserName(User* user) {
 	char i = '1', c[256] = " ";
 	do {
 		printf("\n\n--Nome: ");
-		clBuf; scanf(" %[^\n]",c); clBuf;
+		clBuf; scanf(" %[^\n]s",c); clBuf;
 		if (strlen(c) == 1 && c[0] == '0') {
 			return '0';
 		} if (valName(c) == 0) {
@@ -36,7 +36,7 @@ char inputUserName(User* user) {
 
 
 char inputUserCPF(User* user) {
-	char i = '1', c[10] = " ";
+	char i = '1', c[11] = " ";
 	do {
 		printf("\n--CPF: ");
 		clBuf; scanf(" %s",c); clBuf;
@@ -47,6 +47,8 @@ char inputUserCPF(User* user) {
 			printf("\n::: Entrada inválida :::\n");
 			memset(c, '\0', sizeof(c));
 		} else {
+			c[strlen(c)] = '\0';
+			printf("cpf = %s ",c);
 			strcpy(user->cpf,c);
 			i = '0';
 		}
@@ -59,7 +61,7 @@ char inputUserRua(User* user) {
 	char i = '1', c[64] = " ";
 	do {
 		printf("\n\n--Rua: ");
-	  	clBuf; scanf(" %[^\n]",c); clBuf;
+	  	clBuf; scanf(" %[^\n]s",c); clBuf;
 		if (strlen(c) == 1 && c[0] == '0') {
 			return '0';
 		} if(!valRua(c)) {
@@ -97,7 +99,7 @@ char inputUserCEP(User* user) {
 	char i = '1', c[9] = " ";
 	do {
 		printf("\n--CEP: ");
-		clBuf; scanf(" %s%*[-]",c); clBuf;
+		clBuf; scanf(" %s%*[-]s",c); clBuf;
 		if (strlen(c) == 1 && c[0] == '0') {
 			return '0';
 		}
@@ -114,12 +116,11 @@ char inputUserCEP(User* user) {
 
 
 char inputUserEmail(User* user) {
-	printf("test010102\n");
 	char i = '1', c[128] = "";
 	do {
 		printf("\n--E-mail: ");
 		clBuf; 
-		scanf(" %[A-Za-z0-9.!#$&+-/=?^_`{|}){@\"]",c); 
+		scanf(" %[A-Za-z0-9.!#$&+-/=?^_`{|}){@\"]s",c); 
 		clBuf;
 		if (strlen(c) == 1 && c[0] == '0') {
 			return '0';
@@ -132,6 +133,5 @@ char inputUserEmail(User* user) {
 			i = '0';
 		}
 	} while(i != '0');
-	printf("test01218");
 	return '1';
 }

@@ -20,17 +20,20 @@ void listUser(void){
 	FILE *f = fopen("users.bin","rb");
 	if(!f){
 		printf("Erro ao tantar abrir o arquivo.\n");
-		clBuf; 
-		printf("::: ENTER :::"); 
+		printf("	::: ENTER :::\n"); 
+		clBuf; getchar();
 		getchar();
 		return;
 	}
 	while(fread(user,sizeof(User),1,f)){
 		showInfoUser(user);
 		printf("\n\n");
+		printf("test = %s",user->cpf);
+		free(user);
 	}
 	clBuf;
-	printf("::: ENTER :::"); 
+	printf("	::: ENTER :::"); 
+	getchar();
 	getchar();
 	fclose(f);
 	free(user);
@@ -63,57 +66,53 @@ void recUser(User *user){
 }
 
 void showInfoUser(User *user){
-	setlocale( LC_ALL, "Portuguese" );
-	printf(" [1] Name :    %s \n [4] CEP :     %s \n",user->name,user->cep);
-	printf(" [2] CPF :     %s \n [5] Rua :     %s \n",user->cpf,user->rua);
-	printf(" [3] Número :  %s \n [6] email :   %s \n",user->num,user->email);
+	printf(" [1] Nome :    %s \n [2] CEP :     %s \n",user->name,user->cep);
+	printf(" [3] CPF :     %s \n [4] Rua :     %s \n",user->cpf,user->rua);
+	printf(" [5] Número :  %s \n [6] e-mail :   %s \n",user->num,user->email);
 }
 
 
 void newUser(void) {
 	User *user = calloc(1,sizeof(User));
 	char op = '1';
-	do {
-		printf("\n||||||||||||||||||||||||||||||||||||||||||||||\n");
-		printf("                 Novo Usuario\n");
-		printf("||||||||||||||||||||||||||||||||||||||||||||||\n\n");
-		printf("        ::: DIGITE 0 PARA VOLTAR :::\n");
-		op = inputUserName(user);
-		if(op == '0')
-			return;
-		
-		op = inputUserCPF(user);
-		if(op == '0')
-			return;
-		
-		printf("\n\t::Endereço::");
-		op = inputUserRua(user);
-		if(op == '0')
-			return;
-		
-		op = inputUserNum(user);
-		if(op == '0')
-			return;
-		
-		op = inputUserCEP(user);
-		if(op == '0')
-			return;
-		
-		op = inputUserEmail(user);
-		if(op == '0')
-			return;
-		printf("\ntest\n");
-		showInfoUser(user);
-		printf("::: ENTER :::");
-		getchar();
-		printf("Continuar:\n [1] SIM \n [0] NÃO \n Digite: ");
-		scanf("%c",&op);
-		clBuf;
-		printf("\nPASS\n");
+	printf("\n||||||||||||||||||||||||||||||||||||||||||||||\n");
+	printf("                 Novo Usuario\n");
+	printf("||||||||||||||||||||||||||||||||||||||||||||||\n\n");
+	printf("        ::: DIGITE 0 PARA VOLTAR :::\n");
+	op = inputUserName(user);
+	if(op == '0')
+		return;
+	
+	op = inputUserCPF(user);
+	if(op == '0')
+		return;
+	
+	printf("\n\t::Endereço::");
+	op = inputUserRua(user);
+	if(op == '0')
+		return;
+	
+	op = inputUserNum(user);
+	if(op == '0')
+		return;
+	
+	op = inputUserCEP(user);
+	if(op == '0')
+		return;
+	
+	op = inputUserEmail(user);
+	if(op == '0')
+		return;
+	cls;
+	showInfoUser(user);
+	printf("	::: ENTER :::");
+	getchar();
+	printf(" --Continuar:\n    [1] SIM\n    [0] NÃO\n Digite: ");
+	clBuf; scanf("%c",&op); clBuf;
+	if(op=='1')
 		recUser(user);
-		printf("\nPASS\n");	
-	} while(op != '0');
 	free(user);
+	return;
 }
 
 
@@ -121,7 +120,7 @@ int searchUser(User *user) {
 	char any[256] = "";
 	char op = ' ';
 	op = '1';
-	printf("  ::: PESQUISAR USUÁRIO :::");
+	printf("  ::: PESQUISAR USUÁRIO :::\n");
 	printf("::: DIGITE 0 PARA VOLTAR :::\n");
 	do {
 		memset(any, 0, sizeof any);

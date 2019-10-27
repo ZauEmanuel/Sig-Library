@@ -24,14 +24,14 @@ char inputBookTitle(Book *book) {
 	char i = '1', c[256] = "";
 	do {
 		printf("\n\n--Título: ");
-		clBuf; scanf(" %[ ^\n]",c); clBuf;
+		clBuf; scanf(" %[^\n]",c); clBuf;
 		if (strlen(c) == 1 && c[0] == '0') {
 			return '0';
 		} else {
 			strcpy(book->title,c);
 			i = '0';
 		}
-	} while(i != '0'); 
+	} while(i != '0');
 	return '1';
 }
 
@@ -39,8 +39,8 @@ char inputBookTitle(Book *book) {
 char inputBookSubtitle(Book *book) {
 	char i = '1', c[32] = "";
 	do {
-		printf("\n\n--Título: ");
-		clBuf; scanf(" %[ ^\n]",c); clBuf;
+		printf("\n\n--Sub Título: ");
+		clBuf; scanf(" %[^\n]",c); clBuf;
 		if (strlen(c) == 1 && c[0] == '0') {
 			return '0';
 		} else {
@@ -56,7 +56,7 @@ char inputBookPublisher(Book *book) {
 	char i = '1', c[32] = "";
 	do {
 		printf("\n\n--Editora: ");
-		clBuf; scanf(" %[ ^\n]",c); clBuf;
+		clBuf; scanf(" %[^\n]",c); clBuf;
 		if (strlen(c) == 1 && c[0] == '0') {
 			return '0';
 		} else {
@@ -114,7 +114,7 @@ char inputBookAuthor(Book *book) {
 	char i = '1', c[256] = "";
 	do {
 		printf("\n\n--Autor: ");
-		clBuf; scanf(" %[ ^\n]",c); clBuf;
+		clBuf; scanf(" %[^\n]",c); clBuf;
 		if (strlen(c) == 1 && c[0] == '0') {
 			return '0';
 		} if (valName(c) == 0) {
@@ -133,7 +133,7 @@ char inputBookIdentifier(Book *book) {
 	char i = '1', c[13] = "";
 	do {
 		printf("\n\n--Identificador: ");
-		clBuf; scanf(" %[ ^\n]",c); clBuf;
+		clBuf; scanf(" %[^\n]",c); clBuf;
 		if (strlen(c) == 1 && c[0] == '0') {
 			return '0';
 		} if (valISN(c) == 0) {
@@ -151,11 +151,9 @@ char inputBookIdentifier(Book *book) {
 char inputBookYear(Book *book) {
 	char i = '1', c[4] = "";
 	time_t timer;
-	struct tm* tm_info;
 	char year[5];
 	time(&timer);
-	tm_info = localtime(&timer);
-	strftime(year, 5, "%Y", tm_info);
+	strftime(year, 5, "%Y",localtime(&timer));
 	int y = atoi(year);
 	do {
 		printf("\n--Ano: ");
@@ -163,7 +161,7 @@ char inputBookYear(Book *book) {
 		if (strlen(c) == 1 && c[0] == '0') {
 			return '0';
 		}
-		if (atoi(c) >= y) {
+		if (atoi(c) > y) {
 			printf("\n::: Entrada inválida :::\n");
 			strcpy(c,"");
 		} else {
