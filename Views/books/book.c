@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <locale.h>
-
 #ifndef ENTRIESBOOK_H
 	#include "../../Controllers/entries/book/entriesBook.h"
 #endif
@@ -11,25 +10,27 @@
 
 #define cls system("clear||cls");
 #define clBuf setbuf(stdin,NULL);
+
 // Lista todos os livros 
 void listBook(void){
 	Book *book = calloc(1,sizeof(Book));
 	FILE *f = fopen("books.bin","rb");
 	if(!f){
 		printf("Erro ao tantar abrir o arquivo.\n");
-		printf("::: ENTER :::");
-		clBuf; getchar(); clBuf;
+		clBuf; 
+		printf("::: ENTER :::"); 
+		getchar();
 		return;
 	}
 	while(fread(book,sizeof(Book),1,f)){
 		showInfoBook(book);
 		printf("\n\n");
 	}
+	clBuf;
+	printf("::: ENTER :::"); 
+	getchar();
 	fclose(f);
 	free(book);
-	printf("	::: ENTER :::");
-	getchar();
-	getchar();
 }
 
 
@@ -101,14 +102,13 @@ void newBook(void) {
 		op = inputBookUnity(book);
 		if(op == '0')
 			return;
-		strcpy(book->status,"D");
+		
 		showInfoBook(book);
 		printf("::: ENTER :::");
 		clBuf; getchar();
 		printf("Continuar:\n [1] SIM \n [0] NÃO \n Digite: ");
 		clBuf; scanf("%c",&op);	
 		recBook(book);
-		op = '0';
 	} while(op != '0');
 	free(book);
 }
@@ -120,7 +120,7 @@ int searchBook(Book *book,char typ) {
 	char any[256] = "";
 	char op = ' ';
 	op = '1';
-	printf("     ::: PESQUISAR :::\n");
+	printf("   ::: PESQUISAR:::");
 	printf("::: DIGITE 0 PARA VOLTAR :::\n");
 	if(typ == 'l')
 		//op = search(book,any,typ);

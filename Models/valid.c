@@ -57,7 +57,7 @@ int valISN(char *c) {
 	int valid = 0;
 	int peso = 1;
 	int i,j,alt = 1;
-	if(len != 7 && len != 9 && len != 10 && len != 12) {
+	if(len != 7 && len != 9 && len != 12) {
 		return 0;
 	}
 	for(j = len;j >= 0;--j) {
