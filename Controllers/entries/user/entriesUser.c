@@ -20,9 +20,7 @@ char inputUserName(User* user) {
 	char i = '1', c[256] = " ";
 	do {
 		printf("\n\n--Nome: ");
-		clBuf; 
-		scanf(" %[^\n]",c); 
-		clBuf;
+		clBuf; scanf(" %[^\n]s",c); clBuf;
 		if (strlen(c) == 1 && c[0] == '0') {
 			return '0';
 		} if (valName(c) == 0) {
@@ -38,12 +36,10 @@ char inputUserName(User* user) {
 
 
 char inputUserCPF(User* user) {
-	char i = '1', c[12] = "";
+	char i = '1', c[11] = " ";
 	do {
 		printf("\n--CPF: ");
-		clBuf; 
-		scanf(" %11[^\n]",c); 
-		clBuf;
+		clBuf; scanf(" %s",c); clBuf;
 		if (strlen(c) == 1 && c[0] == '0') {
 			return '0';
 		}
@@ -51,6 +47,8 @@ char inputUserCPF(User* user) {
 			printf("\n::: Entrada inválida :::\n");
 			memset(c, '\0', sizeof(c));
 		} else {
+			c[strlen(c)] = '\0';
+			printf("cpf = %s ",c);
 			strcpy(user->cpf,c);
 			i = '0';
 		}
@@ -60,12 +58,10 @@ char inputUserCPF(User* user) {
 
 
 char inputUserRua(User* user) {
-	char i = '1', c[64] = "";
+	char i = '1', c[64] = " ";
 	do {
 		printf("\n\n--Rua: ");
-	  	clBuf; 
-	  	scanf(" %[^\n]",c); 
-	  	clBuf;
+	  	clBuf; scanf(" %[^\n]s",c); clBuf;
 		if (strlen(c) == 1 && c[0] == '0') {
 			return '0';
 		} if(!valRua(c)) {
@@ -81,12 +77,10 @@ char inputUserRua(User* user) {
 
 
 char inputUserNum(User* user) {
-	char i = '1', c[10] = "";
+	char i = '1', c[10] = " ";
 	do {
 		printf("\n--Número: ");
-		clBuf; 
-		scanf(" %[^\n]",c); 
-		clBuf;
+		clBuf; scanf(" %s",c); clBuf;
 		if (strlen(c) == 1 && c[0] == '0') {
 			return '0';
 		} if (valAlphaNum(c) == 0) {
@@ -102,10 +96,10 @@ char inputUserNum(User* user) {
 
 
 char inputUserCEP(User* user) {
-	char i = '1', c[9] = "";
+	char i = '1', c[9] = " ";
 	do {
 		printf("\n--CEP: ");
-		clBuf; scanf(" %s%*[-]",c); clBuf;
+		clBuf; scanf(" %s%*[-]s",c); clBuf;
 		if (strlen(c) == 1 && c[0] == '0') {
 			return '0';
 		}
@@ -126,7 +120,7 @@ char inputUserEmail(User* user) {
 	do {
 		printf("\n--E-mail: ");
 		clBuf; 
-		scanf(" %[A-Za-z0-9.!#$&+-/=?^_`{|}){@\"]",c); 
+		scanf(" %[A-Za-z0-9.!#$&+-/=?^_`{|}){@\"]s",c); 
 		clBuf;
 		if (strlen(c) == 1 && c[0] == '0') {
 			return '0';
