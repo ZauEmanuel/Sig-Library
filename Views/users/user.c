@@ -28,7 +28,6 @@ void listUser(void){
 	while(fread(user,sizeof(User),1,f)){
 		showInfoUser(user);
 		printf("\n\n");
-		printf("test = %s",user->cpf);
 		free(user);
 	}
 	clBuf;
@@ -37,6 +36,7 @@ void listUser(void){
 	getchar();
 	fclose(f);
 	free(user);
+	cls;
 	/*
 	  user = (User*) malloc(sizeof(User));
 	  while(fread(user, sizeof(User), 1, f)) {
@@ -87,7 +87,6 @@ void newUser(void) {
 	if(op == '0')
 		return;
 	
-	printf("\n\t::Endereço::");
 	op = inputUserRua(user);
 	if(op == '0')
 		return;
