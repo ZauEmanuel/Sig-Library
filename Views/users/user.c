@@ -16,7 +16,7 @@
 
 // Lista todos os usuários 
 void listUser(void){
-	User *user = calloc(1,sizeof(user));
+	User *user = (User*) malloc(sizeof(user));
 	FILE *f = fopen("users.bin","rb");
 	if(!f){
 		printf("Erro ao tantar abrir o arquivo.\n");
