@@ -101,7 +101,7 @@ void newBook(void) {
 		op = inputBookUnity(book);
 		if(op == '0')
 			return;
-		strcpy(book->status,"D");
+		book->status = 'D';
 		showInfoBook(book);
 		printf("::: ENTER :::");
 		clBuf; getchar();
