@@ -18,6 +18,8 @@
 void listUser(void){
 	User *user = (User*) malloc(sizeof(user));
 	FILE *f = fopen("users.bin","rb");
+	cls;
+	clBuf;
 	if(!f){
 		printf("Erro ao tantar abrir o arquivo.\n");
 		printf("	::: ENTER :::\n"); 
@@ -25,7 +27,7 @@ void listUser(void){
 		getchar();
 		return;
 	}
-	while(fread(user,sizeof(User),1,f)){
+	while(fread(user,sizeof(User),1,f) && user->status == '1'){
 		showInfoUser(user);
 		printf("\n\n");
 		free(user);
@@ -66,9 +68,11 @@ void recUser(User *user){
 }
 
 void showInfoUser(User *user){
+	printf("\n===============================\n\n");
 	printf(" [1] Nome :    %s \n [2] CEP :     %s \n",user->name,user->cep);
 	printf(" [3] CPF :     %s \n [4] Rua :     %s \n",user->cpf,user->rua);
-	printf(" [5] Número :  %s \n [6] e-mail :   %s \n",user->num,user->email);
+	printf(" [5] Número :  %s \n [6] e-mail :  %s \n",user->num,user->email);
+	printf("\n\n===============================\n");
 }
 
 
@@ -108,11 +112,53 @@ void newUser(void) {
 	getchar();
 	printf(" --Continuar:\n    [1] SIM\n    [0] NÃO\n Digite: ");
 	clBuf; scanf("%c",&op); clBuf;
-	if(op=='1')
+	if(op=='1'){
+		user->status = '1';
 		recUser(user);
+	}
 	free(user);
 	return;
 }
+
+
+void buscaUser(void) {
+  FILE* f = fopen("users.bin", "rb");
+  User* user;
+  int achou;
+  char cpf[12];
+  cls;
+  if(!f){
+		printf("Erro ao tantar abrir o arquivo.\n");
+		printf("	::: ENTER :::\n"); 
+		clBuf; getchar();
+		getchar();
+		return;
+	}
+  printf("\n\n");
+  printf("Informe o cpf: ");
+  scanf(" %11[^\n]", cpf);
+  user = (User*) malloc(sizeof(User));
+  achou = 0;
+  while((!achou) && (fread(user, sizeof(User), 1, f))) {
+   if ((strcmp(user->cpf, cpf) == 0) && (user->status == '1')) {
+     achou = 1;
+   }
+  }
+  fclose(f);
+  if (achou) {
+    showInfoUser(user);
+  } else {
+    printf("O user %s não foi encontrado...\n", cpf);
+  }
+  printf("	::: ENTER :::");
+  clBuf;
+  getchar();
+  getchar();
+  clBuf;
+  cls;
+  free(user);
+}
+
 
 
 int searchUser(User *user) {
@@ -123,7 +169,7 @@ int searchUser(User *user) {
 	printf("::: DIGITE 0 PARA VOLTAR :::\n");
 	do {
 		memset(any, 0, sizeof any);
-		printf("Pesquisar: ");
+		printf("Digite o CPF: \n");
 		scanf("%s",any);
 		if(strlen(any) == 1 && any[0] == 0){
 			cls;
@@ -135,6 +181,7 @@ int searchUser(User *user) {
 	cls;
 	//op = search(user,any,'u');
 	if(op == 1){
+
 		return 1;
 	} else {
 		printf("\nUsuário não encontrado.");
@@ -245,6 +292,9 @@ void removeUser(void){
 	clBuf; printf("::: ENTER :::"); getchar();
 	printf("Continuar:\n [1] SIM \n [0] NÃO \n Digite: ");
 	scanf("%d",&op);
+	if(op){
+		user->status = '0';
+	}
 	free(user);
 	//if(op == 1){
 	//	op = writeDataUser(user,'R');

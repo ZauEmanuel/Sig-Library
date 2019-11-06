@@ -76,7 +76,7 @@ void users(void){
         return;
 
       case '1':
-        searchUser(user);
+        buscaUser();
         //showInfoUser(user);
         break;
       
