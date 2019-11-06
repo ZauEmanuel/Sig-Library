@@ -98,7 +98,7 @@ void loan(void) {
 			return;
 		strcpy(loan->cpf,user->cpf);
 		strcpy(loan->ISN,book->ISN);
-		strcpy(loan->unity,book->unity); //Está errado pois char strcpy(char *, constant char *) só aceita tipo ponteiro char e retorna tipo char.
+		loan->unity = book->unity;
 		recLoan(loan);
 	} while(op != 0);
 	free(book);
