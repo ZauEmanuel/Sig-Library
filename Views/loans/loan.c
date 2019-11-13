@@ -20,7 +20,7 @@
 
 
 
-// Lista todos os empréstimo//
+// Lista todos os empréstimo
 void listLoan(void){
 	Book *book = calloc(1,sizeof(Book));
 	User *user = calloc(1,sizeof(user));
@@ -45,7 +45,7 @@ void listLoan(void){
 }
 
 
-// Grava em arquivo binário //
+// Grava em arquivo binário
 void recLoan(Loan *loan){
 	FILE *f = fopen("loans.bin","ab");
 	if(f==NULL){
@@ -79,7 +79,8 @@ void loan(void) {
 
 		if(!(user->loans < 3)){
 			printf("\nNúmero máximo de empréstimos antigido!");
-			clBuf; getchar();
+			clBuf; 
+			getchar();
 			return;
 		}
 
@@ -91,7 +92,8 @@ void loan(void) {
 
 		showInfoBook(book);
 		showInfoUser(user);
-		clBuf; getchar();
+		clBuf; 
+		getchar();
 		printf("Continuar:\n [1] SIM \n [0] NÃO \n Digite: ");
 		scanf("%d",&op);
 		if(op == 0)
@@ -137,7 +139,8 @@ void devolution(void) {
 
 		showInfoBook(book);
 		showInfoUser(user);
-		clBuf; getchar();
+		clBuf; 
+		getchar();
 		printf("\n-- Continuar:\n [1] SIM \n [0] NÃO \n Digite: ");
 		scanf("%d",&op);
 		if(op == 0)

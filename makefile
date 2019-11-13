@@ -4,6 +4,6 @@ gcc -Wall -o Sig_Library Views/menu/menu.h Views/menu/menu.c Controllers/entries
  
 #gcc -o Sig_Library menu.o entriesBook.o entriesUser.o book.o user.o loan.o valid.o
 
-#sleep 10
+sleep 10
 
 ./Sig_Library

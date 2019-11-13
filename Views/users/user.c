@@ -18,8 +18,6 @@
 void listUser(void){
 	User *user = (User*) malloc(sizeof(user));
 	FILE *f = fopen("users.bin","rb");
-	cls;
-	clBuf;
 	if(!f){
 		printf("Erro ao tantar abrir o arquivo.\n");
 		printf("	::: ENTER :::\n"); 
@@ -124,7 +122,7 @@ void newUser(void) {
 void buscaUser(void) {
   FILE* f = fopen("users.bin", "rb");
   User* user;
-  int achou;
+  int found;
   char cpf[12];
   cls;
   if(!f){
@@ -138,14 +136,14 @@ void buscaUser(void) {
   printf("Informe o cpf: ");
   scanf(" %11[^\n]", cpf);
   user = (User*) malloc(sizeof(User));
-  achou = 0;
-  while((!achou) && (fread(user, sizeof(User), 1, f))) {
+  found = 0;
+  while((!found) && (fread(user, sizeof(User), 1, f))) {
    if ((strcmp(user->cpf, cpf) == 0) && (user->status == '1')) {
-     achou = 1;
+     found = 1;
    }
   }
   fclose(f);
-  if (achou) {
+  if (found) {
     showInfoUser(user);
   } else {
     printf("O user %s não foi encontrado...\n", cpf);

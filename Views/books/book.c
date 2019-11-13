@@ -18,7 +18,9 @@ void listBook(void){
 	if(!f){
 		printf("Erro ao tantar abrir o arquivo.\n");
 		printf("::: ENTER :::");
-		clBuf; getchar(); clBuf;
+		clBuf;
+		getchar();
+		clBuf;
 		return;
 	}
 	while(fread(book,sizeof(Book),1,f)){
@@ -104,9 +106,11 @@ void newBook(void) {
 		book->status = 'D';
 		showInfoBook(book);
 		printf("::: ENTER :::");
-		clBuf; getchar();
+		clBuf;
+		getchar();
 		printf("Continuar:\n [1] SIM \n [0] NÃO \n Digite: ");
-		clBuf; scanf("%c",&op);	
+		clBuf;
+		scanf("%c",&op);	
 		recBook(book);
 		op = '0';
 	} while(op != '0');
@@ -141,11 +145,13 @@ int searchBook(Book *book,char typ) {
 		return op;
 	} else if(op == 0) {
 		printf("\nLivro não encontrado!");
-		clBuf; printf("::: ENTER :::"); getchar();
+		clBuf;
+		printf("::: ENTER :::"); getchar();
 		return op;
 	} else if(op == 2){
 		printf("\nLivro não disponível!");	
-		clBuf; printf("::: ENTER :::"); getchar();
+		clBuf;
+		printf("::: ENTER :::"); getchar();
 		return op;
 	}
 	return 0;
@@ -165,7 +171,9 @@ void updateBook(void) {
 				printf("Pesquisar novamente [1]\n");
 				printf("Voltar              [0]\n");
 				printf("Digite: ");
-				clBuf; scanf("%c",&controlP); clBuf;
+				clBuf;
+				scanf("%c",&controlP);
+				clBuf;
 			 } if(op == '0'){
 				 return;
 			 }
@@ -248,7 +256,9 @@ void updateBook(void) {
 	//op = writeDataBook(bookUp,'bR');
 	if(op==1){
 		printf("Livro atualizado com sucesso!");
-		clBuf; printf("::: ENTER :::"); getchar();
+		clBuf;
+		printf("::: ENTER :::");
+		getchar();
 	}
 }
 
@@ -268,7 +278,9 @@ void removeBook(void){
 	}while(op == 0);
 
 	showInfoBook(book);
-	clBuf; printf("::: ENTER :::"); getchar();
+	clBuf;
+	printf("::: ENTER :::");
+	getchar();
 	printf("Continuar:\n [1] SIM \n [0] NÃO \n Digite: ");
 	scanf("%d",&op);
 	free(book);

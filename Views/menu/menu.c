@@ -27,7 +27,9 @@ void acervo(void){
       printf(" [1] Listar Acervo\n [2] Pesquisar material\n [3] Cadastrar material\n");
       printf(" [4] Atualizar material\n [5] Remover material\n [0] Voltar\n\n");
       printf("Digite: ");
-      clBuf; scanf(" %c",&op); clBuf;
+      clBuf;
+      scanf(" %c",&op);
+      clBuf;
       cls;
     } while(!(op >= '0' && op <= '5'));
     switch (op){
@@ -70,7 +72,9 @@ void users(void){
     printf("|||||||||||||||||||||||||||||||||\n");
     printf(" [1] Pesquisar\n [2] Cadastrar\n [3] Atualizar\n [4] Remover\n [5] Listar Usuários\n [0] Voltar\n\n");
 		printf("Digite: ");
-    clBuf; scanf(" %c",&op); clBuf;
+    clBuf;
+    scanf(" %c",&op);
+    clBuf;
     switch (op) {
       case '0':
         return;
@@ -99,6 +103,7 @@ void users(void){
       case '5':
         cls;
         listUser();
+        cls
         break;
     }
   } while (op != '0');
@@ -147,7 +152,9 @@ void about(void) {
 	printf("\n  Zaú Galvão - zauhf@gmail.com\n\n\n");
   printf("            2019 - Caicó/RN\n\n");
   printf("==================================================\n");
-	clBuf; getchar(); clBuf;
+	clBuf;
+  getchar();
+  clBuf;
 	cls;
 }
 
