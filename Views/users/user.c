@@ -21,14 +21,14 @@ void listUser(void){
 	if(!f){
 		printf("Erro ao tantar abrir o arquivo.\n");
 		printf("	::: ENTER :::\n"); 
-		clBuf; getchar();
+		clBuf;
+		getchar();
 		getchar();
 		return;
 	}
-	while(fread(user,sizeof(User),1,f) && user->status == '1'){
+	while((fread(user,sizeof(User),1,f)) && (user->status == '1')){
 		showInfoUser(user);
 		printf("\n\n");
-		free(user);
 	}
 	clBuf;
 	printf("	::: ENTER :::"); 
@@ -67,9 +67,9 @@ void recUser(User *user){
 
 void showInfoUser(User *user){
 	printf("\n===============================\n\n");
-	printf(" [1] Nome :    %s \n [2] CEP :     %s \n",user->name,user->cep);
-	printf(" [3] CPF :     %s \n [4] Rua :     %s \n",user->cpf,user->rua);
-	printf(" [5] Número :  %s \n [6] e-mail :  %s \n",user->num,user->email);
+	printf(" [1] Nome :    %s \n [2] CPF :     %s \n",user->name,user->cpf);
+	printf(" [3] Rua :     %s \n [4] Número :  %s \n",user->rua,user->num);
+	printf(" [5] CEP :     %s \n [6] e-mail :  %s \n",user->cep,user->email);
 	printf("\n\n===============================\n");
 }
 
@@ -123,52 +123,53 @@ void newUser(void) {
 	printf(" --Continuar:\n    [1] SIM\n    [0] NÃO\n Digite: ");
 	clBuf;
 	scanf("%c",&op);
-	clBuf;
 	if(op=='1'){
 		user->status = '1';
 		recUser(user);
+		//free(user);
 	}
+	clBuf;
 	free(user);
-	return;
 }
 
 
 void buscaUser(void){
-  FILE* f = fopen("users.bin", "rb");
-  User* user;
-  int found;
-  char cpf[12];
-  cls;
-  if(!f){
+	FILE* f = fopen("users.bin", "rb");
+	User* user;
+	int found;
+	char cpf[12];
+	cls;
+	if(!f){
 		printf("Erro ao tantar abrir o arquivo.\n");
 		printf("	::: ENTER :::\n"); 
-		clBuf; getchar();
+		clBuf;
+		getchar();
 		getchar();
 		return;
 	}
-  printf("\n\n");
-  printf("Informe o cpf: ");
-  scanf(" %11[^\n]", cpf);
-  user = (User*) malloc(sizeof(User));
-  found = 0;
-  while((!found) && (fread(user, sizeof(User), 1, f))) {
-   if ((strcmp(user->cpf, cpf) == 0) && (user->status == '1')){
-     found = 1;
-   }
-  }
-  fclose(f);
-  if (found){
-    showInfoUser(user);
-  } else {
-    printf("O user %s não foi encontrado...\n", cpf);
-  }
-  printf("	::: ENTER :::");
-  clBuf;
-  getchar();
-  getchar();
-  clBuf;
-  cls;
-  free(user);
+	printf("\n\n");
+	printf("Informe o cpf: ");
+	scanf(" %11[^\n]", cpf);
+	user = (User*) malloc(sizeof(User));
+	found = 0;
+	while((!found) && (fread(user, sizeof(User), 1, f))) {
+	if ((strcmp(user->cpf, cpf) == 0) && (user->status == '1')){
+		found = 1;
+	}
+	}
+	fclose(f);
+	if (found){
+		showInfoUser(user);
+	} else {
+		printf("O user %s não foi encontrado...\n", cpf);
+	}
+	printf("	::: ENTER :::");
+	clBuf;
+	getchar();
+	getchar();
+	clBuf;
+	cls;
+	free(user);
 }
 
 
@@ -201,6 +202,7 @@ void editUser(void) {
      found = 1;
    }
   }
+
    if (found) {
 	showInfoUser(user);
 	clBuf;
@@ -253,24 +255,46 @@ void editUser(void) {
 			free(user);
 			return;
 		}
+		/*
+		clBuf;
+		printf("	::: ENTER :::");
+		getchar();
+		printf("\n --Continuar:\n    [1] SIM\n    [0] NÃO\n Digite: ");
+		clBuf;
+		scanf("%c", &op);
+		clBuf;
+		cls;
+		*/
 		cls;
 		showInfoUser(user);
 		printf("\n --Deseja REALMENTE continuar?\n    [1] SIM\n    [0] NÃO\n Digite: ");
 		clBuf;
 		scanf("%c",&op);
 		clBuf;
-		user->status = '1';
-      	fseek(f, (-1)*sizeof(User), SEEK_CUR);
-      	fwrite(user, sizeof(User), 1, f);
-      	printf("\nDados alterados com sucesso!\n");
+		cls;
+		if(op == '1'){
+			user->status = '1';
+			fseek(f, (-1)*sizeof(User), SEEK_CUR);
+			fwrite(user, sizeof(User), 1, f);
+			printf("\nDados alterados com sucesso!\n");
+			clBuf;
+			printf("	::: ENTER :::");
+			getchar();
+			getchar();
+		}
+    } else {
+		printf("\nOperação cancelada\n");
+		clBuf;
 		printf("	::: ENTER :::");
 		getchar();
 		getchar();
-    } else {
-		printf("\nOperação cancelada\n");
     }
   } else {
 		printf("O usuário não foi encontrado...\n");
+		clBuf;
+		printf("	::: ENTER :::");
+		getchar();
+		getchar();
   }
   free(user);
   fclose(f);
@@ -296,8 +320,7 @@ int searchUser(User *user) {
 		}
 	} while(op != '0');
 	cls;
-	//op = search(user,any,'u');
-	if(op == 1){
+	if(op == '1'){
 
 		return 1;
 	} else {
@@ -311,7 +334,6 @@ int searchUser(User *user) {
 void updateUser(void) {
 	char op = '1';
 	char controlP= '0';
-	//User *userUp = calloc(sizeof *userUp, 0);
 	User *userUp = calloc(1,sizeof(User));
 	do {
 		do{
@@ -384,42 +406,71 @@ void updateUser(void) {
 		scanf("%c",&op);	
 	} while(op != '0');
 	free(userUp);
-	//op = writeDataUser(userUp,'uR');
-	//if(op==1){
-	//	printf("Usuário atualizado com sucesso!");
-	//	clBuf; printf("::: ENTER :::"); getchar();
-	//}
 }
 
 
-void removeUser(void){
-	User *user = calloc(1,sizeof(User));
-	int op = 0;
+void removeUser(void) {
+	FILE* f = fopen("users.bin", "r+b");
+	User* user;
+	int found;
+	char op;
+	char cpf[12];
+	cls;
+	if(!f){
+		printf("Erro ao tantar abrir o arquivo.\n");
+		printf("	::: ENTER :::\n"); 
+		clBuf;
+		getchar();
+		getchar();
+		return;
+	}
+  	printf("\n\n");
 	printf("\n||||||||||||||||||||||||||||||||||||||||||||||\n");
-	printf("                Remover Usuário\n");
+	printf("                 Remover Usuario\n");
 	printf("||||||||||||||||||||||||||||||||||||||||||||||\n\n");
 
-	do{
-		op = searchUser(user);
-		if(op == 2)
-			return;
-	}while(op == 0);
-
-	showInfoUser(user);
-	clBuf; 
-	printf("::: ENTER :::"); 
-	getchar();
-	printf("Continuar:\n [1] SIM \n [0] NÃO \n Digite: ");
-	scanf("%d",&op);
-	if(op){
-		user->status = '0';
-	}
-	free(user);
-	//if(op == 1){
-	//	op = writeDataUser(user,'R');
-	//	if(op == 1){
-	//		printf("Usuário removido com sucesso!");
-	//		clBuf; printf("::: ENTER :::"); getchar();
-	//	}
-	//}
+  printf("Informe o cpf do usuário a ser removido: ");
+  scanf(" %11[^\n]", cpf);
+  user = (User*) malloc(sizeof(User));
+  found = 0;
+  while((!found) && (fread(user, sizeof(User), 1, f))) {
+   if ((strcmp(user->cpf, cpf) == 0) && (user->status == '1')) {
+     found = 1;
+   }
+  }
+	if (found) {
+		showInfoUser(user);
+		clBuf;
+		printf("	::: ENTER :::");
+		getchar();
+		printf("\n --Deseja RALMENTE continuar? \n    [1] SIM\n    [0] NÃO\n Digite: ");
+		clBuf;
+		scanf("%c", &op);
+		clBuf;
+		cls;
+		if(op=='1'){
+			user->status = '0';
+			fseek(f, (-1)*sizeof(User), SEEK_CUR);
+			fwrite(user, sizeof(User), 1, f);
+			printf("\nUsuário removido com sucesso!\n");
+			clBuf;
+			printf("	::: ENTER :::");
+			getchar();
+			getchar();
+		} else {
+			printf("\nOperação cancelada\n");
+			clBuf;
+			printf("	::: ENTER :::");
+			getchar();
+			getchar();
+		}
+  } else {
+    printf("\nO usuário não foi encontrado...\n");
+		clBuf;
+		printf("	::: ENTER :::");
+		getchar();
+		getchar();
+  }
+  free(user);
+  fclose(f);
 }

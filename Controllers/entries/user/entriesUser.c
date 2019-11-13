@@ -52,7 +52,6 @@ char inputUserCPF(User* user) {
 			memset(c, '\0', sizeof(c));
 		} else {
 			c[strlen(c)] = '\0';
-			printf("cpf = %s ",c);
 			strcpy(user->cpf,c);
 			i = '0';
 		}
