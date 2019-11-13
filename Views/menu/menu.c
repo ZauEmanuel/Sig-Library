@@ -73,14 +73,16 @@ void users(void){
     printf(" [1] Pesquisar\n [2] Cadastrar\n [3] Atualizar\n [4] Remover\n [5] Listar Usuários\n [0] Voltar\n\n");
 		printf("Digite: ");
     clBuf;
-    scanf(" %c",&op);
+    scanf(" %1[^\n]",&op);
     clBuf;
     switch (op) {
       case '0':
         return;
 
       case '1':
+        cls;
         buscaUser();
+        cls;
         //showInfoUser(user);
         break;
       
@@ -91,7 +93,10 @@ void users(void){
         break;
 
       case '3':
-        updateUser();
+        //updateUser();
+        cls;
+        editUser();
+        cls;
         break;
       
       case '4':
