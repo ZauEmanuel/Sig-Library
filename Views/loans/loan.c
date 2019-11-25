@@ -72,7 +72,7 @@ void loan(void) {
 		printf("||||||||||||||||||||||||||||||||||||||||||||||\n\n");
 
 		do{
-			op = searchUser(user);
+			//op = searchUser(user);
 			if(op == 2)
 				return;
 		}while(op == 0);
@@ -126,7 +126,7 @@ void devolution(void) {
 		printf("||||||||||||||||||||||||||||||||||||||||||||||\n\n");
 
 		do{
-			op = searchUser(user);
+			//op = searchUser(user);
 			if(op == 2)
 				return;
 		}while(op == 0);

@@ -81,9 +81,9 @@ void users(void){
 
       case '1':
         cls;
-        buscaUser();
+        //buscaUser();
+        searchUser();
         cls;
-        //showInfoUser(user);
         break;
       
       case '2':

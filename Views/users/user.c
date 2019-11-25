@@ -132,13 +132,34 @@ void newUser(void) {
 	free(user);
 }
 
-
-void searchUser(void){
+User* tsearchUser(char* cpf){
 	FILE* f = fopen("users.bin", "rb");
 	User* user;
 	int found;
+	cls;
+	if(!f){
+		return NULL;
+	}
+	user = (User*) malloc(sizeof(User));
+	found = 0;
+	while((!found) && (fread(user, sizeof(User), 1, f))) {
+		if ((strcmp(user->cpf, cpf) == 0) && (user->status == '1')){
+			found = 1;
+		}
+	}
+	fclose(f);
+	if (found)
+		return user;
+}
+
+void searchUser(void){
+	//FILE* f = fopen("users.bin", "rb");
+	//User* user;
+	//int found;
 	char cpf[12];
 	cls;
+	//if(tsearchUser(cpf) != NULL){}
+	/*
 	if(!f){
 		printf("Erro ao tantar abrir o arquivo.\n");
 		printf("	::: ENTER :::\n"); 
@@ -147,15 +168,29 @@ void searchUser(void){
 		getchar();
 		return;
 	}
+	*/
 	printf("\n\n");
 	printf("Informe o cpf: ");
 	scanf(" %11[^\n]", cpf);
+	if (tsearchUser(cpf) == NULL){
+		printf("Erro ao tantar abrir o arquivo.\n");
+		printf("	::: ENTER :::\n"); 
+		clBuf;
+		getchar();
+		getchar();
+		return;
+	} else {
+		showInfoUser(tsearchUser(cpf));
+	}
+	
+	
+	/*
 	user = (User*) malloc(sizeof(User));
 	found = 0;
 	while((!found) && (fread(user, sizeof(User), 1, f))) {
-	if ((strcmp(user->cpf, cpf) == 0) && (user->status == '1')){
-		found = 1;
-	}
+		if ((strcmp(user->cpf, cpf) == 0) && (user->status == '1')){
+			found = 1;
+		}
 	}
 	fclose(f);
 	if (found){
@@ -163,13 +198,14 @@ void searchUser(void){
 	} else {
 		printf("O user %s não foi encontrado...\n", cpf);
 	}
+	*/
 	printf("	::: ENTER :::");
 	clBuf;
 	getchar();
 	getchar();
 	clBuf;
 	cls;
-	free(user);
+	//free(user);
 }
 
 

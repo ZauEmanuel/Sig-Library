@@ -11,7 +11,7 @@ typedef struct{
 
 void newUser(void);
 void buscaUser();
-//User* searchUser(char*);
+User* tsearchUser(char*);
 void searchUser(void);
 void updateUser(void);
 void removeUser(void);
