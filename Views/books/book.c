@@ -146,12 +146,14 @@ int searchBook(Book *book,char typ) {
 	} else if(op == 0) {
 		printf("\nLivro não encontrado!");
 		clBuf;
-		printf("::: ENTER :::"); getchar();
+		printf("::: ENTER :::");
+		getchar();
 		return op;
 	} else if(op == 2){
 		printf("\nLivro não disponível!");	
 		clBuf;
-		printf("::: ENTER :::"); getchar();
+		printf("::: ENTER :::");
+		getchar();
 		return op;
 	}
 	return 0;

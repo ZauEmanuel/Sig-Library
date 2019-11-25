@@ -133,7 +133,7 @@ void newUser(void) {
 }
 
 
-void buscaUser(void){
+void searchUser(void){
 	FILE* f = fopen("users.bin", "rb");
 	User* user;
 	int found;
@@ -173,7 +173,7 @@ void buscaUser(void){
 }
 
 
-void editUser(void) {
+void updateUser(void) {
   FILE* f = fopen("users.bin", "r+b");
   User* user;
   int found;
@@ -255,16 +255,6 @@ void editUser(void) {
 			free(user);
 			return;
 		}
-		/*
-		clBuf;
-		printf("	::: ENTER :::");
-		getchar();
-		printf("\n --Continuar:\n    [1] SIM\n    [0] NÃO\n Digite: ");
-		clBuf;
-		scanf("%c", &op);
-		clBuf;
-		cls;
-		*/
 		cls;
 		showInfoUser(user);
 		printf("\n --Deseja REALMENTE continuar?\n    [1] SIM\n    [0] NÃO\n Digite: ");
@@ -330,83 +320,6 @@ int searchUser(User *user) {
 	}
 }
 
-
-void updateUser(void) {
-	char op = '1';
-	char controlP= '0';
-	User *userUp = calloc(1,sizeof(User));
-	do {
-		do{
-			controlP = searchUser(userUp);
-		 	if(controlP == 0){
-				printf("Usuário não encontrado.\n");
-				printf("Pesquisar novamente [1]\n");
-				printf("Voltar              [0]\n");
-				printf("Digite: ");
-				clBuf; scanf("%c",&controlP); clBuf;
-			 } if(op == '0'){
-				 return;
-			 }
-		} while (controlP == '0');
-		setlocale( LC_ALL, "Portuguese" );
-		printf("\n||||||||||||||||||||||||||||||||||||||||||||||");
-		printf("\n|||          Atualizar informações         |||");
-		printf("\n||||||||||||||||||||||||||||||||||||||||||||||\n");
-		printf("        ::: DIGITE 0 PARA VOLTAR :::\n");
-		printf("\n   ::: Informações Atuais Do Usuário :::\n");
-		showInfoUser(userUp);
-		printf("Digite: ");
-		scanf(" %c",&op);
-		if(op>='0' && op<='6'){
-			switch (op) {
-
-				case '0':
-					return;
-
-				case '1':
-					op = inputUserName(userUp);
-					if(op == '0')
-						return;
-					break;
-				
-				case '2':
-					op = inputUserCPF(userUp);
-							if(op == '0')
-								return;
-					break;
-				
-				case '3':
-					op = inputUserNum(userUp);
-					if(op == '0')
-						return;
-					break;
-
-				case '4':
-					op = inputUserCEP(userUp);
-					if(op == '0')
-						return;
-					break;
-
-				case '5':
-					op = inputUserRua(userUp);
-					if(op == '0')
-						return;
-					break;
-
-				case '6':
-					op = inputUserEmail(userUp);
-					if(op == '0')
-						return;
-					break;
-			}
-		}
-		showInfoUser(userUp);
-		printf("::: ENTER :::");
-		printf("Continuar:\n [1] SIM \n [0] NÃO \n Digite: ");
-		scanf("%c",&op);	
-	} while(op != '0');
-	free(userUp);
-}
 
 
 void removeUser(void) {

@@ -12,7 +12,6 @@ typedef struct{
 void newUser(void);
 void buscaUser();
 int searchUser(User*);
-void editUser(void);
 void updateUser(void);
 void removeUser(void);
 void showInfoUser(User*);

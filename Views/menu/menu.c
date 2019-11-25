@@ -93,9 +93,8 @@ void users(void){
         break;
 
       case '3':
-        //updateUser();
         cls;
-        editUser();
+        updateUser();
         cls;
         break;
       
