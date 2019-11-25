@@ -150,8 +150,4 @@ void devolution(void) {
 	free(book);
 	free(user);
 	free(loan);
-	//op = writeDataLoan(loan,'D');
-	//if(op == 1)
-	//	printf("Livro devolvido com sucesso!");
-	//	clBuf; printf("::: ENTER :::"); getchar();
 }

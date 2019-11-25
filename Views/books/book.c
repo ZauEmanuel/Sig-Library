@@ -62,7 +62,6 @@ void showInfoBook(Book *book){
 
 
 void newBook(void) {
-	//Book *book = calloc(sizeof *book, 0);
 	Book *book = calloc(1,sizeof(Book));
 	char op = '1';
 
@@ -119,6 +118,7 @@ void newBook(void) {
 
 
 
+//Book* searchBook(char*);
 
 int searchBook(Book *book,char typ) {
 	char any[256] = "";
@@ -127,7 +127,6 @@ int searchBook(Book *book,char typ) {
 	printf("     ::: PESQUISAR :::\n");
 	printf("::: DIGITE 0 PARA VOLTAR :::\n");
 	if(typ == 'l')
-		//op = search(book,any,typ);
 		return 1;
 	do {
 		memset(any, 0, sizeof any);
@@ -140,7 +139,6 @@ int searchBook(Book *book,char typ) {
 		}
 	} while(op != '0');
 	cls;
-	//op = search(book,any,typ);
 	if(op == 1){
 		return op;
 	} else if(op == 0) {
@@ -163,7 +161,6 @@ int searchBook(Book *book,char typ) {
 void updateBook(void) {
 	char op = ' ';
 	char controlP= '0';
-	//Book *bookUp = calloc(sizeof *bookUp, 0);
 	Book *bookUp = calloc(1,sizeof(Book));
 	do {
 		do{
@@ -255,7 +252,6 @@ void updateBook(void) {
 		scanf("%c",&op);	
 	} while(op != '0');
 	free(bookUp);
-	//op = writeDataBook(bookUp,'bR');
 	if(op==1){
 		printf("Livro atualizado com sucesso!");
 		clBuf;
@@ -266,7 +262,6 @@ void updateBook(void) {
 
 
 void removeBook(void){
-	//Book *book = calloc(sizeof *book, 0);
 	Book *book = calloc(1,sizeof(Book));
 	int op = 0;
 	printf("\n||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -286,11 +281,4 @@ void removeBook(void){
 	printf("Continuar:\n [1] SIM \n [0] NÃO \n Digite: ");
 	scanf("%d",&op);
 	free(book);
-	//if(op == 1){
-	//	op = writeDataBook(book,'R');
-	//	if(op == 1){
-	//		printf("Livro removido com sucesso!");
-	//		clBuf; printf("::: ENTER :::"); getchar();
-	//	}
-	//}
 }

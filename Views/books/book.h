@@ -11,6 +11,7 @@ typedef struct{
 }Book;
 
 void newBook(void);
+//Book* searchBook(char*);
 int searchBook(Book*,char);
 void updateBook(void);
 void showInfoBook(Book*);

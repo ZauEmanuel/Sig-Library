@@ -291,7 +291,7 @@ void updateUser(void) {
 }
 
 
-
+/* 
 int searchUser(User *user) {
 	char any[256] = "";
 	char op = ' ';
@@ -319,7 +319,7 @@ int searchUser(User *user) {
 		return 0;
 	}
 }
-
+*/
 
 
 void removeUser(void) {
@@ -342,15 +342,15 @@ void removeUser(void) {
 	printf("                 Remover Usuario\n");
 	printf("||||||||||||||||||||||||||||||||||||||||||||||\n\n");
 
-  printf("Informe o cpf do usuário a ser removido: ");
-  scanf(" %11[^\n]", cpf);
-  user = (User*) malloc(sizeof(User));
-  found = 0;
-  while((!found) && (fread(user, sizeof(User), 1, f))) {
-   if ((strcmp(user->cpf, cpf) == 0) && (user->status == '1')) {
-     found = 1;
-   }
-  }
+	printf("Informe o cpf do usuário a ser removido: ");
+	scanf(" %11[^\n]", cpf);
+	user = (User*) malloc(sizeof(User));
+	found = 0;
+	while((!found) && (fread(user, sizeof(User), 1, f))) {
+	if ((strcmp(user->cpf, cpf) == 0) && (user->status == '1')) {
+		found = 1;
+	}
+	}
 	if (found) {
 		showInfoUser(user);
 		clBuf;
@@ -377,13 +377,13 @@ void removeUser(void) {
 			getchar();
 			getchar();
 		}
-  } else {
-    printf("\nO usuário não foi encontrado...\n");
+	} else {
+		printf("\nO usuário não foi encontrado...\n");
 		clBuf;
 		printf("	::: ENTER :::");
 		getchar();
 		getchar();
-  }
-  free(user);
-  fclose(f);
+	}
+	free(user);
+	fclose(f);
 }
