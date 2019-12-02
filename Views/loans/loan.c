@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <locale.h>
+#include <time.h>
+
 #ifndef BOOK_H
 	#include "../books/book.h"
 #endif
@@ -18,9 +20,7 @@
 #define cls system("clear||cls");
 #define clBuf setbuf(stdin,NULL);
 
-
-
-// Lista todos os empréstimo
+// Lista todos os empréstimo//
 void listLoan(void){
 	Book *book = calloc(1,sizeof(Book));
 	User *user = calloc(1,sizeof(user));
@@ -45,7 +45,7 @@ void listLoan(void){
 }
 
 
-// Grava em arquivo binário
+// Grava em arquivo binário //
 void recLoan(Loan *loan){
 	FILE *f = fopen("loans.bin","ab");
 	if(f==NULL){
@@ -64,36 +64,45 @@ void loan(void) {
 	Book *book = calloc(1,sizeof(Book));
 	User *user = calloc(1,sizeof(user));
 	Loan *loan = calloc(1,sizeof(Loan));
-	int op = 1;
+	char date[10];
 
+	struct tm *data_;
+	time_t segundos;
+	time(&segundos);   
+	data_ = localtime(&segundos);
+	strftime(&date, 10, "%d/%m/%g", data_);
+
+	printf("tm %s\n",date);
+	getchar();
+
+	int op = 1;
+	char cpf[12] = "";
+	char isn[13] = "";
 	do {
 		printf("\n||||||||||||||||||||||||||||||||||||||||||||||\n");
 		printf("             Realizar Empréstimo\n");
 		printf("||||||||||||||||||||||||||||||||||||||||||||||\n\n");
 
-		do{
-			//op = searchUser(user);
-			if(op == 2)
-				return;
-		}while(op == 0);
+		printf("Digite cpf: ");
+		user = tsearchUser(cpf);
 
 		if(!(user->loans < 3)){
 			printf("\nNúmero máximo de empréstimos antigido!");
-			clBuf; 
-			getchar();
+			clBuf; getchar();
 			return;
 		}
 
 		do{
-			op = searchBook(book,'D');
+			printf("\n Digite o ISBN: ");
+			scanf(" %s",isn);
+			op = searchBook(isn);
 			if(op == 2)
 				return;
 		}while(op == 0);
 
 		showInfoBook(book);
 		showInfoUser(user);
-		clBuf; 
-		getchar();
+		clBuf; getchar();
 		printf("Continuar:\n [1] SIM \n [0] NÃO \n Digite: ");
 		scanf("%d",&op);
 		if(op == 0)
@@ -126,21 +135,13 @@ void devolution(void) {
 		printf("||||||||||||||||||||||||||||||||||||||||||||||\n\n");
 
 		do{
-			//op = searchUser(user);
-			if(op == 2)
-				return;
-		}while(op == 0);
-
-		do{
 			op = searchBook(book,'I');
 			if(op == 2)
 				return;
 		}while(op == 0);
 
 		showInfoBook(book);
-		showInfoUser(user);
-		clBuf; 
-		getchar();
+		clBuf; getchar();
 		printf("\n-- Continuar:\n [1] SIM \n [0] NÃO \n Digite: ");
 		scanf("%d",&op);
 		if(op == 0)
