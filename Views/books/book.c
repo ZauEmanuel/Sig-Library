@@ -117,44 +117,24 @@ void newBook(void) {
 }
 
 
-
-//Book* searchBook(char*);
-
-int searchBook(Book *book,char typ) {
-	char any[256] = "";
-	char op = ' ';
-	op = '1';
-	printf("     ::: PESQUISAR :::\n");
-	printf("::: DIGITE 0 PARA VOLTAR :::\n");
-	if(typ == 'l')
-		return 1;
-	do {
-		memset(any, 0, sizeof any);
-		printf("Pesquisar: ");
-		scanf("%s",any);
-		if(strlen(any) == 1 && any[0] == 0){
-			return 2;
-		} else {
-			op = '0';
-		}
-	} while(op != '0');
+Book* searchBook(char* isn) {
+	FILE* f = fopen("books.bin", "rb");
+	Book* book;
+	int found;
 	cls;
-	if(op == 1){
-		return op;
-	} else if(op == 0) {
-		printf("\nLivro não encontrado!");
-		clBuf;
-		printf("::: ENTER :::");
-		getchar();
-		return op;
-	} else if(op == 2){
-		printf("\nLivro não disponível!");	
-		clBuf;
-		printf("::: ENTER :::");
-		getchar();
-		return op;
+	if(!f){
+		return NULL;
 	}
-	return 0;
+	book = (Book*) malloc(sizeof(Book));
+	found = 0;
+	while((!found) && (fread(book, sizeof(book), 1, f))) {
+		if (strcmp(book->ISN, isn) == 0){
+			found = 1;
+		}
+	}
+	fclose(f);
+	if (found)
+		return book;
 }
 
 
