@@ -1,6 +1,6 @@
 //#include "../../../Views/books/book.h"
 #ifndef BOOK_H
-	#include "../../../Views/books/book.h"
+	#include "../../controls/books/book.h"
 #endif
 
 char inputBookTitle(Book*);

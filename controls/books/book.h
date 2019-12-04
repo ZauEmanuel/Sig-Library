@@ -10,12 +10,12 @@ typedef struct{
     int unity;
 }Book;
 
-void newBook(void);
-//Book* searchBook(char*);
-int searchBook(Book*,char);
+void newBook(void); 
+Book* searchBook(char*);
+void searchUserShow(void);
 void updateBook(void);
 void showInfoBook(Book*);
 void removeBook(void);
 void listBook(void);
 void recBook(Book*);
-
+void rmBook(char*);

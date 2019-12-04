@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 #ifndef VALID_H
-	#include "../../../Models/valid.h"
+	#include "../valid/valid.h"
 #endif
  
 #ifndef USER_H
-	#include "../../../Views/users/user.h"
+	#include "../../controls/users/user.h"
 #endif
 
 #define cls system("clear||cls");

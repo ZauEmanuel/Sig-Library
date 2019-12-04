@@ -11,7 +11,7 @@ cpf:
 	{
 		"nome": "Caleb Caio da Cunha",
 		"cpf": "97410045914",
-		"email": "calebcaiodacunha@com.br",
+		"email": "calebcaiodacunha@g.com",
 		"cep": "21852122",
 		"endereco": "Travessa Texas",
 		"numero": 448,

@@ -9,12 +9,12 @@ typedef struct{
 	char status;
 }User;
 
+User* searchUser(char*);
+void searchUserShow(void);
+void showInfoUser(User*);
+void listUser(void);
 void newUser(void);
 void buscaUser();
-User* tsearchUser(char*);
-void searchUser(void);
 void updateUser(void);
 void removeUser(void);
-void showInfoUser(User*);
 void recUser(User*);
-void listUser(void);

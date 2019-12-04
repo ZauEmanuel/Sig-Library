@@ -3,12 +3,13 @@
 #include <string.h>
 #include <locale.h>
 #include <time.h>
+
 #ifndef VALID_H
-	#include "../../../Models/valid.h"
+	#include "../valid/valid.h"
 #endif
  
 #ifndef BOOK_H
-	#include "../../../Views/books/book.h"
+	#include "../../controls/books/book.h"
 #endif
 
 

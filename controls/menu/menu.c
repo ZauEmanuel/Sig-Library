@@ -41,8 +41,7 @@ void acervo(void){
         listBook();
         break;
       case '2':
-        //searchBook(book,'b');
-        //showInfoBook(book);
+        searchBookShow();
         break;
       
       case '3':
@@ -50,11 +49,11 @@ void acervo(void){
         break;
       
       case '4':
-        //updateBook();
+        updateBook();
         break;
       
       case '5':
-        //removeBook();
+        removeBook();
         break;
     }
   } while(op != '0');
@@ -63,14 +62,13 @@ void acervo(void){
 
 
 void users(void){
-  User *user = calloc(1,sizeof(User));
   char op = '1';
   cls;
   do { 
     printf("\n|||||||||||||||||||||||||||||||||\n");
     printf("              Usuario\n");
     printf("|||||||||||||||||||||||||||||||||\n");
-    printf(" [1] Pesquisar\n [2] Cadastrar\n [3] Atualizar\n [4] Remover\n [5] Listar Usuários\n [0] Voltar\n\n");
+    printf("\n [1] Pesquisar\n [2] Cadastrar\n [3] Atualizar\n [4] Remover\n [5] Listar Usuários\n [0] Voltar\n\n");
 		printf("Digite: ");
     clBuf;
     scanf(" %1[^\n]",&op);
@@ -81,9 +79,7 @@ void users(void){
 
       case '1':
         cls;
-        //buscaUser();
-        searchUser();
-        cls;
+        searchUserShow();
         break;
       
       case '2':
@@ -112,7 +108,6 @@ void users(void){
     }
   } while (op != '0');
   cls;
-  free(user);	
 }
 
 
@@ -147,18 +142,16 @@ void library(void){
 
 void about(void) {
 	cls;
-  printf("=================================================\n");
-  printf("                         Sobre\n");
-  printf("=================================================\n");
-  printf("\nSIG-Library: Um Sistema de Controle de Biblioteca.\n");
+  printf("===================================================================================\n");
+  printf("                                    Sobre\n");
+  printf("===================================================================================\n");
+  printf("\n              SIG-Library: Um Sistema de Controle de Biblioteca.\n");
   printf("\nCriadores:\n");
-	printf("\n  Emanuel Oliveira - emanueldasilva011@gmail.com");
-	printf("\n  Zaú Galvão - zauhf@gmail.com\n\n\n");
-  printf("            2019 - Caicó/RN\n\n");
-  printf("==================================================\n");
-	clBuf;
-  getchar();
-  clBuf;
+	printf("\n  Emanuel Oliveira - emanueldasilva011@gmail.com - https://github.com/emanuelOliver");
+	printf("\n  Zaú Galvão       -       zauhf@gmail.com       - https://github.com/ZauJulio\n\n\n");
+  printf("                                2019 - Caicó/RN\n\n");
+  printf("====================================================================================\n");
+	clBuf; getchar(); clBuf;
 	cls;
 }
 
@@ -167,11 +160,11 @@ int main(void) {
   char op = '1';
   setlocale( LC_ALL, "Portuguese" );
   do {
-    cls;
-    printf("////////////////////////////////////\n");
+    cls; cls;
+    printf("\n\n////////////////////////////////////\n");
     printf("           SIG - Library\n");
     printf("///////////////////////////////////\n");
-    printf(" [1] Usuario\n [2] Acervo\n [3] Biblioteca\n [4] Sobre \n [0] Sair\n\n");
+    printf("\n [1] Usuario\n [2] Acervo\n [3] Empréstimos\n [4] Sobre \n [0] Sair\n\n");
 		printf("Digite: ");
     scanf(" %c",&op);
     if (op >= '0' && op <= '5') {
