@@ -9,6 +9,7 @@ typedef struct{
 	char status;
 }User;
 
+//Estrutura de lista
 typedef struct lista Lista;
 
 struct lista {

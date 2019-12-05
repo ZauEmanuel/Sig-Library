@@ -345,6 +345,7 @@ void searchUserShow(void){
 }
 
 
+//Lista Direta
 
 Lista* listaDiretaUsers(void) {
   FILE* fp;
