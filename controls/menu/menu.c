@@ -157,40 +157,35 @@ void about(void) {
 
 
 int main(void) {
-  char op = '1';
-  setlocale( LC_ALL, "Portuguese" );
+  int op;
   do {
-    cls; cls;
+    cls;
+    op = 1;
     printf("\n\n////////////////////////////////////\n");
     printf("           SIG - Library\n");
     printf("///////////////////////////////////\n");
     printf("\n [1] Usuario\n [2] Acervo\n [3] Empréstimos\n [4] Sobre \n [0] Sair\n\n");
 		printf("Digite: ");
-    scanf(" %c",&op);
-    if (op >= '0' && op <= '5') {
+    clBuf;
+    scanf(" %d",&op);
+    clBuf;
+    printf(" %d",op);
+    if (op >= 0 && op <= 5) {
       cls;
-			switch (op) {
-				case '1':
+      if (op == 1){
 				users();
-				break;
-				
-				case '2':
+      } if (op == 2){
 				acervo();
-				break;
-				
-				case '3':
+      } if (op == 3){
 				library();
-				break;
-				
-				case '4':
+      } if (op == 4){
 				about();
-				break;
-				
-				case '0' :
+      } if (op == 0){
 				break;
 			}
-    } 
-    cls;
-  } while (op != '0');
+      cls;
+    }
+    printf("%d",op);
+  } while (op != 0);
   return 0;
 }

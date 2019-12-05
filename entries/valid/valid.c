@@ -51,7 +51,6 @@ int valDecPf(char* c) {
 	return 1;
 }
 
-
 int valISN(char *c) {
 	int len = strlen(c) -1;
 	int valid = 0;
@@ -105,7 +104,6 @@ int valISN(char *c) {
 		return 0;
 	}
 } 
-
 
 int valCPF(char *c) {
 	int len = strlen(c);
@@ -199,7 +197,6 @@ int valAlphaNum(char* c) {
 	return 1;
 }
 
-
 int valEmail(char* c) {
 	int local = 0;
 	int temp = 0;
@@ -251,7 +248,6 @@ int valEmail(char* c) {
 	}
 	return 1;
 }
-
 
 int auxEmail(char c) {
 	if ((c >= '0' && c <= '9') == 0) {

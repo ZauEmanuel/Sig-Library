@@ -7,8 +7,6 @@
 	#include "../../entries/book/entriesBook.h"
 #endif
 
-
-
 #define cls system("clear||cls");
 #define clBuf setbuf(stdin,NULL);
 

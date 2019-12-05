@@ -162,13 +162,8 @@ char inputBookYear(Book *book) {
 		if (strlen(c) == 1 && c[0] == '0') {
 			return '0';
 		}
-		if (atoi(c) > y) {
-			printf("\n::: Entrada inválida :::\n");
-			strcpy(c,"");
-		} else {
-			book->year = atoi(c);
-			i = '0';
-		}
+		book->year = atoi(c);
+		i = '0';
 	} while(i != '0'); 
 	return '1';
 }
