@@ -147,7 +147,7 @@ void about(void) {
   printf("===================================================================================\n");
   printf("\n              SIG-Library: Um Sistema de Controle de Biblioteca.\n");
   printf("\nCriadores:\n");
-	printf("\n  Emanuel Oliveira - emanueldasilva011@gmail.com - https://github.com/emanuelOliver");
+	printf("\n  Emanuel Oliveira - emanueldasilva011@gmail.com - https://github.com/EmanuelOliveh");
 	printf("\n  Zaú Galvão       -       zauhf@gmail.com       - https://github.com/ZauJulio\n\n\n");
   printf("                                2019 - Caicó/RN\n\n");
   printf("====================================================================================\n");
