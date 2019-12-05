@@ -343,3 +343,46 @@ void searchUserShow(void){
 		}
 	} while(op != '0');	
 }
+
+
+
+Lista* listaDiretaUsers(void) {
+  FILE* fp;
+  User* user;
+  Lista* noUser;
+  Lista* lista;
+  Lista* ultimo;
+
+  lista = NULL;
+  fp = fopen("users.bin", "rb");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar o programa...\n");
+    exit(1);
+  }
+
+  user = (User*) malloc(sizeof(User));
+  while(fread(user, sizeof(User), 1, fp)) {
+    if (user->status == '1') {
+      noUser = (Lista*) malloc(sizeof(Lista));
+      strcpy(noUser->name, user->name);
+      strcpy(noUser->cep, user->cep);
+      strcpy(noUser->cpf, user->cpf);
+      strcpy(noUser->rua, user->rua);
+      strcpy(noUser->num, user->num);
+      strcpy(noUser->email, user->email);
+      noUser->loans = user->loans;
+      noUser->status = user->status;
+      noUser->prox = NULL;
+      if (lista == NULL) {
+        lista = noUser;
+      } else {
+        ultimo->prox = noUser;
+      }
+      ultimo = noUser;
+    }
+  }
+  fclose(fp);
+  free(user);
+  return lista;
+}
