@@ -9,20 +9,33 @@ cpf:
 
 [
 	{
-		"nome": "Caleb Caio da Cunha",
-		"cpf": "97410045914",
-		"email": "calebcaiodacunha@g.com",
-		"cep": "21852122",
-		"endereco": "Travessa Texas",
-		"numero": 448,
+		"nome": 
+			Caleb Caio da Cunha
+		"cpf": 
+			97410045914
+		"email": 
+			calebcaiodacunha@g.com
+		"cep": 
+			21852122
+		"endereco": 
+			Travessa Texas
+		"numero": 
+			448
+		
 	},
 	{
-		"nome": "Luciana Vitória Alícia da Luz",
-		"cpf": "79417697439",
-		"email": "llucianavitoriaaliciadaluz@consultoriosjc.com.br",
-		"cep": "57301419",
-		"endereco": "Rua Danielle Balbino de Melo",
-		"numero": 735,
+		"nome": 
+		Luciana Vitória Alícia da Luz
+		"cpf": 
+		79417697439
+		"email": 
+		llucianavitoriaaliciadaluz@consultoriosjc.com
+		"cep": 
+		57301419
+		"endereco": 
+		Rua Danielle Balbino de Melo
+		"numero": 
+		735
 	},
 	{
 		"nome": "Lorenzo Diogo Luan Almeida",

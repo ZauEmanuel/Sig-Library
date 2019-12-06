@@ -91,7 +91,7 @@ void loan(void) {
 	time_t segundos;
 	time(&segundos);   
 	data_ = localtime(&segundos);
-	strftime(&date, 10, "%d/%m/%g", data_);
+	strftime(date, 10, "%d/%m/%g", data_);
 
 	do {
 		printf("\n||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -147,7 +147,7 @@ void devolution(void) {
 	time_t segundos;
 	time(&segundos);   
 	data_ = localtime(&segundos);
-	strftime(&date, 10, "%d/%m/%g", data_);
+	strftime(date, 10, "%d/%m/%g", data_);
 
 	do{
 		// Busca de livro

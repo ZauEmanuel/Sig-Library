@@ -43,6 +43,14 @@ void showInfoUser(User *user){
 	printf("\n\n===============================\n");
 }
 
+void showInfoUserList(Lista *user){
+	printf("\n===============================\n\n");
+	printf(" [1] Nome :    %s \n [2] CPF :     %s \n",user->name,user->cpf);
+	printf(" [3] Rua :     %s \n [4] Número :  %s \n",user->rua,user->num);
+	printf(" [5] CEP :     %s \n [6] e-mail :  %s \n",user->cep,user->email);
+	printf("\n\n===============================\n");
+}
+
 void listUser(void){
 	User *user = (User*) malloc(sizeof(User));
 	FILE *f = fopen("users.bin","rb");
@@ -133,7 +141,6 @@ void newUser(void) {
 	if(op=='1'){
 		user->status = '1';
 		recUser(user);
-		//free(user);
 	}
 	clBuf;
 	free(user);

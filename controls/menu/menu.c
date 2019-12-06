@@ -52,7 +52,7 @@ void users(void){
     printf("\n|||||||||||||||||||||||||||||||||\n");
     printf("              Usuario\n");
     printf("|||||||||||||||||||||||||||||||||\n");
-    printf("\n [1] Listar Usuários\n [2] Pesquisar Usuário\n [3] Cadastrar Usuário\n [4] Atualizar Usuário\n [5] Remover Usuário\n [0] Voltar\n\n");
+    printf("\n [1] Listar Usuários\n [2] Pesquisar Usuário\n [3] Cadastrar Usuário\n [4] Atualizar Usuário\n [5] Remover Usuário\n [6] Listar Diretas de Usuários\n [0] Voltar\n\n");
 		printf("Digite: ");
     clBuf; scanf(" %c",&op); clBuf;
     if (op == '0')
@@ -67,6 +67,13 @@ void users(void){
       updateUser();
     if (op == '5')
       removeUser();
+    if (op == '6'){
+      Lista* lUser;
+      lUser = listaDiretaUsers();
+      showInfoUserList(lUser);
+      getchar();
+      getchar();
+    }
   } while (op != '0');
   cls;
 }

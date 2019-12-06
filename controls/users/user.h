@@ -34,3 +34,4 @@ void updateUser(void);
 void removeUser(void);
 void recUser(User*);
 Lista* listaDiretaUsers(void);
+void showInfoUserList(Lista*);

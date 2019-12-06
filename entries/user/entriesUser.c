@@ -42,7 +42,7 @@ char inputUserCPF(User* user) {
 	do {
 		printf("\n--CPF: ");
 		clBuf;
-		scanf(" %s",c);
+		scanf(" %11[^\n]",c);
 		clBuf;
 		if (strlen(c) == 1 && c[0] == '0') {
 			return '0';
@@ -107,7 +107,7 @@ char inputUserCEP(User* user) {
 	do {
 		printf("\n--CEP: ");
 		clBuf;
-		scanf(" %s%*[-]s",c);
+		scanf(" %s8[-]s",c);
 		clBuf;
 		if (strlen(c) == 1 && c[0] == '0') {
 			return '0';

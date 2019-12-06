@@ -107,7 +107,7 @@ int valISN(char *c) {
 
 int valCPF(char *c) {
 	int len = strlen(c);
-	if(len < 11) {
+	if(len != 11) {
 		return 0;
 	}
 	
@@ -120,9 +120,9 @@ int valCPF(char *c) {
 		d2 += ((c[i]-48)*(j+1));
 		++i;
 	}
-	d1 = (d1%11) < 2 ? 0 : 11-(d1%11);
+	d1 = 11-(d1%11) > 9 ? 0 : 11-(d1%11);
 	d2 += (c[9]-48)*2;
-	d2 = 11-(d2%11);
+	d2 = 11-(d2%11) > 9 ? 0 : 11-(d2%11);
 	if(d1 != (c[9]-48) && d2 != (c[10]-48)) {
 		return 0;
 	} else {
