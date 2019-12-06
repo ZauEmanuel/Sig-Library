@@ -21,7 +21,7 @@ void acervo(void){
   do {
     cls;
     printf("\n|||||||||||||||||||||||||||||||||\n");
-    printf("              Acervo");
+    printf("             Acervo");
     printf("\n|||||||||||||||||||||||||||||||||\n\n\n");
     printf(" [1] Listar Material\n [2] Pesquisar Material\n [3] Cadastrar Material\n [4] Atualizar Material\n [5] Remover material\n [0] Voltar\n\n");
     printf("Digite: ");

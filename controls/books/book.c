@@ -24,7 +24,7 @@ void listBook(void){
 		enter;
 		return;
 		}
-	while(fread(book,sizeof(Book),1,f)){
+	while(fread(book,sizeof(Book),1,f) && book->status != 'I'){
 		showInfoBook(book);
 		printf("\n\n");
 		}
@@ -123,17 +123,15 @@ void newBook(void) {
 Book* searchBook(char* isn) {
 	FILE* f = fopen("books.bin", "rb");
 	Book* book;
-	int found;
+	book = (Book*) malloc(sizeof(Book));
+	int found = 0;
 	cls;
 	if (!f) {
-		fclose(f);
 		printf("Erro ao abrir o arquivo de registro de livros !");
 		return NULL;
-		}
-	book = (Book*) malloc(sizeof(Book));
-	found = 0;
-	while((!found) && (fread(book, sizeof(book), 1, f))) {
-		if (strcmp(book->ISN, isn) == 0){
+	}
+	while( (!found) && (fread(book, sizeof(Book), 1, f)) ) {
+		if ((strcmp(book->ISN, isn) == 0) && (book->status == 'D')){
 			found = 1;
 			break;
 			}
@@ -144,6 +142,8 @@ Book* searchBook(char* isn) {
 		printf("Livro não encontrado !");
 		return NULL;
 	}
+	getchar();
+	getchar();
 	fclose(f);
 	return NULL;
 }
@@ -239,10 +239,11 @@ void updateBook(void) {
 void removeBook(void){
 	char controlP = ' ';
 	char isn[13] = "";
-	int op = 0;
+	char op = 0;
 	Book *book = (Book*) malloc(sizeof(Book));
 
 	do{
+		cls;
 		printf("\n========================================\n");
 		printf("               Remover Livro");
 		printf("\n========================================\n");
@@ -253,24 +254,22 @@ void removeBook(void){
 			listBook();
 		if ( (isn[0] == '0') && (strlen(isn) == 1))
 			return;
-		else{
-			printf("%s",isn);
+		if (valISN(isn)){
 			book = searchBook(isn);
 			if(book != NULL)
 				controlP = '0';
 		}
 	} while (controlP !='0');
-	
-	setlocale( LC_ALL, "Portuguese" );
-	printf("\n||||||||||||||||||||||||||||||||||||||||||||||\n");
-	printf("                Remover Livro\n");
-	printf("||||||||||||||||||||||||||||||||||||||||||||||\n\n");
 	showInfoBook(book);
-	enter;
-	scanf("%d",&op);
-	if(op == '1')
+	printf("\n\nContinuar:\n [1] SIM \n [0] NÃO \n\n Digite: ");
+	clBuf; scanf(" %c",&op); clBuf;
+	if(op == '1'){
 		rmBook(isn);
-	else
+		printf("test");
+		enter;
+		enter;
+		enter;
+	}else
 		free(book);
 }
 
@@ -280,7 +279,7 @@ void rmBook(char* isn) {
 	int found = 0;
 	
 	while((!found) && (fread(book, sizeof(Book), 1, f))) {
-		if ( (strcmp(book->ISN, isn) == 0) ) {
+		if ( (strcmp(book->ISN, isn) == 0) && (book->status == 'D')) {
 			found = 1;
 			break;
 			}
@@ -288,6 +287,7 @@ void rmBook(char* isn) {
 	book->status = 'I';
 	fseek(f, (-1)*sizeof(Book), SEEK_CUR);
 	fwrite(book, sizeof(Book), 1, f);
+	fclose(f);
 }
 
 void searchBookShow(void){
@@ -295,20 +295,20 @@ void searchBookShow(void){
 	char isn[13] = "";
 	char op = ' ';
 	do{
-		printf("Digite o código do livro: ");
-		scanf(" %c",&op);
-		if (!valISN(isn)){
-			printf("Código do livro inválido!");
-			printf("\n [1] Tentar Novamente \n [0] Sair \n Digite: ");
-			scanf(" %c",&op);
-			} else {
-				book = searchBook(isn);
-				if (book != NULL){
-					showInfoBook(book);
-					} else { 
-						printf("Livro não encontrado! \n [1] Tentar Novamente \n [0] Sair \n Digite: ");
-						scanf(" %c",&op);
-					}
-		}
-	} while(op != '0');	
+		cls;
+		printf("\n==============================\n");
+		printf("        Pesquisar Livro");
+		printf("\n==============================\n\n");
+		printf(" [0] Sair\n\n");
+		printf(" Digite o código do livro: ");
+		scanf(" %s",isn);
+		book = searchBook(isn);
+		if(book != NULL)
+			showInfoBook(book);
+		getchar();
+		getchar();
+		if(isn[0] == '0' && (strlen(isn) ==1))
+			return; 
+	} while(op != '0');
+	enter;
 }
