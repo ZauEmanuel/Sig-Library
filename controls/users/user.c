@@ -13,12 +13,13 @@
 
 #define cls system("clear||cls");
 #define clBuf setbuf(stdin,NULL);
+#define enter printf("\n           ::: ENTER :::\n\n"); clBuf; getchar(); clBuf;
 
 User* searchUser(char* cpf){
+	cls;
 	FILE* f = fopen("users.bin", "rb");
 	User* user;
 	int found;
-	cls;
 	if(!f){
 		return NULL;
 	}
@@ -56,19 +57,14 @@ void listUser(void){
 	FILE *f = fopen("users.bin","rb");
 	if(!f){
 		printf("Erro ao tantar abrir o arquivo.\n");
-		printf("	::: ENTER :::\n"); 
-		clBuf;
-		getchar();
-		getchar();
+		enter;
 		return;
 	}
 	while((fread(user,sizeof(User),1,f)) && (user->status == '1')){
 		showInfoUser(user);
 		printf("\n\n");
 	}
-	clBuf;
-	printf("	::: ENTER :::"); 
-	getchar();
+	enter;
 	getchar();
 	fclose(f);
 	free(user);
@@ -79,9 +75,7 @@ void recUser(User *user){
 	FILE *f = fopen("users.bin","ab");
 	if(f == NULL){
 		printf("ERRO ao criar arquivo.\n");
-		clBuf; 
-		printf("::: ENTER :::"); 
-		getchar();
+		enter;
 		return;
 	}else{
 		fwrite(user, sizeof(User),1,f);
@@ -92,6 +86,7 @@ void recUser(User *user){
 void newUser(void) {
 	User *user = (User*) malloc(sizeof(User));
 	char op = '1';
+	cls;
 	printf("\n||||||||||||||||||||||||||||||||||||||||||||||\n");
 	printf("                 Novo Usuario\n");
 	printf("||||||||||||||||||||||||||||||||||||||||||||||\n\n");
@@ -133,58 +128,55 @@ void newUser(void) {
 	}
 	cls;
 	showInfoUser(user);
-	printf("	::: ENTER :::");
-	getchar();
-	printf(" --Continuar:\n    [1] SIM\n    [0] NÃO\n Digite: ");
-	clBuf;
-	scanf("%c",&op);
-	if(op=='1'){
-		user->status = '1';
-		recUser(user);
-	}
+	enter;
+	do{
+		printf(" --Continuar:\n    [1] SIM\n    [0] NÃO\n Digite: ");
+		clBuf;
+		scanf("%c",&op);
+		if(op =='1'){
+			user->status = '1';
+			recUser(user);
+		} if (op == '0'){
+			free(user);
+			return;
+		}
+	} while(1);
 	clBuf;
 	free(user);
 }
 
 void updateUser(void) {
-  FILE* f = fopen("users.bin", "r+b");
-  User* user;
-  int found;
-  char op;
-  char cpf[12];
-  cls;
-  if(!f){
+	FILE* f = fopen("users.bin", "r+b");
+	User* user;
+	int found;
+	char op;
+	char cpf[12];
+	cls;
+	if(!f){
 		printf("Erro ao tantar abrir o arquivo.\n");
-		printf("	::: ENTER :::\n"); 
-		clBuf;
-		getchar();
-		getchar();
+		enter;
 		return;
 	}
-  	printf("\n\n");
-	printf("\n||||||||||||||||||||||||||||||||||||||||||||||\n");
+	printf("\n\n\n||||||||||||||||||||||||||||||||||||||||||||||\n");
 	printf("                 Atualizar Usuario\n");
 	printf("||||||||||||||||||||||||||||||||||||||||||||||\n\n");
+	printf("Informe o cpf do usuário a ser alterado: ");
 
-  printf("Informe o cpf do usuário a ser alterado: ");
-  scanf(" %11[^\n]", cpf);
-  user = (User*) malloc(sizeof(User));
-  found = 0;
-  while((!found) && (fread(user, sizeof(User), 1, f))) {
-   if ((strcmp(user->cpf, cpf) == 0) && (user->status == '1')) {
-     found = 1;
-   }
-  }
+	scanf(" %11[^\n]", cpf);
+	user = (User*) malloc(sizeof(User));
+	found = 0;
+	while((!found) && (fread(user, sizeof(User), 1, f))) {
+		if ((strcmp(user->cpf, cpf) == 0) && (user->status == '1')) {
+			found = 1;
+			break;
+		}
+	}
 
    if (found) {
 	showInfoUser(user);
-	clBuf;
-	printf("	::: ENTER :::");
-	getchar();
+	enter;
 	printf("\n --Continuar:\n    [1] SIM\n    [0] NÃO\n Digite: ");
-	clBuf;
-	scanf("%c", &op);
-	clBuf;
+	clBuf; scanf("%c", &op); clBuf;
 	cls;
 	if(op=='1'){
 		cls;
@@ -231,32 +223,23 @@ void updateUser(void) {
 		cls;
 		showInfoUser(user);
 		printf("\n --Deseja REALMENTE continuar?\n    [1] SIM\n    [0] NÃO\n Digite: ");
-		clBuf;
-		scanf("%c",&op);
-		clBuf;
+		clBuf; scanf("%c",&op); clBuf;
 		cls;
 		if(op == '1'){
 			user->status = '1';
 			fseek(f, (-1)*sizeof(User), SEEK_CUR);
 			fwrite(user, sizeof(User), 1, f);
 			printf("\nDados alterados com sucesso!\n");
-			clBuf;
-			printf("	::: ENTER :::");
-			getchar();
+			enter;
 			getchar();
 		}
     } else {
 		printf("\nOperação cancelada\n");
-		clBuf;
-		printf("	::: ENTER :::");
-		getchar();
-		getchar();
+		enter;
     }
   } else {
 		printf("O usuário não foi encontrado...\n");
-		clBuf;
-		printf("	::: ENTER :::");
-		getchar();
+		enter;
 		getchar();
   }
   free(user);
@@ -272,57 +255,51 @@ void removeUser(void) {
 	cls;
 	if(!f){
 		printf("Erro ao tantar abrir o arquivo.\n");
-		printf("	::: ENTER :::\n"); 
-		clBuf;
-		getchar();
+		enter;
 		getchar();
 		return;
 	}
   	printf("\n\n");
-	printf("\n||||||||||||||||||||||||||||||||||||||||||||||\n");
-	printf("                 Remover Usuario\n");
-	printf("||||||||||||||||||||||||||||||||||||||||||||||\n\n");
+	printf("\n============================================\n");
+	printf("                 Remover Usuario");
+	printf("\n============================================\n\n");
+	printf("\n [1] Listar os Usuários\n [0] Sair\n");
+	printf(" Digite o CPF do usuário: ");
 
-	printf("Informe o cpf do usuário a ser removido: ");
-	scanf(" %11[^\n]", cpf);
+	scanf(" %s",cpf);
+	if ( (cpf[0] == '1') && (strlen(cpf) == 1))
+		listUser();
+	if ( (cpf[0] == '0') && (strlen(cpf) == 1))
+		return;
+
 	user = (User*) malloc(sizeof(User));
 	found = 0;
 	while((!found) && (fread(user, sizeof(User), 1, f))) {
-	if ((strcmp(user->cpf, cpf) == 0) && (user->status == '1')) {
-		found = 1;
-	}
+		if ((strcmp(user->cpf, cpf) == 0) && (user->status == '1')) {
+			found = 1;
+		}
 	}
 	if (found) {
 		showInfoUser(user);
-		clBuf;
-		printf("	::: ENTER :::");
-		getchar();
+		enter;
 		printf("\n --Deseja RALMENTE continuar? \n    [1] SIM\n    [0] NÃO\n Digite: ");
-		clBuf;
-		scanf("%c", &op);
-		clBuf;
+		clBuf; scanf("%c", &op); clBuf;
 		cls;
 		if(op=='1'){
 			user->status = '0';
 			fseek(f, (-1)*sizeof(User), SEEK_CUR);
 			fwrite(user, sizeof(User), 1, f);
 			printf("\nUsuário removido com sucesso!\n");
-			clBuf;
-			printf("	::: ENTER :::");
-			getchar();
+			enter;
 			getchar();
 		} else {
 			printf("\nOperação cancelada\n");
-			clBuf;
-			printf("	::: ENTER :::");
-			getchar();
+			enter;
 			getchar();
 		}
 	} else {
 		printf("\nO usuário não foi encontrado...\n");
-		clBuf;
-		printf("	::: ENTER :::");
-		getchar();
+		enter;
 		getchar();
 	}
 	free(user);
@@ -334,8 +311,14 @@ void searchUserShow(void){
 	char cpf[11] = "";
 	char op = ' ';
 	do{
-		printf("Digite o CPF: ");
+		cls;
+		printf("\n==================================\n");
+		printf("        Pesquisar Usuário");
+		printf("\n==================================\n");
+		printf("\n [0] Sair\n\n  Digite o CPF: ");
 		scanf(" %s",cpf);
+		if( (cpf[0] == '0') && (strlen(cpf) == 1) )
+			return;
 		if (!valCPF(cpf)){
 			printf("CPF inválido!");
 			printf("\n [1] Tentar Novamente \n [0] Sair \n Digite: ");
@@ -344,6 +327,7 @@ void searchUserShow(void){
 			user = searchUser(cpf);
 			if (user != NULL){
 				showInfoUser(user);
+				clBuf; getchar(); clBuf; 
 			} else { 
 				printf("Usuário não encontrado! \n [1] Tentar Novamente \n [0] Sair \n Digite: ");
 				scanf(" %c",&op);

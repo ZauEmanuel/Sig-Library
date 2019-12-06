@@ -33,9 +33,12 @@ char inputBookTitle(Book *book) {
 char inputBookSubtitle(Book *book) {
 	char i = '1', c[32] = "";
 	do {
+		printf("\n Digite [p] para pular.");
 		printf("\n\n--Sub Título: ");
 		clBuf; scanf(" %[^\n]",c); clBuf;
-		if (strlen(c) == 1 && c[0] == '0') {
+		if (strlen(c) == 1 && c[0] == 'p') {
+			return '1';
+		} if (strlen(c) == 1 && c[0] == '0') {
 			return '0';
 		} else {
 			strcpy(book->subTitle,c);
@@ -137,19 +140,23 @@ char inputBookIdentifier(Book *book) {
 }
 
 char inputBookYear(Book *book) {
-	char i = '1', c[4] = "";
-	time_t timer;
+	char i = '1';
+	char buffer[5];
 	char year[5];
-	time(&timer);
-	strftime(year, 5, "%Y",localtime(&timer));
-	int y = atoi(year);
+	int y;
+	time_t time_y;
+	struct tm *info;
+	time(&time_y);
+	info = localtime( &time_y);
+	strftime(buffer,5,"%Y", info);
+	y = atoi(buffer);
 	do {
 		printf("\n--Ano: ");
-		clBuf; scanf(" %s",c); clBuf;
-		if (strlen(c) == 1 && c[0] == '0')
+		clBuf; scanf(" %s",year); clBuf;
+		if (strlen(year) == 1 && year[0] == '0')
 			return '0';
-		if(atoi(c) <= y){
-			book->year = atoi(c);
+		if(atoi(year) <= y){
+			book->year = atoi(year);
 			i = '0';
 		}
 	} while(i != '0'); 
@@ -159,12 +166,14 @@ char inputBookYear(Book *book) {
 char inputBookVersion(Book *book) {
 	char i = '1', c[10] = " ";
 	do {
-		printf("\n--Versão: ");
+		printf("\n Digite [p] para pular");
+		printf("\n\n--Versão ou Edição: ");
 		clBuf; scanf(" %s",c); clBuf;
-		if (strlen(c) == 1 && c[0] == '0') {
+		if (strlen(c) == 1 && c[0] == 'p') {
+			return '1';
+		} if (strlen(c) == 1 && c[0] == '0') {
 			return '0';
-		}
-		if (!(valAlphaNum(c))) {
+		} if (!(valAlphaNum(c))) {
 			printf("\n::: Entrada inválida :::\n");
 			strcpy(c,"");
 		} else {
