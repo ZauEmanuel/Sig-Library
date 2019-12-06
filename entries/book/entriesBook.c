@@ -11,15 +11,9 @@
 #ifndef BOOK_H
 	#include "../../controls/books/book.h"
 #endif
-
-
  
 #define cls system("clear||cls");
 #define clBuf setbuf(stdin,NULL);
-
-
-// entradas para livros //
-
 
 char inputBookTitle(Book *book) {
 	char i = '1', c[256] = "";
@@ -36,7 +30,6 @@ char inputBookTitle(Book *book) {
 	return '1';
 }
 
-
 char inputBookSubtitle(Book *book) {
 	char i = '1', c[32] = "";
 	do {
@@ -52,7 +45,6 @@ char inputBookSubtitle(Book *book) {
 	return '1';
 }
 
-
 char inputBookPublisher(Book *book) {
 	char i = '1', c[32] = "";
 	do {
@@ -67,7 +59,6 @@ char inputBookPublisher(Book *book) {
 	} while(i != '0'); 
 	return '1';
 }
-
 
 char inputBookUnity(Book *book) {
 	char i = '1';
@@ -87,7 +78,6 @@ char inputBookUnity(Book *book) {
 	} while(i != '0'); 
 	return '1';
 }
-
 
 char inputBookStatus(Book *book) {
 	char i = ' '; char c = ' ';
@@ -110,7 +100,6 @@ char inputBookStatus(Book *book) {
 	return '1';
 }
 
-
 char inputBookAuthor(Book *book) {
 	char i = '1', c[256] = "";
 	do {
@@ -128,7 +117,6 @@ char inputBookAuthor(Book *book) {
 	} while(i != '0'); 
 	return '1';
 }
-
 
 char inputBookIdentifier(Book *book) {
 	char i = '1', c[13] = "";
@@ -148,7 +136,6 @@ char inputBookIdentifier(Book *book) {
 	return '1';
 }
 
-
 char inputBookYear(Book *book) {
 	char i = '1', c[4] = "";
 	time_t timer;
@@ -159,15 +146,15 @@ char inputBookYear(Book *book) {
 	do {
 		printf("\n--Ano: ");
 		clBuf; scanf(" %s",c); clBuf;
-		if (strlen(c) == 1 && c[0] == '0') {
+		if (strlen(c) == 1 && c[0] == '0')
 			return '0';
+		if(atoi(c) <= y){
+			book->year = atoi(c);
+			i = '0';
 		}
-		book->year = atoi(c);
-		i = '0';
 	} while(i != '0'); 
 	return '1';
 }
-
 
 char inputBookVersion(Book *book) {
 	char i = '1', c[10] = " ";

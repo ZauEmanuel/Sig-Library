@@ -32,6 +32,7 @@ User* searchUser(char* cpf){
 	fclose(f);
 	if (found)
 		return user;
+	return NULL;
 }
 
 void showInfoUser(User *user){
@@ -43,7 +44,7 @@ void showInfoUser(User *user){
 }
 
 void listUser(void){
-	User *user = (User*) malloc(sizeof(user));
+	User *user = (User*) malloc(sizeof(User));
 	FILE *f = fopen("users.bin","rb");
 	if(!f){
 		printf("Erro ao tantar abrir o arquivo.\n");
@@ -327,7 +328,7 @@ void searchUserShow(void){
 	char op = ' ';
 	do{
 		printf("Digite o CPF: ");
-		scanf(" %c",op);
+		scanf(" %s",cpf);
 		if (!valCPF(cpf)){
 			printf("CPF inválido!");
 			printf("\n [1] Tentar Novamente \n [0] Sair \n Digite: ");
@@ -343,9 +344,6 @@ void searchUserShow(void){
 		}
 	} while(op != '0');	
 }
-
-
-//Lista Direta
 
 Lista* listaDiretaUsers(void) {
   FILE* fp;

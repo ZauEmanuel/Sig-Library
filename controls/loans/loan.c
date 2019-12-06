@@ -38,6 +38,7 @@ Loan* searchLoan(char* cpf, char* isn){
 	fclose(f);
 	if (found)
 		return loan;
+	return NULL;
 }
 
 void listLoan(void){
@@ -107,10 +108,10 @@ void loan(void) {
 		}
 
 		do{
-			printf("\n Digite o ISBN: ");
+			printf("\n Digite o código identificador: ");
 			scanf(" %s",isn);
-			op = searchBook(isn);
-			if(op == 2)
+			book = searchBook(isn);
+			if(book == NULL)
 				return;
 		}while(op == 0);
 
@@ -171,8 +172,8 @@ void devolution(void) {
 		// Busca de usuário
 		do{
 			printf("Digite o CPF: ");
-			scanf(" %s",user);
-			user = searchBook(user);
+			scanf(" %s",cpf);
+			user = searchUser(cpf);
 			if (user == NULL){
 				printf("O usuário não foi encontrado: \n[1] Tentar novamente \n[0] Sair\n Digite: ");
 				scanf(" %c",&controlP);

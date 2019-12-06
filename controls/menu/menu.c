@@ -17,128 +17,81 @@
 #define clBuf setbuf(stdin,NULL);
 
 void acervo(void){
-	char op = '1';
+	char op;
   do {
     cls;
-    do{
-      printf("\n|||||||||||||||||||||||||||||||||\n");
-      printf("              Acervo");
-      printf("\n|||||||||||||||||||||||||||||||||\n");
-      printf(" [1] Listar Acervo\n [2] Pesquisar material\n [3] Cadastrar material\n");
-      printf(" [4] Atualizar material\n [5] Remover material\n [0] Voltar\n\n");
-      printf("Digite: ");
-      clBuf;
-      scanf(" %c",&op);
-      clBuf;
-      cls;
-    } while(!(op >= '0' && op <= '5'));
-    switch (op){
-
-      case '0':
-        return;
-      
-      case '1':
-        listBook();
-        break;
-      case '2':
-        searchBookShow();
-        break;
-      
-      case '3':
-        newBook();
-        break;
-      
-      case '4':
-        updateBook();
-        break;
-      
-      case '5':
-        removeBook();
-        break;
+    printf("\n|||||||||||||||||||||||||||||||||\n");
+    printf("              Acervo");
+    printf("\n|||||||||||||||||||||||||||||||||\n");
+    printf(" [1] Listar Material\n [2] Pesquisar Material\n [3] Cadastrar Material\n");
+    printf(" [4] Atualizar Material\n [5] Remover material\n [0] Voltar\n\n");
+    printf("Digite: ");
+    clBuf; scanf(" %c",&op); clBuf;
+    cls;
+    if (op == '0')
+      return;
+    if (op == '1'){
+      listBook();
     }
+    if (op == '2')
+      searchBookShow();
+    if (op == '3')
+      newBook();
+    if (op == '4')
+      updateBook();
+    if (op == '5')
+      removeBook();
   } while(op != '0');
   cls;
 }
 
-
 void users(void){
-  char op = '1';
-  cls;
+  char op;
   do { 
+    cls;
     printf("\n|||||||||||||||||||||||||||||||||\n");
     printf("              Usuario\n");
     printf("|||||||||||||||||||||||||||||||||\n");
-    printf("\n [1] Pesquisar\n [2] Cadastrar\n [3] Atualizar\n [4] Remover\n [5] Listar Usuários\n [0] Voltar\n\n");
+    printf("\n [1] Listar Usuários\n [2] Pesquisar Usuário\n [3] Cadastrar Usuário\n [4] Atualizar Usuário\n [5] Remover Usuário\n [0] Voltar\n\n");
 		printf("Digite: ");
-    clBuf;
-    scanf(" %1[^\n]",&op);
-    clBuf;
-    switch (op) {
-      case '0':
-        return;
-
-      case '1':
-        cls;
-        searchUserShow();
-        break;
-      
-      case '2':
-        cls;
-        newUser();
-        cls;
-        break;
-
-      case '3':
-        cls;
-        updateUser();
-        cls;
-        break;
-      
-      case '4':
-        cls;
-        removeUser();
-        cls;
-        break;
-        
-      case '5':
-        cls;
-        listUser();
-        cls
-        break;
-    }
+    clBuf; scanf(" %c",&op); clBuf;
+    if (op == '0')
+      return;
+    if (op == '1')
+      listUser();
+    if (op == '2')
+      searchUserShow();
+    if (op == '3')
+      newUser();
+    if (op == '4')
+      updateUser();
+    if (op == '5')
+      removeUser();
   } while (op != '0');
   cls;
 }
-
 
 void library(void){
-  char op = '1';
-  printf("\n////////////////////////////////////\n");
-  printf("             Biblioteca\n");
-  printf("///////////////////////////////////\n");
-  printf(" [1] Empréstimo\n [2] Devolução\n [3] Relatórios\n [0] Voltar\n\n");
-  do { 
+  char op;
+  do {
+    cls;
+    printf("\n////////////////////////////////////\n");
+    printf("             Biblioteca\n");
+    printf("///////////////////////////////////\n");
+    printf(" [1] Empréstimo\n [2] Devolução\n [3] Lista de Empréstimos\n [0] Voltar\n\n");
 		printf("Digite: ");
     scanf("%c",&op);
-    switch (op){
-
-      case '0':
-        break;
-
-      case '1':
-        //Função Relatório
-        break;
-      case '2':
-        //Função Relatório
-        break;
-      case '3':
-        //Função Relatório
-        break;
-    }
+    if (op == '0')
+      break;
+    if (op == '1')
+      loan();
+    if (op == '2')
+      devolution();
+    if (op == '3')
+      listLoan();
   } while (op != '0');
   cls;
 }
-
 
 void about(void) {
 	cls;
@@ -146,46 +99,37 @@ void about(void) {
   printf("                                    Sobre\n");
   printf("===================================================================================\n");
   printf("\n              SIG-Library: Um Sistema de Controle de Biblioteca.\n");
-  printf("\nCriadores:\n");
+  printf("\n                 Créditos ao Orientador: Prof. Flavius Gorgônio.\n");
+  printf("\n         Projeto de 2º Período do curso de Sistemas de informação da UFRN.  \n");
+  printf("\n Criadores:\n");
 	printf("\n  Emanuel Oliveira - emanueldasilva011@gmail.com - https://github.com/EmanuelOliveh");
 	printf("\n  Zaú Galvão       -       zauhf@gmail.com       - https://github.com/ZauJulio\n\n\n");
   printf("                                2019 - Caicó/RN\n\n");
   printf("====================================================================================\n");
-	clBuf; getchar(); clBuf;
+	clBuf; getchar(); getchar(); clBuf;
 	cls;
 }
 
-
 int main(void) {
-  int op;
+  char op;
   do {
     cls;
-    op = 1;
     printf("\n\n////////////////////////////////////\n");
     printf("           SIG - Library\n");
     printf("///////////////////////////////////\n");
     printf("\n [1] Usuario\n [2] Acervo\n [3] Empréstimos\n [4] Sobre \n [0] Sair\n\n");
 		printf("Digite: ");
-    clBuf;
-    scanf(" %d",&op);
-    clBuf;
-    printf(" %d",op);
-    if (op >= 0 && op <= 5) {
-      cls;
-      if (op == 1){
-				users();
-      } if (op == 2){
-				acervo();
-      } if (op == 3){
-				library();
-      } if (op == 4){
-				about();
-      } if (op == 0){
-				break;
-			}
-      cls;
-    }
-    printf("%d",op);
-  } while (op != 0);
+    clBuf; scanf(" %c",&op); clBuf;
+    if (op == '0')
+      break;
+    if (op == '1')
+      users();
+    if (op == '2')
+      acervo();
+    if (op == '3')
+      library();
+    if (op == '4')
+      about();
+  } while (op != '0');
   return 0;
 }

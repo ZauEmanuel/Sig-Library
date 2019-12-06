@@ -12,7 +12,7 @@ typedef struct{
 
 void newBook(void); 
 Book* searchBook(char*);
-void searchUserShow(void);
+void searchBookShow(void);
 void updateBook(void);
 void showInfoBook(Book*);
 void removeBook(void);

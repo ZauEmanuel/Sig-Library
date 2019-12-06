@@ -7,6 +7,10 @@
 	#include "../../entries/book/entriesBook.h"
 #endif
 
+#ifndef VALID_H
+	#include "../../entries/valid/valid.h"
+#endif
+
 #define cls system("clear||cls");
 #define clBuf setbuf(stdin,NULL);
 
@@ -16,9 +20,7 @@ void listBook(void){
 	if(!f){
 		printf("Erro ao tantar abrir o arquivo.\n");
 		printf("::: ENTER :::");
-		clBuf;
-		getchar();
-		clBuf;
+		clBuf; getchar(); getchar(); clBuf;
 		return;
 	}
 	while(fread(book,sizeof(Book),1,f)){
@@ -118,7 +120,7 @@ Book* searchBook(char* isn) {
 	if (!f) {
 		fclose(f);
 		printf("Erro ao abrir o arquivo de registro de livros !");
-		return book;
+		return NULL;
 	}
 	book = (Book*) malloc(sizeof(Book));
 	found = 0;
@@ -133,6 +135,7 @@ Book* searchBook(char* isn) {
 	else
 		printf("Livro não encontrado !");
 	fclose(f);
+	return NULL;
 }
 
 void updateBook(void) {
@@ -228,8 +231,8 @@ void updateBook(void) {
 	} while(op != '0');
 	free(bookUp);
 	if(op==1){
-		rmBook(bookUp->status);
-		recBook(book);
+		rmBook(bookUp->ISN);
+		recBook(bookUp);
 		printf("Livro atualizado com sucesso!");
 		clBuf;
 		printf("::: ENTER :::");
@@ -288,7 +291,7 @@ void searchBookShow(void){
 	char op = ' ';
 	do{
 		printf("Digite o código do livro: ");
-		scanf(" %c",op);
+		scanf(" %c",&op);
 		if (!valISN(isn)){
 			printf("Código do livro inválido!");
 			printf("\n [1] Tentar Novamente \n [0] Sair \n Digite: ");
