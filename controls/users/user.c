@@ -45,11 +45,16 @@ void showInfoUser(User *user){
 }
 
 void showInfoUserList(Lista *user){
-	printf("\n===============================\n\n");
-	printf(" [1] Nome :    %s \n [2] CPF :     %s \n",user->name,user->cpf);
-	printf(" [3] Rua :     %s \n [4] Número :  %s \n",user->rua,user->num);
-	printf(" [5] CEP :     %s \n [6] e-mail :  %s \n",user->cep,user->email);
-	printf("\n\n===============================\n");
+	cls;
+	while (user != NULL) {
+		printf("\n===============================\n\n");
+		printf(" [1] Nome :    %s \n [2] CPF :     %s \n",user->name,user->cpf);
+		printf(" [3] Rua :     %s \n [4] Número :  %s \n",user->rua,user->num);
+		printf(" [5] CEP :     %s \n [6] e-mail :  %s \n",user->cep,user->email);
+		printf("\n\n===============================\n");
+		user = user->prox;
+	}
+	printf("        ::: DIGITE 0 PARA VOLTAR :::\n");
 }
 
 void listUser(void){
