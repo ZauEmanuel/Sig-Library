@@ -24,13 +24,16 @@ void listBook(void){
 		enter;
 		return;
 		}
-	while(fread(book,sizeof(Book),1,f) && book->status != 'I'){
-		showInfoBook(book);
-		printf("\n\n");
+	while(fread(book,sizeof(Book),1,f)){
+		if(book->status != 'I'){
+			showInfoBook(book);
+			printf("\n\n");
 		}
+	}
 	fclose(f);
 	free(book);
 	enter;
+	getchar();
 }
 
 void recBook(Book *book){
@@ -38,9 +41,12 @@ void recBook(Book *book){
 	Book *bookChk = (Book*) malloc(sizeof(Book));
 	if(searchBook(book->ISN) != NULL){
 		bookChk = searchBook(book->ISN);
-		while(bookChk->unity < book->unity){
-			book->unity += 1;
-		}
+		if(bookChk != NULL){
+			while(bookChk->unity < book->unity){
+				book->unity += 1;
+			}
+		} else 
+			cls;
 	} if(f==NULL){
 		printf("ERRO ao criar arquivo.\n");
 		enter;
@@ -156,7 +162,7 @@ void updateBook(void) {
 
 	do {
 		printf("\n========================================\n");
-		printf("               Atualizar Livro");
+		printf("              Atualizar Livro");
 		printf("\n========================================\n");
 		printf("\n [1] Listar os livros\n [0] Sair\n");
 		printf("\n Digite o código de identificação do livro: ");
@@ -265,10 +271,6 @@ void removeBook(void){
 	clBuf; scanf(" %c",&op); clBuf;
 	if(op == '1'){
 		rmBook(isn);
-		printf("test");
-		enter;
-		enter;
-		enter;
 	}else
 		free(book);
 }

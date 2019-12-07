@@ -82,16 +82,15 @@ void loan(void) {
 	Book *book = (Book*) malloc(sizeof(Book));
 	User *user = (User*) malloc(sizeof(User));
 	Loan *loan = (Loan*) malloc(sizeof(Loan));
-	char date[10];
-	int op = 1;
-	char cpf[12] = "";
-	char isn[13] = "";
-
+	char op;
+	char isn[13];
+	char cpf[11];
+	char date[4];
 	struct tm *data_;
 	time_t segundos;
 	time(&segundos);   
 	data_ = localtime(&segundos);
-	strftime(date, 10, "%d/%m/%g", data_);
+	strftime(date, 4, "%Y", data_);
 
 	do {
 		printf("\n||||||||||||||||||||||||||||||||||||||||||||||\n");
@@ -119,15 +118,15 @@ void loan(void) {
 		showInfoUser(user);
 		clBuf; getchar();
 		printf("Continuar:\n [1] SIM \n [0] NÃO \n Digite: ");
-		scanf("%d",&op);
-		if(op == 0)
+		scanf("%c",&op);
+		if(op == '0')
 			return;
 		strcpy(loan->cpf,user->cpf);
 		strcpy(loan->ISN,book->ISN);
 		strcpy(loan->data,date);
 		loan->unity = book->unity;
 		recLoan(loan);
-	} while(op != 0);
+	} while(op != '0');
 	free(book);
 	free(user);
 	free(loan);
@@ -142,17 +141,18 @@ void devolution(void) {
 	char bookD[13] = "";
 	char cpf[11] = "";
 
-	char date[10];
+	char date[4];
 	struct tm *data_;
 	time_t segundos;
 	time(&segundos);   
 	data_ = localtime(&segundos);
-	strftime(date, 10, "%d/%m/%g", data_);
+	strftime(date, 4, "%Y", data_);
 
 	do{
 		// Busca de livro
 		do{
-			printf("Digite o código de identificação do livro: ");
+			cls;
+			printf("\n\n Digite o código de identificação do livro: ");
 			scanf(" %s",bookD);
 			book = searchBook(bookD);
 			if (book == NULL){

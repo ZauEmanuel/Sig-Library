@@ -36,6 +36,16 @@ User* searchUser(char* cpf){
 	return NULL;
 }
 
+//Devolve memória alocada de uma lista
+void freeList(Lista* lista){
+	if(lista != NULL){
+		free(lista->user);
+		freeList(lista->prox);
+		free(lista);
+	}
+}
+
+//Exibe dados de uma estrutura de usuário
 void showInfoUser(User *user){
 	printf("\n===============================\n\n");
 	printf(" [1] Nome :    %s \n [2] CPF :     %s \n",user->name,user->cpf);
@@ -44,19 +54,67 @@ void showInfoUser(User *user){
 	printf("\n\n===============================\n");
 }
 
-void showInfoUserList(Lista *user){
-	cls;
-	while (user != NULL) {
-		printf("\n===============================\n\n");
-		printf(" [1] Nome :    %s \n [2] CPF :     %s \n",user->name,user->cpf);
-		printf(" [3] Rua :     %s \n [4] Número :  %s \n",user->rua,user->num);
-		printf(" [5] CEP :     %s \n [6] e-mail :  %s \n",user->cep,user->email);
-		printf("\n\n===============================\n");
-		user = user->prox;
-	}
-	printf("        ::: DIGITE 0 PARA VOLTAR :::\n");
+//Troca os valores
+void swap(Lista *a, Lista *b){
+	User *temp;
+
+	temp = a->user;
+	a->user = b->user;
+	b->user = temp;
 }
 
+//Exibe dados do usuário em uma lista
+void showInfoUserList(Lista *user){
+	Lista *search;
+ 	search = user;
+	cls;
+	while (search != NULL) {
+		showInfoUser(search->user);
+		search = search->prox;
+	}
+}
+
+//Calcula o tamanho da lista
+int size(Lista* lista){
+	int cont = 0;
+	while(lista != NULL){
+		cont++;
+		lista = lista->prox;
+	}
+	return cont;
+}
+
+//Lista ordenada de usuários
+void sortUserList(Lista* lista){
+	int cont = size(lista), aux;
+
+	while(cont > 0){
+		aux = 1;
+		for(Lista* i = lista; aux < cont; i = i->prox, aux++){
+			if(strcmp(i->user->name, i->prox->user->name) > 0){
+				swap(i, i->prox);
+			}
+		}
+		cont--;
+	}
+}
+
+//Lista ordenada inversa
+void inverSorttortUserList(Lista* lista){
+	int cont = size(lista), aux;
+
+	while(cont > 0){
+		aux = 1;
+		for(Lista* i = lista; aux < cont; i = i->prox, aux++){
+			if(strcmp(i->user->name, i->prox->user->name) < 0){
+				swap(i, i->prox);
+			}
+		}
+		cont--;
+	}
+}
+ 
+//Lista usuários a partir do arquivo users.bin
 void listUser(void){
 	User *user = (User*) malloc(sizeof(User));
 	FILE *f = fopen("users.bin","rb");
@@ -141,6 +199,7 @@ void newUser(void) {
 		if(op =='1'){
 			user->status = '1';
 			recUser(user);
+			break;
 		} if (op == '0'){
 			free(user);
 			return;
@@ -162,12 +221,18 @@ void updateUser(void) {
 		enter;
 		return;
 	}
-	printf("\n\n\n||||||||||||||||||||||||||||||||||||||||||||||\n");
-	printf("                 Atualizar Usuario\n");
-	printf("||||||||||||||||||||||||||||||||||||||||||||||\n\n");
-	printf("Informe o cpf do usuário a ser alterado: ");
-
-	scanf(" %11[^\n]", cpf);
+	do{
+		printf("\n\n\n||||||||||||||||||||||||||||||||||||||||||||||\n");
+		printf("                 Atualizar Usuario\n");
+		printf("||||||||||||||||||||||||||||||||||||||||||||||\n\n");
+		printf(" \n[1] Listar Usuários \n[0] Sair\n\n");
+		printf(" Digite o CPF: ");
+		scanf(" %11[^\n]", cpf);
+		if(cpf[0] == '1' && (strlen(cpf) == 1))
+			listUser();
+		if(cpf[0] == '0' && (strlen(cpf) == 1))
+			return;
+	} while(!valCPF(cpf));
 	user = (User*) malloc(sizeof(User));
 	found = 0;
 	while((!found) && (fread(user, sizeof(User), 1, f))) {
@@ -180,58 +245,36 @@ void updateUser(void) {
    if (found) {
 	showInfoUser(user);
 	enter;
-	printf("\n --Continuar:\n    [1] SIM\n    [0] NÃO\n Digite: ");
+	printf("\n --Continuar:\n\n    [1] SIM\n    [0] NÃO\n\nDigite: ");
 	clBuf; scanf("%c", &op); clBuf;
 	cls;
 	if(op=='1'){
 		cls;
-    	printf("\n||||||||||||||||||||||||||||||||||||||||||||||\n");
-		printf("                 Atualizar Usuario\n");
-		printf("||||||||||||||||||||||||||||||||||||||||||||||\n\n");
-		printf("        ::: DIGITE 0 PARA VOLTAR :::\n");
 		showInfoUser(user);
-		op = inputUserName(user);
-		if(op == '0'){
-			free(user);
+		printf(" \n[0] Sair\n");
+		printf(" \nDigite o número da categoria: ");
+		scanf(" %c",&op);
+		if(op == '1')
+			inputUserName(user);
+		if(op == '2')
+			inputUserCPF(user);
+		if(op == '3')
+			inputUserRua(user);
+		if(op == '4')
+			inputUserNum(user);
+		if(op == '5')
+			inputUserCEP(user);
+		if(op == '6')
+			inputUserEmail(user);
+		if(op == '0')
 			return;
-		}
-		
-		op = inputUserCPF(user);
-		if(op == '0'){
-			free(user);
-			return;
-		}
-		
-		op = inputUserRua(user);
-		if(op == '0'){
-			free(user);
-			return;
-		}
-		
-		op = inputUserNum(user);
-		if(op == '0'){
-			free(user);
-			return;
-		}
-		
-		op = inputUserCEP(user);
-		if(op == '0'){
-			free(user);
-			return;
-		}
-		
-		op = inputUserEmail(user);
-		if(op == '0'){
-			free(user);
-			return;
-		}
 		cls;
+		getchar();
 		showInfoUser(user);
-		printf("\n --Deseja REALMENTE continuar?\n    [1] SIM\n    [0] NÃO\n Digite: ");
+		printf("\n --Deseja REALMENTE continuar?\n\n    [1] SIM\n    [0] NÃO\n\n Digite: ");
 		clBuf; scanf("%c",&op); clBuf;
 		cls;
 		if(op == '1'){
-			user->status = '1';
 			fseek(f, (-1)*sizeof(User), SEEK_CUR);
 			fwrite(user, sizeof(User), 1, f);
 			printf("\nDados alterados com sucesso!\n");
@@ -254,7 +297,8 @@ void updateUser(void) {
 void removeUser(void) {
 	FILE* f = fopen("users.bin", "r+b");
 	User* user;
-	int found;
+	user = (User*) malloc(sizeof(User));
+	int found = 0;
 	char op;
 	char cpf[12];
 	cls;
@@ -268,47 +312,74 @@ void removeUser(void) {
 	printf("\n============================================\n");
 	printf("                 Remover Usuario");
 	printf("\n============================================\n\n");
-	printf("\n [1] Listar os Usuários\n [0] Sair\n");
+	printf("\n [1] Listar os Usuários\n [0] Sair\n\n");
 	printf(" Digite o CPF do usuário: ");
-
 	scanf(" %s",cpf);
 	if ( (cpf[0] == '1') && (strlen(cpf) == 1))
 		listUser();
 	if ( (cpf[0] == '0') && (strlen(cpf) == 1))
 		return;
-
-	user = (User*) malloc(sizeof(User));
-	found = 0;
-	while((!found) && (fread(user, sizeof(User), 1, f))) {
-		if ((strcmp(user->cpf, cpf) == 0) && (user->status == '1')) {
-			found = 1;
+	if (valCPF(cpf)){
+		while((!found) && (fread(user, sizeof(User), 1, f))) {
+			if ((strcmp(user->cpf, cpf) == 0) && (user->status == '1')) {
+				found = 1;
+			}
 		}
-	}
-	if (found) {
-		showInfoUser(user);
-		enter;
-		printf("\n --Deseja RALMENTE continuar? \n    [1] SIM\n    [0] NÃO\n Digite: ");
-		clBuf; scanf("%c", &op); clBuf;
-		cls;
-		if(op=='1'){
-			user->status = '0';
-			fseek(f, (-1)*sizeof(User), SEEK_CUR);
-			fwrite(user, sizeof(User), 1, f);
-			printf("\nUsuário removido com sucesso!\n");
-			enter;
-			getchar();
+		if (found) {
+			showInfoUser(user);
+			printf("\n --Deseja RALMENTE continuar? \n    [1] SIM\n    [0] NÃO\n Digite: ");
+			clBuf; scanf("%c", &op); clBuf;
+			cls;
+			if(op=='1'){
+				user->status = '0';
+				fseek(f, (-1)*sizeof(User), SEEK_CUR);
+				fwrite(user, sizeof(User), 1, f);
+				printf("\nUsuário removido com sucesso!\n");
+				enter;
+				getchar();
+			} else {
+				printf("\nOperação cancelada\n");
+				enter;
+				getchar();
+			}
 		} else {
-			printf("\nOperação cancelada\n");
+			printf("\nO usuário não foi encontrado...\n");
 			enter;
 			getchar();
 		}
-	} else {
-		printf("\nO usuário não foi encontrado...\n");
-		enter;
-		getchar();
 	}
 	free(user);
 	fclose(f);
+}
+
+void showListUser(void){
+	char op = ' ';
+	Lista* lUser;
+	do{
+		lUser = listaDiretaUsers();
+		cls;
+		printf("\n|||||||||||||||||||||||||||||||||\n");
+		printf("         Listar Usuarios\n");
+		printf("|||||||||||||||||||||||||||||||||\n");
+		printf("\n [1] Listar Todos os Usuários\n [2] Lista Diretas de Usuários\n [3] Lista Ordenada de Usuários\n [4] Lista Invertida de Usuários\n [0] Sair\n\n");
+		printf("Digite: ");
+		clBuf; scanf(" %c",&op); clBuf;
+		if (op == '1'){
+			listUser();
+		}if (op == '2'){
+			showInfoUserList(lUser);
+			freeList(lUser);
+			enter; getchar();
+		} if(op == '3'){
+			sortUserList(lUser);
+			showInfoUserList(lUser);
+			enter; getchar();
+		} if(op == '4'){
+			inverSorttortUserList(lUser);
+			showInfoUserList(lUser);
+			enter; getchar();
+		}
+	}while (op != '0');
 }
 
 void searchUserShow(void){
@@ -342,42 +413,37 @@ void searchUserShow(void){
 }
 
 Lista* listaDiretaUsers(void) {
-  FILE* fp;
+  FILE* f = fopen("users.bin", "rb");
   User* user;
-  Lista* noUser;
-  Lista* lista;
+  Lista* lista, *lUser;
   Lista* ultimo;
 
   lista = NULL;
-  fp = fopen("users.bin", "rb");
-  if (fp == NULL) {
-    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-    printf("Não é possível continuar o programa...\n");
-    exit(1);
-  }
+  if(!f){
+		printf("Erro ao tantar abrir o arquivo.\n");
+		printf("	::: ENTER :::\n"); 
+		clBuf;
+		getchar();
+		getchar();
+		return NULL;
+	}
 
   user = (User*) malloc(sizeof(User));
-  while(fread(user, sizeof(User), 1, fp)) {
+  while(fread(user, sizeof(User), 1, f)) {
     if (user->status == '1') {
-      noUser = (Lista*) malloc(sizeof(Lista));
-      strcpy(noUser->name, user->name);
-      strcpy(noUser->cep, user->cep);
-      strcpy(noUser->cpf, user->cpf);
-      strcpy(noUser->rua, user->rua);
-      strcpy(noUser->num, user->num);
-      strcpy(noUser->email, user->email);
-      noUser->loans = user->loans;
-      noUser->status = user->status;
-      noUser->prox = NULL;
+      lUser = (Lista*) malloc(sizeof(Lista));
+      lUser->user = user;
       if (lista == NULL) {
-        lista = noUser;
+        lista = lUser;
+		lUser->prox = NULL;
       } else {
-        ultimo->prox = noUser;
+        ultimo->prox = lUser;
+		lUser->prox = NULL;
       }
-      ultimo = noUser;
+	  user = (User*) malloc(sizeof(User));
+      ultimo = lUser;
     }
   }
-  fclose(fp);
-  free(user);
+  fclose(f);
   return lista;
 }

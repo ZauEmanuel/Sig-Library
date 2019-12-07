@@ -15,6 +15,7 @@
 
 #define cls system("clear||cls");
 #define clBuf setbuf(stdin,NULL);
+#define enter printf("\n           ::: ENTER :::\n\n"); clBuf; getchar(); clBuf;
 
 void acervo(void){
   char op;
@@ -29,10 +30,8 @@ void acervo(void){
     cls;
     if (op == '0')
       return;
-    if (op == '1'){
+    if (op == '1')
       listBook();
-      getchar();
-    }
     if (op == '2')
       searchBookShow();
     if (op == '3')
@@ -50,15 +49,15 @@ void users(void){
   do { 
     cls;
     printf("\n|||||||||||||||||||||||||||||||||\n");
-    printf("              Usuario\n");
+    printf("             Usuario\n");
     printf("|||||||||||||||||||||||||||||||||\n");
-    printf("\n [1] Listar Usuários\n [2] Pesquisar Usuário\n [3] Cadastrar Usuário\n [4] Atualizar Usuário\n [5] Remover Usuário\n [6] Listar Diretas de Usuários\n [0] Voltar\n\n");
-    printf("Digite: ");
+    printf("\n [1] Listar Usuários\n [2] Pesquisar Usuário\n [3] Cadastrar Usuário\n [4] Atualizar Usuário\n [5] Remover Usuário\n [0] Voltar\n\n");
+		printf("Digite: ");
     clBuf; scanf(" %c",&op); clBuf;
     if (op == '0')
       return;
     if (op == '1')
-      listUser();
+      showListUser();
     if (op == '2')
       searchUserShow();
     if (op == '3')
@@ -67,13 +66,7 @@ void users(void){
       updateUser();
     if (op == '5')
       removeUser();
-    if (op == '6'){
-      Lista* lUser;
-      lUser = listaDiretaUsers();
-      showInfoUserList(lUser);
-      getchar();
-      getchar();
-    }
+    
   } while (op != '0');
   cls;
 }
